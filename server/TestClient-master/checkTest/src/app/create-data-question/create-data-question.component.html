@@ -1,0 +1,16 @@
+
+<label>כותרת השאלה</label>
+<div [froalaEditor]="options" [froalaModel] ="model"> </div>
+<input type="text" [(ngModel)]="question.questionDescription">
+<br>
+  <input type="number" [(ngModel)]="question.nikud">מס' נקודות לשאלה
+  <br>
+  <div>
+  <p>תשובות אפשריות :</p>
+  <!-- <p>מביא תיבות טקסט לתשובות ןמוסיף תיבה כשנגמר</p> -->
+  <div *ngFor="let ans of question.Answers">
+ <input type="text"  [(ngModel)]="ans.answerDescription" (change)="addLine()"><input type="radio" name="radioAnswer" >
+
+ </div>
+</div>
+  <br>

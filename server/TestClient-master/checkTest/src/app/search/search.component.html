@@ -1,0 +1,26 @@
+
+<form #f="ngForm" class="example-form" (ngSubmit)="getQuestions(f)">
+    <mat-form-field class="example-full-width"  [(ngModel)]="selectedCategory" >
+     <input matInput  placeholder="בחר קטגוריה"  [(ngModel)]="selectedCategory" name="b"  [matAutocomplete]="auto"  [formControl]="myControl"/> 
+      <mat-autocomplete #auto="matAutocomplete"  > 
+          <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+            {{option}}
+          </mat-option>
+        </mat-autocomplete> 
+    </mat-form-field>
+    <input type="submit"  value="חפש">
+  </form>
+
+ 
+
+<!-- <span>בחר לפי קטגוריה</span>
+  <select [(ngModel)]="selectedCategory"  >בחר קטגוריה
+    <option *ngFor="let item of categories" [ngValue]="item">{{item.categoryName}}</option>
+</select>
+<br><br>
+<input type="button" (click)="getQuestions()" value="חפש">
+<br><br>-->
+<div *ngFor="let item of questions" >
+<span>{{item.questionDescription }}</span>
+</div> 
+

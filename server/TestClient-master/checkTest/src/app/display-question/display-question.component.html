@@ -1,0 +1,16 @@
+<div class="card" style="width: 18rem;">
+  <div class="card-body card-body text-danger">
+   
+
+    <h3 class="card-title">{{questions.questionDescription}}</h3>
+    
+    <p *ngFor="let ans of questions.Answers">
+      {{  ans.answerDescription}} </p>
+     <input type="number" value="0" [(ngModel)]="questions.nikud">בחר ניקוד
+    <button class="btn btn-warning" (click)="EditQuestion()"><mat-icon aria-hidden="false" aria-label="border_color">border_color</mat-icon> </button>
+    
+    <button class="btn btn-secondary" (click)="RemoveQuestion()"><mat-icon aria-hidden="false" aria-label="delete_forever">delete_forever</mat-icon></button>
+    
+    <button class="btn btn-secondary" (click)="suggestQuestion()">הצעת שאלה למאגר <mat-icon aria-hidden="false" aria-label="mail_outline">mail_outline</mat-icon></button>
+  </div>
+</div>

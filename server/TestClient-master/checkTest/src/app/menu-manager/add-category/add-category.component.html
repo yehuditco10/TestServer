@@ -1,0 +1,12 @@
+<p>
+  add-category works!
+</p>
+<input type="text"[(ngModel)]="categorydes">
+{{categorydes}}
+<br>
+בחר קטגוריית אב
+<select [(ngModel)]="selectedParentCategory">
+  <option *ngFor="let parentCategory of categories" [ngValue]="parentCategory">{{parentCategory.categoryName}}</option>
+</select>
+<button (click)="addCategory()">הוסף</button>
+

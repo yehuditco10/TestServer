@@ -1,0 +1,21 @@
+<label>id</label>
+<input>
+
+<button (click)="sendStudentId()" class="btn btn-warning" >התחל מבחן</button>
+
+<div *ngIf="isOk">
+    <div>
+        <label>{{test.title}}</label>
+        <div *ngFor="let question of test.questions">
+            <label>{{question.questionText}}</label>
+            <br>
+            <mat-radio-group [(ngModel)]="question.selectedAnswer"><br>
+                <mat-radio-button *ngFor="let answer of question.answerList" [value]="answer"><p>....................</p>{{answer}}
+                </mat-radio-button>
+              <div></div>
+                <br>
+            </mat-radio-group>
+        </div>
+    </div>
+    <button (click)="sendTest()" class="btn btn-success" ><mat-icon aria-hidden="false" aria-label="done_outline">done_outline</mat-icon>סיום מבחן</button>
+</div>

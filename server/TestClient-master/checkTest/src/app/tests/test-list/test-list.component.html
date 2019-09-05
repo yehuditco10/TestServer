@@ -1,0 +1,7 @@
+
+<app-categories-tree style="width:200px;float:right" (NodeClicked)="nodeClicked($event)"></app-categories-tree>
+<div *ngIf="category">
+    <h1>{{category.name}}</h1>
+    <button (click)="addNewTest()">+</button>
+   <app-test-cards *ngFor="let test of tests" [(test)]="test" style="float: right;width:270px;margin:10px"></app-test-cards>
+</div>

@@ -1,0 +1,92 @@
+
+<div *ngIf="selectedCategory">
+  <h2 *ngIf="title !=null">{{title}}</h2>
+<input type="text" placeholder="הכנס כותרת למבחן" [(ngModel)]="testName">
+</div>
+
+
+<!-- https://www.npmjs.com/package/ngx-modal -->
+<!-- Modal -->
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+  aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">הוספת שאלה</h5>
+       
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+     <!-- aaa -->
+     <ul id="myUL" >
+
+  <li *ngFor="let que of questions"><button type="button" (click)="PushQuestion(que)" class="btn btn-primary">הוספה</button>
+    <span (click)="showAnswers($event)" class="caret">{{que.questionDescription}}</span>
+    <ul class="nested">
+      <li *ngFor="let ans of que.Answers">*  {{ans.answerDescription}}</li>
+
+    </ul>
+  </li>
+</ul>
+<h3 *ngIf="questions==null">לא נבחר נושא המבחן </h3>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">סגור</button>
+        <!-- <button type="button" (click)="PushQuestion()" class="btn btn-primary">הוספה</button> -->
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Vוספת שאלה אישית -->
+<div class="modal fade" id="exampleModalCenter2" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+  aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">הוספת שאלה</h5>
+        <button type="button"  class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      
+      <div class="modal-body">
+        <app-create-data-question [(question)]="currentQuestion"></app-create-data-question>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" class="btn btn-outline-info" data-dismiss="modal">סגור</button>
+        <button type="button" class="btn btn-secondary" class="btn btn-outline-danger" (click)="PushNewQuestion()" data-dismiss="modal">הוסף</button>
+        <!-- <button type="button" class="btn btn-primary">הוספה</button> -->
+      </div>
+    </div>
+  </div>
+</div>
+
+<div *ngFor="let ques of test.questionArr">
+  <app-display-question [questions]="ques" (q)="RemoveQuestion($event)"  (editQuestionEvent)="editQuestion($event)"  ></app-display-question>
+
+</div>
+
+
+<br>
+<br>
+<div class="dropdown">
+  <button class="btn btn-secondary dropdown-toggle" class="btn btn-danger" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+   הוספת שאלה 
+  </button>
+  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+    
+    <button type="button" (click)="getQuestion()" class="dropdown-item" class="btn btn-warning"  data-toggle="modal" data-target="#exampleModalCenter">
+      ממאגר להוספת שאלה
+    </button><br>
+    <button type="button" id="openModalBtn" (click)="createNewQuestion()" class="dropdown-item" class="btn btn-success" data-toggle="modal" data-target="#exampleModalCenter2"> -->
+ 
+      להוספת שאלה
+    </button>
+  
+    
+  </div>
+  <button (click)="saveTest()"> שמור מבחן</button>
+</div>
