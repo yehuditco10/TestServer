@@ -12,10 +12,17 @@ export class TestService {
 return this.http.post(environment.baseRoute+ "FilterByCategory?categoryId="+id,null);
   }
   GetByTestIdForStudent(id){
-    alert("in service"+id);
+    // alert("in service"+id);
     return this.http.post(environment.baseRoute+ "GetByTestIdForStudent?testId="+id,null);
   }
   GetTestByCategoryId(id){
     return this.http.post(environment.baseRoute+ "GetTestById?categoryId="+id,null);
+  }
+  openTest(testid:number,studentTZ:string){
+    return this.http.get(environment.baseRoute+ "openTest?testid="+testid+'&studentTZ='+studentTZ);
+    // let data=new URLSearchParams();
+    // data.append('testid',testid);
+    // var body='testid=testid+&studentTZ=studentTZ';
+    // return this.http.post(environment.baseRoute+'openTest',body);
   }
 }

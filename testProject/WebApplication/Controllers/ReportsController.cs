@@ -10,7 +10,7 @@ using System.Web.Mvc;
 namespace WebApplication.Controllers
 {
     [EnableCors(origins: "*", headers: "*", methods: "*")]
-    [System.Web.Http.RoutePrefix("api")]
+    [System.Web.Http.RoutePrefix("api/report")]
     public class ReportsController : ApiController
     {
         // GET: Reports

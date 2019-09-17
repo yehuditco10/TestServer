@@ -39,5 +39,13 @@ namespace WebApplication.Controllers
         {
             return TestModule.GetByTestIdForStudent(testId);
         }
+
+        [Route("openTest")]
+        [HttpGet]
+        public bool openTest(int testId,string studentTZ)
+        {
+            return TestModule.openTest(testId,studentTZ);
+        }
+        
     }
 }

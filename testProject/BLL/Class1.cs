@@ -42,6 +42,31 @@ namespace BLL
             Entity.db.SaveChanges();
         }
 
+      
+        public static int getQuestionForCat(int categoryId)
+        {
+            List<Question> lq = new List<Question>();//רשימת שאלות של תתי קטגוריות
+            List<Question> l = new List<Question>();
+            List<Category> lc = new List<Category>();
+            lc = Entity.db.Categories.Where(c => categoryId == c.parentCategoryId).ToList();//תתי קטגוריות
+            if (lc.Count != 0)
+                foreach (var item in lc)
+                {
+                    var questions = Entity.db.Questions.Where(q => q.categoriId == item.categoryId).ToList();
+                    lq.AddRange(questions);
+                }
+            //var parentId = Entity.db.Categories.FirstOrDefault(c =>c.parentCategoryId!=null && c.parentCategoryId != categoryId)();
+            l = Entity.db.Questions.Where(q => q.categoriId == categoryId /*||q.parentCategoryId==categoryId*/ ).ToList();
+            if (lc.Count > 0)//יש תתי שאלות
+            {
+                //יש שאלות אב
+                l.AddRange(lq);
+            }
+            if (l.Count > 0)
+                return l.Count();
+            return 0;
+        }
+
         public static object GetAllQuestion()
         {
             return Entity.db.Questions.ToList();

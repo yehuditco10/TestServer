@@ -32,6 +32,19 @@ namespace WebApplication.Controllers
             //categoryId = Entity.db.Categories.FirstOrDefault(c => c == category).categoryId;
             //return Ok(Class1.GetQuestion(categoryId));
         }
+        [System.Web.Http.Route("getQuestionForCat/{categoryId}")]
+        [HttpGet]
+        public IHttpActionResult getQuestionForCat(int categoryId = 0)
+        {
+           
+            return Ok(Class1.getQuestionForCat(categoryId));
+            //Category categoryId = null
+            //if (category == null)
+            //    return Ok(Class1.GetAllQuestion());
+            //int categoryId = 0;
+            //categoryId = Entity.db.Categories.FirstOrDefault(c => c == category).categoryId;
+            //return Ok(Class1.GetQuestion(categoryId));
+        }
         [Route("getQuestions1")]
         [HttpGet]
         public IHttpActionResult getQuestions1()

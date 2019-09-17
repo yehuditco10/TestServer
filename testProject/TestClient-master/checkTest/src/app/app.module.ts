@@ -36,6 +36,11 @@ import {MatRadioModule} from '@angular/material/radio';
 import { DisplayTestComponent } from './tests/display-test/display-test.component';
 import {MatIconModule} from '@angular/material/icon';
 import { HeaderComponent } from './header/header.component';
+import { ReportSumUsersComponent } from './reports/report-sum-users/report-sum-users.component';
+import { FabComponent } from './fab/fab.component';
+import { HeaderManagerComponent } from './header-manager/header-manager.component';
+import { ReportsComponent } from './reports/reports/reports.component';
+import { ReportSumQuestionsComponent } from './reports/report-sum-questions/report-sum-questions.component';
 
 
 @NgModule({
@@ -61,7 +66,12 @@ import { HeaderComponent } from './header/header.component';
     TestCardsComponent,
     AddCategoryComponent,
     DisplayTestComponent,
-    HeaderComponent
+    HeaderComponent,
+    ReportSumUsersComponent,
+    FabComponent,
+    HeaderManagerComponent,
+    ReportsComponent,
+    ReportSumQuestionsComponent
   ],
   imports: [
     BrowserModule,

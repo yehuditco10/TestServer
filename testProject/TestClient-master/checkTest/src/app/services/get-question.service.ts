@@ -8,7 +8,9 @@ import { environment } from 'src/environments/environment';
 export class GetQuestionService {
 
   constructor(private http:HttpClient) { }
-
+  getQuestionForCatc(categoryId?:number){
+    return this.http.get(environment.baseRoute+'getQuestionForCatc/'+ categoryId);
+  }
   getQuestion(categoryId?:number){
     if(categoryId!=null)
     return this.http.get(environment.baseRoute+'getQuestions/'+ categoryId);

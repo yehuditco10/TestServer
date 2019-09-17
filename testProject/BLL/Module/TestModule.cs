@@ -73,6 +73,17 @@ namespace BLL.Module
             }
         }
 
+        public static bool openTest(int testId, string studentTZ)
+        {
+            var x = Entity.db.StudentForCourses.FirstOrDefault(s => s.courseId == testId);
+
+           // var x = Entity.db.StudentForCourses.FirstOrDefault(s => s.studentId == studentTZ && s.courseId == testId);
+                if (x != null)
+                return true;
+            return false;
+
+        }
+
         public static TestVM GetByCategory(int categoryId)
         {
 
@@ -133,7 +144,7 @@ namespace BLL.Module
                         Answers = answersDes,
                         nikud = quenstion.nikod,
                         
-                        selectedAnswer =selectedAnswer.answerDescription
+                        //selectedAnswer =selectedAnswer.answerDescription
 
                     });
                 }

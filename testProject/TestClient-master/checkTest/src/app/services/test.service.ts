@@ -18,5 +18,11 @@ categoryId:number;
   GetTestById(id){
     return this.http.post(environment.baseRoute+ "GetTestById?testId="+id,null);
   }
-  
+  openTest(testid:number,studentTZ:string){
+    // return this.http.get(environment.baseRoute+ "addCategory?id="+id+'&categoryName='+categoryName);
+    // let data=new URLSearchParams();
+    // data.append('testid',testid);
+    var body='testid=testid+&studentTZ=studentTZ';
+    return this.http.post(environment.baseRoute+'openTest',body);
+  }
 }

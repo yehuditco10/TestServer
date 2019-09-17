@@ -15,6 +15,7 @@ import { FinishTestComponent } from './create-test/finish-test/finish-test.compo
 import { TestListComponent } from './tests/test-list/test-list.component';
 import { AddCategoryComponent } from './menu-manager/add-category/add-category.component';
 import { DisplayTestComponent } from './tests/display-test/display-test.component';
+import { ReportsComponent } from './reports/reports/reports.component';
 
 
 const routes: Routes = [
@@ -33,6 +34,8 @@ const routes: Routes = [
 {path:'Highchart1',component:Highchart1Component},
 {path:'FinishTest',component:FinishTestComponent},
 {path:'TestList',component:TestListComponent},
+{path:'reports',component:ReportsComponent},
+
 {path:'AddCategory',component:AddCategoryComponent},
 
 

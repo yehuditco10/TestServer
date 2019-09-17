@@ -6,12 +6,13 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root'
 })
 export class ReportsService {
-
+sumTeachers:number;
+sumStudents:number;
   constructor(private http:HttpClient) { }
   getTeachers() {
-    return this.http.get(environment.baseRoute + 'getTeachers');
+    return this.http.get(environment.baseRoute + 'report/getTeachers');
   }
   getStudents() {
-    return this.http.get(environment.baseRoute + 'getStudents');
+    return this.http.get(environment.baseRoute + 'report/getStudents');
   }
 }
