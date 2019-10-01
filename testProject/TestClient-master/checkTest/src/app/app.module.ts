@@ -41,6 +41,7 @@ import { FabComponent } from './fab/fab.component';
 import { HeaderManagerComponent } from './header-manager/header-manager.component';
 import { ReportsComponent } from './reports/reports/reports.component';
 import { ReportSumQuestionsComponent } from './reports/report-sum-questions/report-sum-questions.component';
+import { TryComponent } from './try/try.component';
 
 
 @NgModule({
@@ -71,7 +72,8 @@ import { ReportSumQuestionsComponent } from './reports/report-sum-questions/repo
     FabComponent,
     HeaderManagerComponent,
     ReportsComponent,
-    ReportSumQuestionsComponent
+    ReportSumQuestionsComponent,
+    TryComponent
   ],
   imports: [
     BrowserModule,

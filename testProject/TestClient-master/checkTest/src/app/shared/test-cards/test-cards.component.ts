@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Test } from '../models/test';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-test-cards',
@@ -9,9 +10,12 @@ import { Test } from '../models/test';
 export class TestCardsComponent implements OnInit {
 
   @Input() test:Test;
-  constructor() { }
+  constructor(private router:Router) { }
 
   ngOnInit() {
+  }
+  edit(){
+    this.router.navigate(['create-test',{categoryId:this.test.testId}]);
   }
 
 }

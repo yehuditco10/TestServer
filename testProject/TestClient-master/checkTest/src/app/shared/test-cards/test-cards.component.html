@@ -1,11 +1,52 @@
-
+<!-- 
 <div class="card" style="width: 18rem;">
-  <!-- <img src="..." class="card-img-top" alt="..."> -->
+
   <div class="card-body">
     <h5 class="card-title">{{test.name}}</h5>
-    <!-- <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p> -->
+   
     <a routerLink="/edit-test/{{test.testId}}"  class="btn btn-primary">Edit</a>
   </div>
-</div>
+</div> -->
+
+
+<ul class="tilesWrap">
+    <li>
+      <h2>*</h2>
+      <h3>{{test.name}}</h3>
+      <p>
+       the {{test.name}} is ....
+       .........
+       .........
+       .........
+       <img src="../../../assets/great-checklist-background-with-pen-calculator_23-2147612123.jpg"
+       width="10vw" height="auto">
+      </p>
+      <!-- <button routerLink="/edit-test/{{test.testId}}">Edit</button> -->
+      <button (click)="edit()">Edit</button>
+
+    </li>
+
+<!-- 
+    <li>
+        <h2>01</h2>
+        <h3>Title 1</h3>
+        <p>
+          Lorem Ipsum is simply dummy text of the printing and typesetting   
+          industry. Lorem Ipsum has been the industry's standard dummy text ever 
+          since the 1500s.
+        </p>
+        <button>Read more</button>
+      </li> -->
+    <!-- <li>
+        <h2>--*--</h2>
+        <h3>+</h3>
+        <p>
+         Do you whant to create a new test of your own????
+        </p>
+        <button>creat</button>
+      </li> -->
+   
+     
+  </ul>
 
 

@@ -20,7 +20,11 @@
 <br><br>
 <input type="button" (click)="getQuestions()" value="חפש">
 <br><br>-->
-<div *ngFor="let item of questions" >
-<span>{{item.questionDescription }}</span>
+<div></div>
+<div *ngFor="let question of questions" >
+<h4>{{question.questionDescription }}</h4>
+<div *ngFor="let answer of question.Answers">
+  <h5> * {{answer.answerDescription}}</h5>
+</div>
 </div> 
 

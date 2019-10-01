@@ -100,6 +100,7 @@ export class CreateTestComponent implements OnInit {
     debugger;
     this.categoriesService.getCategories().subscribe((res: Category[]) => {
       debugger;
+      this.categoriesService.categories=res;
       this.categories = res;
       this.selectedCategory = res.filter(i => i.categoryId == this.test.categoriId)[0];
       this.title = ' המבחן ב' + this.selectedCategory.categoryName;

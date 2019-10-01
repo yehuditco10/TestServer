@@ -15,7 +15,7 @@ export class ReportSumQuestionsComponent implements OnInit {
   categories: QuestionForCategory[];
   cat: QuestionForCategory;
   ngOnInit() {
-    alert("report ques")
+    // alert("report ques")
     this.categoryService.getCategories().subscribe((res: Category[]) => {
       res.forEach(element => {
         this.cat.name = element.categoryName;

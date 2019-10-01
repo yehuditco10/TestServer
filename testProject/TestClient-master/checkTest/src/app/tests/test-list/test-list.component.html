@@ -1,7 +1,33 @@
 
 <app-categories-tree style="width:200px;float:right" (NodeClicked)="nodeClicked($event)"></app-categories-tree>
+
 <div *ngIf="category">
     <h1>{{category.name}}</h1>
+    
     <button (click)="addNewTest()">+</button>
+    
+    <div style=" display: inline;">
+        <ul class="tilesWrap" style="display: inline">
+            <li>
+              <h2>+</h2>
+              <h3>צור מבחן חדש</h3>
+              <p>
+               התחל ליצור מבחן המותאם לך אישית
+               .........
+               .........
+               .........
+               <img src="../../../assets/great-checklist-background-with-pen-calculator_23-2147612123.jpg"
+               width="10vw" height="auto">
+              </p>
+              <button (click)="addNewTest()">צור</button>
+            </li>
+        
+    </ul>
    <app-test-cards *ngFor="let test of tests" [(test)]="test" style="float: right;width:270px;margin:10px"></app-test-cards>
 </div>
+</div>
+
+
+
+
+<!-- try -->
