@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Test } from '../shared/models/test';
 import { environment } from 'src/environments/environment';
+import { UpStudent } from '../shared/models/up-student';
 
 @Injectable({
   providedIn: 'root'
@@ -24,5 +25,8 @@ categoryId:number;
     // data.append('testid',testid);
     var body='testid=testid+&studentTZ=studentTZ';
     return this.http.post(environment.baseRoute+'openTest',body);
+  }
+  studentForTest(students:UpStudent[]){
+    return this.http.post(environment.baseRoute+ "studentForTest",students);
   }
 }

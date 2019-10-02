@@ -13,10 +13,10 @@ namespace DAL
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class checkTestEntities : DbContext
+    public partial class testitprojectEntities : DbContext
     {
-        public checkTestEntities()
-            : base("name=checkTestEntities")
+        public testitprojectEntities()
+            : base("name=testitprojectEntities")
         {
         }
     

@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="testitprojectModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="checkTestEntities.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Answers">
           <Key>
             <PropertyRef Name="answerId" />
@@ -72,8 +72,10 @@
             <PropertyRef Name="id" />
           </Key>
           <Property Name="studentId" Type="int" Nullable="false" />
-          <Property Name="courseId" Type="int" Nullable="false" />
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="courseId" Type="int" Nullable="false" />
+          <Property Name="tz" Type="nvarchar" MaxLength="50" />
+          <Property Name="password" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="Teachers">
           <Key>
@@ -165,30 +167,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_StudentForTeacher_student1">
-          <End Role="student" Type="Self.student" Multiplicity="1" />
-          <End Role="StudentForCourse" Type="Self.StudentForCourse" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="student">
-              <PropertyRef Name="studentId" />
-            </Principal>
-            <Dependent Role="StudentForCourse">
-              <PropertyRef Name="studentId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_StudentForTeacher_Teachers">
-          <End Role="Teachers" Type="Self.Teachers" Multiplicity="1" />
-          <End Role="StudentForCourse" Type="Self.StudentForCourse" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Teachers">
-              <PropertyRef Name="teacherId" />
-            </Principal>
-            <Dependent Role="StudentForCourse">
-              <PropertyRef Name="courseId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_TestForStudent_student">
           <End Role="student" Type="Self.student" Multiplicity="1" />
           <End Role="TestForStudent" Type="Self.TestForStudent" Multiplicity="*" />
@@ -201,7 +179,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="testitprojectModelStoreContainer">
+        <EntityContainer Name="checkTestEntitiesStoreContainer">
           <EntitySet Name="Answers" EntityType="Self.Answers" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Category" EntityType="Self.Category" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Class" EntityType="Self.Class" Schema="dbo" store:Type="Tables" />
@@ -233,14 +211,6 @@
             <End Role="Questions" EntitySet="Questions" />
             <End Role="QuestionforTest" EntitySet="QuestionforTest" />
           </AssociationSet>
-          <AssociationSet Name="FK_StudentForTeacher_student1" Association="Self.FK_StudentForTeacher_student1">
-            <End Role="student" EntitySet="student" />
-            <End Role="StudentForCourse" EntitySet="StudentForCourse" />
-          </AssociationSet>
-          <AssociationSet Name="FK_StudentForTeacher_Teachers" Association="Self.FK_StudentForTeacher_Teachers">
-            <End Role="Teachers" EntitySet="Teachers" />
-            <End Role="StudentForCourse" EntitySet="StudentForCourse" />
-          </AssociationSet>
           <AssociationSet Name="FK_TestForStudent_student" Association="Self.FK_TestForStudent_student">
             <End Role="student" EntitySet="student" />
             <End Role="TestForStudent" EntitySet="TestForStudent" />
@@ -250,7 +220,7 @@
     </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="testitprojectModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <Schema Namespace="checkTestEntities" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="Answer">
           <Key>
             <PropertyRef Name="answerId" />
@@ -320,7 +290,6 @@
           <Property Name="classId" Type="Int32" Nullable="false" />
           <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="StudentForCourses" Relationship="Self.FK_StudentForTeacher_student1" FromRole="student" ToRole="StudentForCourse" />
           <NavigationProperty Name="TestForStudents" Relationship="Self.FK_TestForStudent_student" FromRole="student" ToRole="TestForStudent" />
         </EntityType>
         <EntityType Name="StudentForCourse">
@@ -328,10 +297,10 @@
             <PropertyRef Name="id" />
           </Key>
           <Property Name="studentId" Type="Int32" Nullable="false" />
-          <Property Name="courseId" Type="Int32" Nullable="false" />
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <NavigationProperty Name="student" Relationship="Self.FK_StudentForTeacher_student1" FromRole="StudentForCourse" ToRole="student" />
-          <NavigationProperty Name="Teacher" Relationship="Self.FK_StudentForTeacher_Teachers" FromRole="StudentForCourse" ToRole="Teachers" />
+          <Property Name="courseId" Type="Int32" Nullable="false" />
+          <Property Name="tz" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="Teacher">
           <Key>
@@ -343,7 +312,6 @@
           <Property Name="isManager" Type="Boolean" />
           <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Courses" Relationship="Self.FK_Course_Teachers" FromRole="Teachers" ToRole="Course" />
-          <NavigationProperty Name="StudentForCourses" Relationship="Self.FK_StudentForTeacher_Teachers" FromRole="Teachers" ToRole="StudentForCourse" />
         </EntityType>
         <EntityType Name="Test">
           <Key>
@@ -427,18 +395,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_StudentForTeacher_student1">
-          <End Role="student" Type="Self.student" Multiplicity="1" />
-          <End Role="StudentForCourse" Type="Self.StudentForCourse" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="student">
-              <PropertyRef Name="studentId" />
-            </Principal>
-            <Dependent Role="StudentForCourse">
-              <PropertyRef Name="studentId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_TestForStudent_student">
           <End Role="student" Type="Self.student" Multiplicity="1" />
           <End Role="TestForStudent" Type="Self.TestForStudent" Multiplicity="*" />
@@ -451,19 +407,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_StudentForTeacher_Teachers">
-          <End Role="Teachers" Type="Self.Teacher" Multiplicity="1" />
-          <End Role="StudentForCourse" Type="Self.StudentForCourse" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Teachers">
-              <PropertyRef Name="teacherId" />
-            </Principal>
-            <Dependent Role="StudentForCourse">
-              <PropertyRef Name="courseId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <EntityContainer Name="checkTestEntities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="testitprojectEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Answers" EntityType="Self.Answer" />
           <EntitySet Name="Categories" EntityType="Self.Category" />
           <EntitySet Name="Classes" EntityType="Self.Class" />
@@ -495,17 +439,9 @@
             <End Role="Questions" EntitySet="Questions" />
             <End Role="QuestionforTest" EntitySet="QuestionforTests" />
           </AssociationSet>
-          <AssociationSet Name="FK_StudentForTeacher_student1" Association="Self.FK_StudentForTeacher_student1">
-            <End Role="student" EntitySet="students" />
-            <End Role="StudentForCourse" EntitySet="StudentForCourses" />
-          </AssociationSet>
           <AssociationSet Name="FK_TestForStudent_student" Association="Self.FK_TestForStudent_student">
             <End Role="student" EntitySet="students" />
             <End Role="TestForStudent" EntitySet="TestForStudents" />
-          </AssociationSet>
-          <AssociationSet Name="FK_StudentForTeacher_Teachers" Association="Self.FK_StudentForTeacher_Teachers">
-            <End Role="Teachers" EntitySet="Teachers" />
-            <End Role="StudentForCourse" EntitySet="StudentForCourses" />
           </AssociationSet>
         </EntityContainer>
       </Schema>
@@ -513,9 +449,9 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="testitprojectModelStoreContainer" CdmEntityContainer="checkTestEntities">
+        <EntityContainerMapping StorageEntityContainer="checkTestEntitiesStoreContainer" CdmEntityContainer="testitprojectEntities">
           <EntitySetMapping Name="Answers">
-            <EntityTypeMapping TypeName="testitprojectModel.Answer">
+            <EntityTypeMapping TypeName="checkTestEntities.Answer">
               <MappingFragment StoreEntitySet="Answers">
                 <ScalarProperty Name="answerId" ColumnName="answerId" />
                 <ScalarProperty Name="answerDescription" ColumnName="answerDescription" />
@@ -525,7 +461,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Categories">
-            <EntityTypeMapping TypeName="testitprojectModel.Category">
+            <EntityTypeMapping TypeName="checkTestEntities.Category">
               <MappingFragment StoreEntitySet="Category">
                 <ScalarProperty Name="categoryId" ColumnName="categoryId" />
                 <ScalarProperty Name="categoryName" ColumnName="categoryName" />
@@ -534,7 +470,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Classes">
-            <EntityTypeMapping TypeName="testitprojectModel.Class">
+            <EntityTypeMapping TypeName="checkTestEntities.Class">
               <MappingFragment StoreEntitySet="Class">
                 <ScalarProperty Name="classId" ColumnName="classId" />
                 <ScalarProperty Name="className" ColumnName="className" />
@@ -542,7 +478,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Courses">
-            <EntityTypeMapping TypeName="testitprojectModel.Course">
+            <EntityTypeMapping TypeName="checkTestEntities.Course">
               <MappingFragment StoreEntitySet="Course">
                 <ScalarProperty Name="CourseId" ColumnName="CourseId" />
                 <ScalarProperty Name="CourseName" ColumnName="CourseName" />
@@ -552,7 +488,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="QuestionforTests">
-            <EntityTypeMapping TypeName="testitprojectModel.QuestionforTest">
+            <EntityTypeMapping TypeName="checkTestEntities.QuestionforTest">
               <MappingFragment StoreEntitySet="QuestionforTest">
                 <ScalarProperty Name="testid" ColumnName="testid" />
                 <ScalarProperty Name="questionId" ColumnName="questionId" />
@@ -562,7 +498,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Questions">
-            <EntityTypeMapping TypeName="testitprojectModel.Question">
+            <EntityTypeMapping TypeName="checkTestEntities.Question">
               <MappingFragment StoreEntitySet="Questions">
                 <ScalarProperty Name="questionId" ColumnName="questionId" />
                 <ScalarProperty Name="questionDescription" ColumnName="questionDescription" />
@@ -573,7 +509,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="students">
-            <EntityTypeMapping TypeName="testitprojectModel.student">
+            <EntityTypeMapping TypeName="checkTestEntities.student">
               <MappingFragment StoreEntitySet="student">
                 <ScalarProperty Name="studentId" ColumnName="studentId" />
                 <ScalarProperty Name="studentName" ColumnName="studentName" />
@@ -584,16 +520,18 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="StudentForCourses">
-            <EntityTypeMapping TypeName="testitprojectModel.StudentForCourse">
+            <EntityTypeMapping TypeName="checkTestEntities.StudentForCourse">
               <MappingFragment StoreEntitySet="StudentForCourse">
                 <ScalarProperty Name="studentId" ColumnName="studentId" />
-                <ScalarProperty Name="courseId" ColumnName="courseId" />
                 <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="courseId" ColumnName="courseId" />
+                <ScalarProperty Name="tz" ColumnName="tz" />
+                <ScalarProperty Name="password" ColumnName="password" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Teachers">
-            <EntityTypeMapping TypeName="testitprojectModel.Teacher">
+            <EntityTypeMapping TypeName="checkTestEntities.Teacher">
               <MappingFragment StoreEntitySet="Teachers">
                 <ScalarProperty Name="teacherId" ColumnName="teacherId" />
                 <ScalarProperty Name="teacherName" ColumnName="teacherName" />
@@ -604,7 +542,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Tests">
-            <EntityTypeMapping TypeName="testitprojectModel.Test">
+            <EntityTypeMapping TypeName="checkTestEntities.Test">
               <MappingFragment StoreEntitySet="Test">
                 <ScalarProperty Name="testId" ColumnName="testId" />
                 <ScalarProperty Name="teacherId" ColumnName="teacherId" />
@@ -615,7 +553,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="TestForStudents">
-            <EntityTypeMapping TypeName="testitprojectModel.TestForStudent">
+            <EntityTypeMapping TypeName="checkTestEntities.TestForStudent">
               <MappingFragment StoreEntitySet="TestForStudent">
                 <ScalarProperty Name="testId" ColumnName="testId" />
                 <ScalarProperty Name="studentId" ColumnName="studentId" />

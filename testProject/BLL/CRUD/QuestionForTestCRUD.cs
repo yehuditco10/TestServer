@@ -9,7 +9,7 @@ namespace BLL.CRUD
 {
     public static class QuestionForTestCRUD
     {
-        public static void CreateQuestionForTest(checkTestEntities ctx, Question question,Test test,int nikud)
+        public static void CreateQuestionForTest(testitprojectEntities ctx, Question question,Test test,int nikud)
         {
             ctx.QuestionforTests.Add(new QuestionforTest()
             {

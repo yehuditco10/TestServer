@@ -10,7 +10,7 @@ namespace BLL.CRUD
 {
     public static class AnswerCRUD
     {
-        public static void CreateAnswer(checkTestEntities ctx, Question q, AnswerVM ans)
+        public static void CreateAnswer(testitprojectEntities ctx, Question q, AnswerVM ans)
         {
             ctx.Answers.Add(new Answer()
             {

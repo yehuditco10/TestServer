@@ -9,7 +9,7 @@ namespace BLL.CRUD
 {
     public static class TestCRUD
     {
-        public static Test CreateTest(checkTestEntities ctx, TestVM test_vm)
+        public static Test CreateTest(testitprojectEntities ctx, TestVM test_vm)
         {
             Test test = new Test()
             {
@@ -27,23 +27,23 @@ namespace BLL.CRUD
         public static void FinishTest(Test test)
         {
         }
-        public static List<Test> ReadTestByCat(checkTestEntities ctx, int categoryId)
+        public static List<Test> ReadTestByCat(testitprojectEntities ctx, int categoryId)
         {
             List<Test> tests = ctx.Tests.Where(t => t.categoriId == categoryId).ToList();
             return tests;
         }
-        public static Test ReadOneTestByCat(checkTestEntities ctx, int categoryId)
+        public static Test ReadOneTestByCat(testitprojectEntities ctx, int categoryId)
         {
             Test tests = ctx.Tests.FirstOrDefault(t => t.categoriId == categoryId);
             return tests;
         }
 
-        public static Test ReadTestById(checkTestEntities ctx, int testId)
+        public static Test ReadTestById(testitprojectEntities ctx, int testId)
         {
             Test tests = ctx.Tests.FirstOrDefault(t => t.testId == testId);
             return tests;
         }
-        public static Test GetByTestIdForStudent(checkTestEntities ctx, int testId)
+        public static Test GetByTestIdForStudent(testitprojectEntities ctx, int testId)
         {
             Test tests = ctx.Tests.FirstOrDefault(t => t.testId == testId);
             return tests;

@@ -42,6 +42,7 @@ import { HeaderManagerComponent } from './header-manager/header-manager.componen
 import { ReportsComponent } from './reports/reports/reports.component';
 import { ReportSumQuestionsComponent } from './reports/report-sum-questions/report-sum-questions.component';
 import { TryComponent } from './try/try.component';
+import { UploadComponent } from './upload/upload.component';
 
 
 @NgModule({
@@ -73,7 +74,8 @@ import { TryComponent } from './try/try.component';
     HeaderManagerComponent,
     ReportsComponent,
     ReportSumQuestionsComponent,
-    TryComponent
+    TryComponent,
+    UploadComponent
   ],
   imports: [
     BrowserModule,

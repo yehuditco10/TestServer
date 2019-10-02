@@ -8,7 +8,7 @@ namespace DAL
 {
     public static class Entity
     {
-        public static checkTestEntities db = new checkTestEntities();
-   
+       public static testitprojectEntities db = new testitprojectEntities();
+
     }
 }

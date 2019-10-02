@@ -4,26 +4,24 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="de1dd77d36a148b7bf1ce8cc59582677" Name="Diagram1">
-        <EntityTypeShape EntityType="testitprojectModel.Answer" Width="1.5" PointX="5.25" PointY="3.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="testitprojectModel.Category" Width="1.5" PointX="0.75" PointY="4" IsExpanded="true" />
-        <EntityTypeShape EntityType="testitprojectModel.Class" Width="1.5" PointX="7.75" PointY="2.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="testitprojectModel.Course" Width="1.5" PointX="8" PointY="8.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="testitprojectModel.QuestionforTest" Width="1.5" PointX="5.25" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="testitprojectModel.Question" Width="1.5" PointX="3" PointY="3.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="testitprojectModel.student" Width="1.5" PointX="5.75" PointY="12.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="testitprojectModel.StudentForCourse" Width="1.5" PointX="8" PointY="5.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="testitprojectModel.Teacher" Width="1.5" PointX="5.75" PointY="8.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="testitprojectModel.Test" Width="1.5" PointX="3" PointY="7.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="testitprojectModel.TestForStudent" Width="1.5" PointX="8" PointY="12.625" IsExpanded="true" />
-        <AssociationConnector Association="testitprojectModel.FK_Answers_Questions" ManuallyRouted="false" />
-        <AssociationConnector Association="testitprojectModel.FK_Questions_Category" ManuallyRouted="false" />
-        <AssociationConnector Association="testitprojectModel.FK_Course_Teachers" ManuallyRouted="false" />
-        <AssociationConnector Association="testitprojectModel.FK_QuestionforTest_Test" ManuallyRouted="false" />
-        <AssociationConnector Association="testitprojectModel.FK_QuestionsforTest_Questions" ManuallyRouted="false" />
-        <AssociationConnector Association="testitprojectModel.FK_StudentForTeacher_student1" ManuallyRouted="false" />
-        <AssociationConnector Association="testitprojectModel.FK_TestForStudent_student" ManuallyRouted="false" />
-        <AssociationConnector Association="testitprojectModel.FK_StudentForTeacher_Teachers" ManuallyRouted="false" />
+      <Diagram DiagramId="5031ceb751144470982bf15087c819c5" Name="Diagram1">
+        <EntityTypeShape EntityType="checkTestEntities.Answer" Width="1.5" PointX="5.25" PointY="3.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="checkTestEntities.Category" Width="1.5" PointX="0.75" PointY="4" IsExpanded="true" />
+        <EntityTypeShape EntityType="checkTestEntities.Class" Width="1.5" PointX="0.75" PointY="11.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="checkTestEntities.Course" Width="1.5" PointX="10" PointY="2.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="checkTestEntities.QuestionforTest" Width="1.5" PointX="5.25" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="checkTestEntities.Question" Width="1.5" PointX="3" PointY="3.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="checkTestEntities.student" Width="1.5" PointX="5.75" PointY="7.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="checkTestEntities.StudentForCourse" Width="1.5" PointX="2.75" PointY="11.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="checkTestEntities.Teacher" Width="1.5" PointX="7.75" PointY="2.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="checkTestEntities.Test" Width="1.5" PointX="3" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="checkTestEntities.TestForStudent" Width="1.5" PointX="8" PointY="7.25" IsExpanded="true" />
+        <AssociationConnector Association="checkTestEntities.FK_Answers_Questions" ManuallyRouted="false" />
+        <AssociationConnector Association="checkTestEntities.FK_Questions_Category" ManuallyRouted="false" />
+        <AssociationConnector Association="checkTestEntities.FK_Course_Teachers" ManuallyRouted="false" />
+        <AssociationConnector Association="checkTestEntities.FK_QuestionforTest_Test" ManuallyRouted="false" />
+        <AssociationConnector Association="checkTestEntities.FK_QuestionsforTest_Questions" ManuallyRouted="false" />
+        <AssociationConnector Association="checkTestEntities.FK_TestForStudent_student" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

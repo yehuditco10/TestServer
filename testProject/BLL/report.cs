@@ -14,7 +14,7 @@ namespace BLL
             //The context cannot be used while the model is being created. This exception may be thrown if the context is used inside the OnModelCreating method or if the same context instance is accessed by multiple threads concurrently.Note that instance members of DbContext and related classes are not guaranteed to be thread safe."
             try
             {
-                using (checkTestEntities db = new checkTestEntities())
+                using (testitprojectEntities db = new testitprojectEntities())
                 {
                     int numTeachers = 0;
                     numTeachers = db.Teachers.Count();
@@ -37,7 +37,7 @@ namespace BLL
         {
             try
             {
-                using (checkTestEntities db = new checkTestEntities())
+                using (testitprojectEntities db = new testitprojectEntities())
                 {
                     int numStudent = 0;
                     numStudent = db.students.Count();

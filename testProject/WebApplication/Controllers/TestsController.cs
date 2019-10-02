@@ -46,6 +46,13 @@ namespace WebApplication.Controllers
         {
             return TestModule.openTest(testId,studentTZ);
         }
-        
+        [Route("studentForTest")]
+        [HttpPost]
+        public bool studentForTest(StudentForTestVM[] students)
+        {
+            return TestModule.studentForTest(students);
+        }
+       
+
     }
 }

@@ -15,10 +15,9 @@ namespace DAL
     public partial class StudentForCourse
     {
         public int studentId { get; set; }
-        public int courseId { get; set; }
         public int id { get; set; }
-    
-        public virtual student student { get; set; }
-        public virtual Teacher Teacher { get; set; }
+        public int courseId { get; set; }
+        public string tz { get; set; }
+        public string password { get; set; }
     }
 }

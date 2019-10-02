@@ -65,6 +65,7 @@
     <Compile Include="ViewModels\AnswerVM.cs" />
     <Compile Include="ViewModels\QuestionForTestVM.cs" />
     <Compile Include="ViewModels\QuestionVM.cs" />
+    <Compile Include="ViewModels\StudentForTestVM.cs" />
     <Compile Include="ViewModels\TestForStudentVM.cs" />
     <Compile Include="ViewModels\TestVM.cs" />
   </ItemGroup>
@@ -75,7 +76,9 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.Config" />
+    <None Include="App.Config">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>

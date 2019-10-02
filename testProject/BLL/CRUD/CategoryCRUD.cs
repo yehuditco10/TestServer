@@ -9,7 +9,7 @@ namespace BLL.CRUD
 {
     public static class CategoryCRUD
     {
-        public static List<Category> GetAllCategories(checkTestEntities ctx)
+        public static List<Category> GetAllCategories(testitprojectEntities ctx)
         {
             return ctx.Categories.ToList();
         }

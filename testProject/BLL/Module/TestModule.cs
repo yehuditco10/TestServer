@@ -13,7 +13,7 @@ namespace BLL.Module
     {
         public static bool CreateTest(TestVM testvm)
         {
-            using (checkTestEntities ctx = new checkTestEntities())
+            using (testitprojectEntities ctx = new testitprojectEntities())
             {
                 Test test=TestCRUD.CreateTest(ctx, testvm);
                 foreach (var quest in testvm.questionArr)
@@ -35,7 +35,7 @@ namespace BLL.Module
         public static TestVM GetByTestId(int testId)
         {
 
-            using (checkTestEntities ctx = new checkTestEntities())
+            using (testitprojectEntities ctx = new testitprojectEntities())
             {
                 TestVM test = new TestVM();
                 Test t = TestCRUD.ReadTestById(ctx, testId);
@@ -73,6 +73,25 @@ namespace BLL.Module
             }
         }
 
+        public static Boolean studentForTest(StudentForTestVM[] students)
+        {
+          
+            
+            foreach (var student in students)
+            {
+                Entity.db.StudentForCourses.Add(new StudentForCourse()
+                {
+                   
+                    password = student.password,
+                    tz = student.tz
+
+                });
+                Entity.db.SaveChanges();
+            }
+            Entity.db.SaveChanges();
+            return true;
+        }
+
         public static bool openTest(int testId, string studentTZ)
         {
             var x = Entity.db.StudentForCourses.FirstOrDefault(s => s.courseId == testId);
@@ -87,7 +106,7 @@ namespace BLL.Module
         public static TestVM GetByCategory(int categoryId)
         {
 
-            using (checkTestEntities ctx = new checkTestEntities())
+            using (testitprojectEntities ctx = new testitprojectEntities())
             {
                TestVM test =new TestVM();
                 Test t = TestCRUD.ReadOneTestByCat(ctx, categoryId);
@@ -102,7 +121,7 @@ namespace BLL.Module
 
         public static List<TestVM> FilterByCategory(int catId)
         {
-            using (checkTestEntities ctx = new checkTestEntities())
+            using (testitprojectEntities ctx = new testitprojectEntities())
             {
                 List<TestVM> testsList = new List<TestVM>();
                 foreach (var test in TestCRUD.ReadTestByCat(ctx, catId))
@@ -121,7 +140,7 @@ namespace BLL.Module
         public static TestForStudentVM GetByTestIdForStudent(int testId)
         {
 
-            using (checkTestEntities ctx = new checkTestEntities())
+            using (testitprojectEntities ctx = new testitprojectEntities())
             {
                 TestForStudentVM test = new TestForStudentVM();
                 Test t = TestCRUD.ReadTestById(ctx, testId);

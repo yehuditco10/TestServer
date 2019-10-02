@@ -13,7 +13,7 @@ namespace BLL.Module
     {
         public static List<CategoryTreeItem> GetCategoryTree()
         {
-            using (var ctx = new checkTestEntities())
+            using (var ctx = new testitprojectEntities())
             {
                 var categoriesList = CategoryCRUD.GetAllCategories(ctx);
                 List<CategoryTreeItem> categoryTreeList = new List<CategoryTreeItem>();

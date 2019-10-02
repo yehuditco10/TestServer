@@ -10,7 +10,7 @@ namespace BLL.CRUD
 {
     public static class QuestionCRUD
     {
-        public static Question CreateQuestion(checkTestEntities ctx, QuestionVM question)
+        public static Question CreateQuestion(testitprojectEntities ctx, QuestionVM question)
         {
             var newQ = new Question()
             {

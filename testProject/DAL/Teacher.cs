@@ -18,7 +18,6 @@ namespace DAL
         public Teacher()
         {
             this.Courses = new HashSet<Course>();
-            this.StudentForCourses = new HashSet<StudentForCourse>();
         }
     
         public int teacherId { get; set; }
@@ -29,7 +28,5 @@ namespace DAL
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Course> Courses { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<StudentForCourse> StudentForCourses { get; set; }
     }
 }
