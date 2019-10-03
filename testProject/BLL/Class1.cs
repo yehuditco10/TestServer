@@ -141,8 +141,8 @@ namespace BLL
                     return lq;
                 return null;
             }
-        static string fromMail = "secondhandwolfst@gmail.com";
-        static string ToMail = "secondhandwolfst@gmail.com";
+        static string fromMail = "coursekamatech@gmail.com";
+        static string ToMail = "coursekamatech@gmail.com";
         public static MailMessage SendEmail(string htmlText, string subject)
         {
             try
@@ -152,7 +152,7 @@ namespace BLL
                 smtp.Host = "smtp.gmail.com";
                 smtp.Port = 587;
                 smtp.UseDefaultCredentials = true;
-                smtp.Credentials = new System.Net.NetworkCredential("secondhandwolfst@gmail.com", "wolfst4569");// Enter senders User name and password
+                smtp.Credentials = new System.Net.NetworkCredential("coursekamatech@gmail.com", "course2019");// Enter senders User name and password
                 AlternateView plainView = AlternateView
 .CreateAlternateViewFromString("Some plaintext", Encoding.UTF8, "text/plain");
                 // We have something to show in real old mail clients.
