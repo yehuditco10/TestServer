@@ -25,4 +25,7 @@ export class LoginService {
     // var httpHeader=new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': "Bearer " + token })
     return this.http.get(environment.baseRoute+"User",this.globalService.httpOptions );
   }
+  Forgotpassword(id){
+    return this.http.post(environment.baseRoute+'Forgotpassword',id);
+  }
 }

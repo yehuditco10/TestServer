@@ -94,8 +94,9 @@ namespace BLL.Module
 
         public static bool openTest(int testId, string studentTZ)
         {
-            var x = Entity.db.StudentForCourses.FirstOrDefault(s => s.courseId == testId);
-
+            //------------!!!!!!!!!!!!להחזיר את זה
+            //  var x = Entity.db.StudentForCourses.FirstOrDefault(s => s.courseId == testId);
+            var x = 1;
            // var x = Entity.db.StudentForCourses.FirstOrDefault(s => s.studentId == studentTZ && s.courseId == testId);
                 if (x != null)
                 return true;
@@ -147,20 +148,25 @@ namespace BLL.Module
                 test.title = t.name;
                 test.testId = t.testId;
                 test.questionArr = new List<QuestionForTestVM>();
-                foreach (var quenstion in t.QuestionforTests)//מעבר על כל שאלות המבחן
+             List<QuestionforTest>r= RandomQuestions(t.QuestionforTests.ToList());
+                foreach (var quenstion in r)//מעבר על כל שאלות המבחן
                 {
                     List<Answer> answers = Entity.db.Answers.Where(ans => ans.questionId == quenstion.questionId).ToList();
-                    List<string> answersDes = new List<string>();
+                    List<AnswerVM> answersVM = new List<AnswerVM>();
                     Answer selectedAnswer = answers.FirstOrDefault(ans => ans.isCorrect == true);
                     foreach (var item in answers)//תשובות של שאלה נוכחית
                     {
-                        answersDes.Add(item.answerDescription);
+                        answersVM.Add(new AnswerVM() {
+                            answerDescription=item.answerDescription,
+                            answerId=item.answerId,
+                            isCorrect=item.isCorrect
+                        });
                     }
                     test.questionArr.Add(new QuestionForTestVM()//המרת שאלה נוכחית  
                     {
 
                         questionDescription = quenstion.Question.questionDescription,
-                        Answers = answersDes,
+                        Answers = answersVM,
                         nikud = quenstion.nikod,
                         
                         //selectedAnswer =selectedAnswer.answerDescription
@@ -172,5 +178,19 @@ namespace BLL.Module
             }
         }
 
+        private static List<QuestionforTest> RandomQuestions(List<QuestionforTest> questionforTests)
+        {
+            int num = 0;
+            Random rnd = new Random();
+            List<QuestionforTest> randQuestions = new List<QuestionforTest>();
+            for (int i = questionforTests.Count(); i >0; i--)
+            {
+                num= rnd.Next(0, i);
+                randQuestions.Add(questionforTests[num]);
+                questionforTests.Remove(questionforTests[num]);
+
+            }
+            return randQuestions; ;
+        }
     }
 }

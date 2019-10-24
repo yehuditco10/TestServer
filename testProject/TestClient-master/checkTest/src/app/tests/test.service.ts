@@ -1,12 +1,13 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
+import { TestForStudentVM } from '../shared/models/test-for-student-vm';
 
 @Injectable({
   providedIn: 'root'
 })
 export class TestService {
-
+currentTest:TestForStudentVM=new TestForStudentVM();
   constructor(private http:HttpClient) { }
   getAllTestByCategoryId(id:number){
 return this.http.post(environment.baseRoute+ "FilterByCategory?categoryId="+id,null);

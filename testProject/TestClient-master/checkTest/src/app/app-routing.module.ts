@@ -16,6 +16,9 @@ import { TestListComponent } from './tests/test-list/test-list.component';
 import { AddCategoryComponent } from './menu-manager/add-category/add-category.component';
 import { DisplayTestComponent } from './tests/display-test/display-test.component';
 import { ReportsComponent } from './reports/reports/reports.component';
+import { AppComponent } from './app.component';
+import { DisplayTestResultsComponent } from './tests/display-test-results/display-test-results.component';
+// import { LoginUserComponent } from './login-user/login-user.component';
 
 
 const routes: Routes = [
@@ -35,14 +38,15 @@ const routes: Routes = [
 {path:'FinishTest',component:FinishTestComponent},
 {path:'TestList',component:TestListComponent},
 {path:'reports',component:ReportsComponent},
-
+// {path:'login-user',component:LoginUserComponent},
 {path:'AddCategory',component:AddCategoryComponent},
 
+{path:'TestResults',component:DisplayTestResultsComponent},
 
 
 
 
-  {path:'',component:LoginComponent}
+  // {path:'',component:AppComponent}
 ];
 
 @NgModule({

@@ -11,10 +11,11 @@ using System.Web.Http.Cors;
 namespace WebApplication.Controllers
 {
     [EnableCors(origins: "*", headers: "*", methods: "*")]
-   
+    [RoutePrefix("api")]
     public class EmailController : ApiController
     {
         [HttpPost]
+        [Route("email/suggestQuestion")]
         public bool suggestQuestion(QuestionVM newQuestion)
         {
             int categoryid = newQuestion.categoryId;
@@ -36,12 +37,43 @@ namespace WebApplication.Controllers
             {
                 htmlText += "<h4>תשובה   <p>" + ++num + item.answerDescription + " </p></h4>";
             }
-
+            htmlText += "</body>";
             //htmlText += " <img src='cid:G:/ל סיון/C#IDEAL/GUI/UploadFile/.JPG'></body>";
-           Class1.SendEmail(htmlText, "הצעת שאלה חדשה  ");
+            Class1.SendEmail(htmlText, "הצעת שאלה חדשה  ");
 
             return true;
         }
+        [Route("Forgotpassword")]
+        [HttpPost]
+     
+        public static bool Forgotpassword()
+        {
+            int id = 1;
+            Teacher teacher = null;
+            string emailAddress = null;
+            string password = "";
+            teacher = Entity.db.Teachers.FirstOrDefault(t => t.teacherId == id);
+            if (teacher != null)//אם יש כזו מורה
+            {
+                emailAddress = teacher.email;
+                password = teacher.teacherPassword;
+                string htmlText = @"
+                    <head> 
+                        <style> 
+                            body{background-color:cadetblue;direction:rtl;text-align:center;}
+                            h1,h3,p{font-size:20px; text-align:center;color:blue;}
+                        </style>
+                    </head>
+                    <body>";
+                htmlText += "<h1>הסיסמא שלך היא   </h1><br/><h3>" + password + "</h3><br><a href='http://localhost:4200/login'>לחזרה לאתר</a><br>";
+                htmlText += "</body>";
+                Class1.SendEmail(htmlText, "שחזור סיסמא  ");
+                return true;
+            }
+            return false;
+
+        }
+        //Forgotpassword
     }
 
 }

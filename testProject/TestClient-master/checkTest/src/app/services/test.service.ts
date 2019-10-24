@@ -3,12 +3,14 @@ import { HttpClient } from '@angular/common/http';
 import { Test } from '../shared/models/test';
 import { environment } from 'src/environments/environment';
 import { UpStudent } from '../shared/models/up-student';
+import { TestForStudentVM } from '../shared/models/test-for-student-vm';
 
 @Injectable({
   providedIn: 'root'
 })
 export class TestService {
 categoryId:number;
+test:TestForStudentVM;
   constructor(private http:HttpClient) { }
   saveTest(test:Test){
     debugger;

@@ -1,10 +1,10 @@
 import { QuestionForStudentVM } from './question-for-student-vm';
 
 export class TestForStudentVM {
-    constructor(testId?:number,title?:string,questions?:Array<QuestionForStudentVM>,studentId?:string,dateStart?:Date){
+    constructor(testId?:number,title?:string,questionArr?:Array<QuestionForStudentVM>,studentId?:string,dateStart?:Date){
         this.testId=testId;
         this.title=title;
-        this.questions=questions;
+        this.questionArr=questionArr;
         this.studentId=2;
         this.dateStart=dateStart;
         // this.title="Test";
@@ -20,7 +20,7 @@ export class TestForStudentVM {
     }
     testId:number;
     title:string;
-    questions:Array<QuestionForStudentVM>;
+    questionArr:Array<QuestionForStudentVM>;
     studentId:number;
     dateStart:Date;
 }

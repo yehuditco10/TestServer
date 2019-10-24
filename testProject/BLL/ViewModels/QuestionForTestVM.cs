@@ -10,7 +10,7 @@ namespace BLL.ViewModels
     {
         public string questionDescription { get; set; }
         public int nikud { get; set; }
-        public List<String> Answers { get; set; }
+        public List<AnswerVM> Answers { get; set; }
         public string selectedAnswer { get; set; }
        
     }

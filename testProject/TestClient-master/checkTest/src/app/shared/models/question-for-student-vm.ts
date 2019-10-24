@@ -1,8 +1,10 @@
+import { Answer } from './answer';
+
 export class QuestionForStudentVM {
-    constructor(questionText?:string, answerList?:Array<string>,  points?:number, selectedAnswer?:string){
+    constructor(questionText?:string, answerList?:Array<Answer>,  nikud?:number, selectedAnswer?:Answer){
         this.questionText=questionText;
         this.answerList=answerList;
-        this.points=points;
+        this.nikud=nikud;
         this.selectedAnswer=selectedAnswer;
         // this.answerList=["A","B","C","D"],
         // this.points=8,
@@ -10,7 +12,7 @@ export class QuestionForStudentVM {
         // this.selectedAnswer=""
     }
     questionText:string;
-    answerList:Array<string>;
-    points:number;
-    selectedAnswer:string;
+    answerList:Array<Answer>;
+    nikud:number;
+    selectedAnswer:Answer;
 }

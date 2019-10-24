@@ -57,5 +57,9 @@ export class LoginComponent implements OnInit {
       }
     )
   }
-
+  Forgotpassword(id:number){
+    this.loginS.Forgotpassword(id).subscribe(res=>{
+      alert("הסיסמא נשלחה למייל שלך")
+    })
+  }
 }

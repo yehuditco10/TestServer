@@ -43,6 +43,8 @@ import { ReportsComponent } from './reports/reports/reports.component';
 import { ReportSumQuestionsComponent } from './reports/report-sum-questions/report-sum-questions.component';
 import { TryComponent } from './try/try.component';
 import { UploadComponent } from './upload/upload.component';
+import { DisplayTestResultsComponent } from './tests/display-test-results/display-test-results.component';
+// import { LoginUserComponent } from './login-user/login-user.component';
 
 
 @NgModule({
@@ -75,7 +77,9 @@ import { UploadComponent } from './upload/upload.component';
     ReportsComponent,
     ReportSumQuestionsComponent,
     TryComponent,
-    UploadComponent
+    UploadComponent,
+    DisplayTestResultsComponent,
+    // LoginUserComponent
   ],
   imports: [
     BrowserModule,
