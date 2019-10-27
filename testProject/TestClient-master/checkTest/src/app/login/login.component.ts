@@ -3,6 +3,7 @@ import { LoginService } from './login.service';
 import { Teachers } from '../shared/models/teachers';
 import { Router } from '@angular/router';
 import { RegisterService } from '../services/register.service';
+import { GlobalVariables } from '../global/global-variable';
 
 
 @Component({
@@ -15,7 +16,7 @@ export class LoginComponent implements OnInit {
   userName: string;
   password: string;
   t: Teachers = new Teachers(null, null, null,null);
-  constructor(private loginS: LoginService, private router: Router,private RegisterService:RegisterService) {
+  constructor(private globalVariable: GlobalVariables,private loginS: LoginService, private router: Router,private RegisterService:RegisterService) {
 
 
   }
@@ -25,23 +26,17 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
-    this.loginS.login(this.t).subscribe(
-      (res:any) => {
-      //  var token=res.body.access_token;
-      //  localStorage.setItem("token",token);
-      //  this.loginS.getUserData().subscribe((res)=>{
-      //    console.log(res);
-      //    // if(res==0)
-      this.router.navigate(["/TestList"]);
-      //    // else if(res==1)
-      //    // this.router.navigate(["/menu-manager"]);
-
-      //  });
-      },
-      (err) => {
-      alert(err);
-      }
-    )
+    this.loginS.login(this.t.teacherName, this.t.teacherPassword).subscribe(
+      (res: any) => {
+        if (res) {
+          this.globalVariable.setToken(res.body.access_token);
+          this.loginS.getUser().subscribe((res) => {
+            this.router.navigate(["/TestList"]);
+          }, err => { console.log(err);})
+        }
+      }, (err) => {
+        alert("שם משתמש או סיסמא שגויים");
+      });
   }
   register() {
     this.RegisterService.register(this.t).subscribe(

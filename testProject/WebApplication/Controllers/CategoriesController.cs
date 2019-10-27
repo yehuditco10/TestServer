@@ -9,7 +9,6 @@ using BLL;
 
 namespace WebApplication.Controllers
 {
-    [EnableCors(origins: "*", headers: "*", methods: "*")]
     //[RoutePrefix("api")]
     public class CategoriesController : ApiController
     {

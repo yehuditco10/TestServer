@@ -11,7 +11,6 @@ using BLL.Module;
 
 namespace WebApplication.Controllers
 {
-    [EnableCors(origins: "*", headers: "*", methods: "*")]
     [RoutePrefix("api")]
     public class QuestionsController : ApiController
     {

@@ -10,7 +10,6 @@ using System.Web.Http.Cors;
 
 namespace WebApplication.Controllers
 {
-    [EnableCors(origins: "*", headers: "*", methods: "*")]
     public class CategoryTreeController : ApiController
     {
         [HttpGet]

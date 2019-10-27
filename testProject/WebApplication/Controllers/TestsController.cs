@@ -10,7 +10,6 @@ using System.Web.Http.Cors;
 
 namespace WebApplication.Controllers
 {
-    [EnableCors("*","*","*")]
     [RoutePrefix("api")]
     public class TestsController : ApiController
     {
