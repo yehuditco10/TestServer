@@ -44,6 +44,7 @@ import { ReportSumQuestionsComponent } from './reports/report-sum-questions/repo
 import { TryComponent } from './try/try.component';
 import { UploadComponent } from './upload/upload.component';
 import { DisplayTestResultsComponent } from './tests/display-test-results/display-test-results.component';
+import { HomepageComponent } from './homepage/homepage.component';
 // import { LoginUserComponent } from './login-user/login-user.component';
 
 
@@ -79,6 +80,7 @@ import { DisplayTestResultsComponent } from './tests/display-test-results/displa
     TryComponent,
     UploadComponent,
     DisplayTestResultsComponent,
+    HomepageComponent,
     // LoginUserComponent
   ],
   imports: [

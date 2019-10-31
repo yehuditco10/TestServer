@@ -18,6 +18,7 @@ import { DisplayTestComponent } from './tests/display-test/display-test.componen
 import { ReportsComponent } from './reports/reports/reports.component';
 import { AppComponent } from './app.component';
 import { DisplayTestResultsComponent } from './tests/display-test-results/display-test-results.component';
+import { HomepageComponent } from './homepage/homepage.component';
 // import { LoginUserComponent } from './login-user/login-user.component';
 
 
@@ -42,6 +43,7 @@ const routes: Routes = [
 {path:'AddCategory',component:AddCategoryComponent},
 
 {path:'TestResults',component:DisplayTestResultsComponent},
+{path:'Homepage',component:HomepageComponent},
 
 
 
