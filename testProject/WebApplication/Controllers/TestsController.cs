@@ -52,7 +52,13 @@ namespace WebApplication.Controllers
         {
             return TestModule.studentForTest(students);
         }
-       
+        [Route("GetGradeChart")]
+        [HttpPost]
+        public List<MarkVM> GetGradeChart(int id)
+        {
+            return TestModule.GetGradeChart(id);
+        }
+
 
     }
 }

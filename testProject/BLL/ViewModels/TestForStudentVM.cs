@@ -12,6 +12,7 @@ namespace BLL.ViewModels
         public string title { get; set; }
         public List<QuestionForTestVM> questionArr { get; set; }
         public int studentId { get; set; }
+        public int mark { get; set; }
         public DateTime dateStart { get; set; }
 
     }

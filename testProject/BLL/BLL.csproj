@@ -58,13 +58,16 @@
     <Compile Include="Models\CategoryTreeItem.cs" />
     <Compile Include="Module\CategoryTreeModule.cs" />
     <Compile Include="Module\QuestionModule.cs" />
+    <Compile Include="Module\StatisticModule.cs" />
     <Compile Include="Module\TestModule.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="report.cs" />
     <Compile Include="Tests.cs" />
     <Compile Include="ViewModels\AnswerVM.cs" />
+    <Compile Include="ViewModels\MarkVM.cs" />
     <Compile Include="ViewModels\QuestionForTestVM.cs" />
     <Compile Include="ViewModels\QuestionVM.cs" />
+    <Compile Include="ViewModels\StaticMark.cs" />
     <Compile Include="ViewModels\StudentForTestVM.cs" />
     <Compile Include="ViewModels\TestForStudentVM.cs" />
     <Compile Include="ViewModels\TestVM.cs" />

@@ -1,17 +1,20 @@
 
- <div class="container" style="margin: 0px">
+ <div  *ngIf="SharedService.isHome==true"class="container" style="margin: 0px">
   <div class="row">
     <div class="col-8">
+
      <img src="../../assets/מסך1.jpg" class="imageBack">
     </div>
     <div class="col-2">
-      <img src="../../assets/עיגול.png" class="circle">
+      <img src="../../assets/עיגול.png" class="circle" style="margin-top: -2vw;">
       <img src="../../assets/עיגול.png" class="circle" >
       <img src="../../assets/עיגול.png" class="circle" >
     </div>
+    
     <div class="col-0"class="blue" style="background-color: blue">
      
     </div>
+    <button type="button" class="start" class="btn btn-primary" (click)="testlist()">התחל עכשיו!</button>
   
   </div>
  

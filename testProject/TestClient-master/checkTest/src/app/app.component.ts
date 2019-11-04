@@ -7,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./app.component.less']
 })
 export class AppComponent implements OnInit {
+  
   ngOnInit(): void {
     var Highcharts = require('highcharts');
     Highcharts.chart('container', {

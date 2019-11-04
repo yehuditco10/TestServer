@@ -6,6 +6,9 @@ using System.Web;
 using System.Web.Http;
 using System.Web.Http.Cors;
 using System.Web.Mvc;
+using System.Net.Http;
+using System.Net;
+using BLL.Module;
 
 namespace WebApplication.Controllers
 {
@@ -25,6 +28,18 @@ namespace WebApplication.Controllers
         public int getStudents()
         {
             return report.getStudents();
+        }
+        [System.Web.Http.Route("getStudents")]
+        [System.Web.Http.HttpGet]
+        public List<int> getKnowledge(int testID)
+        {
+            return report.getKnowledge(testID);
+        }
+        //[System.Web.Http.Route("getStaticMark")]
+        [System.Web.Http.HttpGet]
+        public HttpResponseMessage getStaticMark(int id)
+        {
+            return Request.CreateResponse(HttpStatusCode.OK, StatisticModule.getStaticMark(id));
         }
     }
 }

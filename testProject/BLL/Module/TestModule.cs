@@ -15,15 +15,15 @@ namespace BLL.Module
         {
             using (testitprojectEntities ctx = new testitprojectEntities())
             {
-                Test test=TestCRUD.CreateTest(ctx, testvm);
+                Test test = TestCRUD.CreateTest(ctx, testvm);
                 foreach (var quest in testvm.questionArr)
                 {
                     quest.categoryId = testvm.categoriId;
-                    var question=QuestionCRUD.CreateQuestion(ctx, quest);
+                    var question = QuestionCRUD.CreateQuestion(ctx, quest);
                     foreach (var ans in quest.Answers)
                     {
-                        if(ans.answerDescription!=null)
-                        AnswerCRUD.CreateAnswer(ctx, question, ans);
+                        if (ans.answerDescription != null)
+                            AnswerCRUD.CreateAnswer(ctx, question, ans);
                     }
                     QuestionForTestCRUD.CreateQuestionForTest(ctx, question, test, quest.nikud);
                 }
@@ -46,14 +46,15 @@ namespace BLL.Module
                 foreach (var quenstion in t.QuestionforTests)
                 {
                     List<Answer> answers = Entity.db.Answers.Where(ans => ans.questionId == quenstion.questionId).ToList();
-                    List<AnswerVM> answersvm= new List<AnswerVM>();
+                    List<AnswerVM> answersvm = new List<AnswerVM>();
                     foreach (var item in answers)
                     {
-                        answersvm.Add(new AnswerVM() {
+                        answersvm.Add(new AnswerVM()
+                        {
                             answerDescription = item.answerDescription,
-                            answerId=item.answerId,
-                            isCorrect=item.isCorrect
-                        
+                            answerId = item.answerId,
+                            isCorrect = item.isCorrect
+
                         });
                     }
                     test.questionArr.Add(new QuestionVM()
@@ -65,23 +66,47 @@ namespace BLL.Module
                         categoryId = quenstion.Question.categoriId,
                         questionId = quenstion.questionId
                     });
-                    
+
                 }
-               
+
                 return test;
 
             }
         }
 
+        public static List<MarkVM> GetGradeChart(int id)
+        {
+            List<TestForStudent> tests = Entity.db.TestForStudents.Where(t => t.testId == id).ToList();
+            List<MarkVM> marks = new List<MarkVM>();
+            student student = new student();
+            if (tests != null)
+            {
+                foreach (var test in tests)
+                {
+                    student = Entity.db.students.FirstOrDefault(s => s.studentId == test.studentId);
+                    if (student != null)
+                    {
+                        marks.Add(new MarkVM()
+                        {
+                            mark = test.mark,
+                            studentTZ = student.password,//the password is the TZ
+                            studentName = student.studentName
+                        });
+                    }
+                }
+            }
+            return marks;
+        }
+
         public static Boolean studentForTest(StudentForTestVM[] students)
         {
-          
-            
+
+
             foreach (var student in students)
             {
                 Entity.db.StudentForCourses.Add(new StudentForCourse()
                 {
-                   
+
                     password = student.password,
                     tz = student.tz
 
@@ -97,8 +122,8 @@ namespace BLL.Module
             //------------!!!!!!!!!!!!להחזיר את זה
             //  var x = Entity.db.StudentForCourses.FirstOrDefault(s => s.courseId == testId);
             var x = 1;
-           // var x = Entity.db.StudentForCourses.FirstOrDefault(s => s.studentId == studentTZ && s.courseId == testId);
-                if (x != null)
+            // var x = Entity.db.StudentForCourses.FirstOrDefault(s => s.studentId == studentTZ && s.courseId == testId);
+            if (x != null)
                 return true;
             return false;
 
@@ -109,15 +134,15 @@ namespace BLL.Module
 
             using (testitprojectEntities ctx = new testitprojectEntities())
             {
-               TestVM test =new TestVM();
+                TestVM test = new TestVM();
                 Test t = TestCRUD.ReadOneTestByCat(ctx, categoryId);
                 test.name = test.name;
                 test.testId = t.testId;
-               
+
                 return test;
 
             }
-           
+
         }
 
         public static List<TestVM> FilterByCategory(int catId)
@@ -148,7 +173,7 @@ namespace BLL.Module
                 test.title = t.name;
                 test.testId = t.testId;
                 test.questionArr = new List<QuestionForTestVM>();
-             List<QuestionforTest>r= RandomQuestions(t.QuestionforTests.ToList());
+                List<QuestionforTest> r = RandomQuestions(t.QuestionforTests.ToList());
                 foreach (var quenstion in r)//מעבר על כל שאלות המבחן
                 {
                     List<Answer> answers = Entity.db.Answers.Where(ans => ans.questionId == quenstion.questionId).ToList();
@@ -156,10 +181,11 @@ namespace BLL.Module
                     Answer selectedAnswer = answers.FirstOrDefault(ans => ans.isCorrect == true);
                     foreach (var item in answers)//תשובות של שאלה נוכחית
                     {
-                        answersVM.Add(new AnswerVM() {
-                            answerDescription=item.answerDescription,
-                            answerId=item.answerId,
-                            isCorrect=item.isCorrect
+                        answersVM.Add(new AnswerVM()
+                        {
+                            answerDescription = item.answerDescription,
+                            answerId = item.answerId,
+                            isCorrect = item.isCorrect
                         });
                     }
                     test.questionArr.Add(new QuestionForTestVM()//המרת שאלה נוכחית  
@@ -168,7 +194,7 @@ namespace BLL.Module
                         questionDescription = quenstion.Question.questionDescription,
                         Answers = answersVM,
                         nikud = quenstion.nikod,
-                        
+
                         //selectedAnswer =selectedAnswer.answerDescription
 
                     });
@@ -183,9 +209,9 @@ namespace BLL.Module
             int num = 0;
             Random rnd = new Random();
             List<QuestionforTest> randQuestions = new List<QuestionforTest>();
-            for (int i = questionforTests.Count(); i >0; i--)
+            for (int i = questionforTests.Count(); i > 0; i--)
             {
-                num= rnd.Next(0, i);
+                num = rnd.Next(0, i);
                 randQuestions.Add(questionforTests[num]);
                 questionforTests.Remove(questionforTests[num]);
 

@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { SharedService } from '../services/shared.service';
 
 @Component({
   selector: 'app-homepage',
@@ -7,9 +9,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomepageComponent implements OnInit {
 
-  constructor() { }
+  constructor(private router:Router,
+  private  SharedService:SharedService) { }
 
   ngOnInit() {
   }
-
+  testlist(){
+this.SharedService.isHome=false;
+ this.router.navigate(["/TestList"]);
+  }
+//[routerLink]="['/TestList']" 
 }
