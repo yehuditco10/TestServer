@@ -11,11 +11,11 @@ export class TestCardsComponent implements OnInit {
 
   @Input() test:Test;
   constructor(private router:Router) { }
-
+// var id = +this.route.snapshot.paramMap.get('id');
   ngOnInit() {
   }
   edit(){
     this.router.navigate(['create-test',{categoryId:this.test.testId}]);
   }
-
+  
 }

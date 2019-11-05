@@ -1,0 +1,75 @@
+<div *ngIf="id!=null">
+  <h4>{{id}}:גליון ציונים עבור מבחן </h4>
+  <br>
+  <!-- pdf -->
+  <div id="content" #content>
+    <div>
+      <input type="button" value="הורדת גליון הציונים" class="btn btn-primary download" (click)="captureScreen()" />
+    </div>
+  </div>
+
+</div>
+
+<div>
+  <br>
+  <!-- <table class="table table-hover" id="contentToConvert">
+    <thead>
+      <tr class="bg-primary">
+        <th scope="col"></th>
+        <th scope="col">תעודת זהות</th>
+        <th scope="col">שם סטודנט</th>
+        <th scope="col">ציון</th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+    <tbody>
+
+      <tr *ngFor="let mark of marks">
+        <th scope="row">*</th>
+        <td>{{mark.studentTZ}}</td>
+        <td>{{mark.studentName}}</td>
+        <td>{{mark.mark}}</td>
+        <th><a href="">לצפיה במבחן של {{mark.studentName}}</a></th>
+      </tr>
+
+    </tbody>
+  </table> -->
+</div>
+<!-- 
+<div class="container"> -->
+
+  <div class="row">
+    <div class="col">
+     <img class="img1" src="../../assets/קפה.png" width="12vw;">
+     <img class="img3" src="../../assets/עכבר.png" width="12vw;">
+    </div>
+    <div class="col-8">
+        <table class="table table-hover" id="contentToConvert">
+            <thead>
+              <tr class="bg-primary">
+                <th scope="col"></th>
+                <th scope="col">תעודת זהות</th>
+                <th scope="col">שם סטודנט</th>
+                <th scope="col">ציון</th>
+                <th scope="col"></th>
+              </tr>
+            </thead>
+            <tbody>
+        
+              <tr *ngFor="let mark of marks">
+                <th scope="row">*</th>
+                <td>{{mark.studentTZ}}</td>
+                <td>{{mark.studentName}}</td>
+                <td>{{mark.mark}}</td>
+                <th><a href="">לצפיה במבחן של {{mark.studentName}}</a></th>
+              </tr>
+        
+            </tbody>
+          </table>
+    </div>
+    <div class="col">
+     <img class="img2" src="../../assets/עפרונות.png" width="13vw;">
+     <img class="img4" src="../../assets/מקלדת.png" width="15vw;">
+    </div>
+  </div>
+<!-- </div> -->

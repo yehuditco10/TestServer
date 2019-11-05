@@ -11,6 +11,11 @@ namespace BLL.Module
 {
     public static class QuestionModule
     {
+        /// <summary>
+        /// יצירת שאלה
+        /// </summary>
+        /// <param name="question"></param>
+        /// <returns></returns>
         public static bool CreateQuestion(QuestionVM question)
         {
             using (var ctx = new testitprojectEntities())

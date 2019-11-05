@@ -44,6 +44,12 @@ import { ReportSumQuestionsComponent } from './reports/report-sum-questions/repo
 import { TryComponent } from './try/try.component';
 import { UploadComponent } from './upload/upload.component';
 import { DisplayTestResultsComponent } from './tests/display-test-results/display-test-results.component';
+import { HomepageComponent } from './homepage/homepage.component';
+import { ReportKnowledgeComponent } from './reports/report-knowledge/report-knowledge.component';
+import { ReportsTeachersComponent } from './reports/reports-teachers/reports-teachers.component';
+import { ReportKnowledgeQuestionComponent } from './reports/report-knowledge-question/report-knowledge-question.component';
+import { GradeChartComponent } from './grade-chart/grade-chart.component';
+import { PfdComponent } from './pfd/pfd.component';
 // import { LoginUserComponent } from './login-user/login-user.component';
 
 
@@ -79,6 +85,12 @@ import { DisplayTestResultsComponent } from './tests/display-test-results/displa
     TryComponent,
     UploadComponent,
     DisplayTestResultsComponent,
+    HomepageComponent,
+    ReportKnowledgeComponent,
+    ReportsTeachersComponent,
+    ReportKnowledgeQuestionComponent,
+    GradeChartComponent,
+    PfdComponent,
     // LoginUserComponent
   ],
   imports: [

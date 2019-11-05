@@ -15,13 +15,11 @@
       <ul data-quiz-question="2">
      <mat-radio-group [(ngModel)]="question.selectedAnswer">
           <div *ngFor="let answer of question.Answers">
-
               <li class="quiz-answer" data-quiz-answer="a">
                   <mat-radio-button [value]="answer" [name]="question.questionDescription">
                   </mat-radio-button>
                   {{answer.answerDescription}}---{{answer.isCorrect}}
               </li>
-
           </div>
       </mat-radio-group>
       </ul>

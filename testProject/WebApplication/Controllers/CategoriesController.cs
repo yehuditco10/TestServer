@@ -12,13 +12,22 @@ namespace WebApplication.Controllers
     //[RoutePrefix("api")]
     public class CategoriesController : ApiController
     {
-        // GET api/values
-        //[Route("getCategories")]
+        /// <summary>
+        /// פונקציה שמחזירה רשימת קטגוריות
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         public IHttpActionResult getCategories()
         {
             return Ok(Class1.GetCategories());
         }
+
+        /// <summary>
+    /// הוספת קטגוריה
+    /// </summary>
+    /// <param name="id"></param>
+    /// <param name="categoryName"></param>
+    /// <returns></returns>
         [Route("addCategory")]
         [HttpGet]
         public IHttpActionResult Addcategory(int id, string categoryName)
