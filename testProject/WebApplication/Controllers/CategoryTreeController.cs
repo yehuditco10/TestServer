@@ -13,6 +13,10 @@ namespace WebApplication.Controllers
     [EnableCors(origins: "*", headers: "*", methods: "*")]
     public class CategoryTreeController : ApiController
     {
+        /// <summary>
+        /// פונקציה שמחזירה עץ קטגוריות
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         public List<CategoryTreeItem> GetCategoryTree()
         {

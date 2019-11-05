@@ -10,29 +10,11 @@ namespace BLL.Module
 {
    public static class StatisticModule
     {
-        //public static class StatisticModule
-        //{
-
-        //    public static List<ModelStatisticA> StatisticA()
-        //    {
-        //        using (var ctx = new testitprojectEntities())
-        //        {
-        //            var ls = new List<ModelStatisticA>();
-        //            var categoriesList = ctx.Categories.ToList();
-        //            foreach (var category in categoriesList)
-        //            {
-        //                var questionsNumber = ctx.Questions.Where(i => i.categoriId == category.categoryId).Count();
-        //                ls.Add(new ModelStatisticA()
-        //                {
-        //                    name = category.categoryName,
-        //                    y = questionsNumber
-        //                });
-        //            }
-        //            return ls;
-        //        }
-
-        //    }
-        //}
+        /// <summary>
+        /// סטטיסטיקת ציונים
+        /// </summary>
+        /// <param name="testid"></param>
+        /// <returns></returns>
         public static List<StaticMark> getStaticMark(int testid)
         {
             var ls = new List<StaticMark>();

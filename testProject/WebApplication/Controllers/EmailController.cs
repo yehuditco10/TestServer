@@ -14,6 +14,11 @@ namespace WebApplication.Controllers
     [RoutePrefix("api")]
     public class EmailController : ApiController
     {
+        /// <summary>
+        /// הצעת שאלה חדשה למאגר
+        /// </summary>
+        /// <param name="newQuestion"></param>
+        /// <returns></returns>
         [HttpPost]
         [Route("email/suggestQuestion")]
         public bool suggestQuestion(QuestionVM newQuestion)
@@ -43,9 +48,13 @@ namespace WebApplication.Controllers
 
             return true;
         }
+
+        /// <summary>
+        /// פונקציה לשחזור סיסמא
+        /// </summary>
+        /// <returns></returns>
         [Route("Forgotpassword")]
         [HttpPost]
-     
         public static bool Forgotpassword()
         {
             int id = 1;

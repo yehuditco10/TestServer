@@ -11,6 +11,11 @@ namespace BLL.Module
 {
     public static class TestModule
     {
+        /// <summary>
+        /// פונקציה ליצירת מבחן
+        /// </summary>
+        /// <param name="testvm"></param>
+        /// <returns></returns>
         public static bool CreateTest(TestVM testvm)
         {
             using (testitprojectEntities ctx = new testitprojectEntities())
@@ -32,6 +37,11 @@ namespace BLL.Module
             }
         }
 
+        /// <summary>
+        ///ID שליפת מבחן לפי
+        /// </summary>
+        /// <param name="testId"></param>
+        /// <returns></returns>
         public static TestVM GetByTestId(int testId)
         {
 
@@ -74,6 +84,11 @@ namespace BLL.Module
             }
         }
 
+        /// <summary>
+        /// שליפת גליון ציונים עבור מבחן מסוים
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public static List<MarkVM> GetGradeChart(int id)
         {
             List<TestForStudent> tests = Entity.db.TestForStudents.Where(t => t.testId == id).ToList();
@@ -97,7 +112,12 @@ namespace BLL.Module
             }
             return marks;
         }
-
+        
+        /// <summary>
+        /// הוספת רשימת תלמידים
+        /// </summary>
+        /// <param name="students"></param>
+        /// <returns></returns>
         public static Boolean studentForTest(StudentForTestVM[] students)
         {
 
@@ -117,6 +137,12 @@ namespace BLL.Module
             return true;
         }
 
+        /// <summary>
+        /// אישור פתיחת המבחן לתלמיד
+        /// </summary>
+        /// <param name="testId"></param>
+        /// <param name="studentTZ"></param>
+        /// <returns></returns>
         public static bool openTest(int testId, string studentTZ)
         {
             //------------!!!!!!!!!!!!להחזיר את זה
@@ -129,6 +155,11 @@ namespace BLL.Module
 
         }
 
+        /// <summary>
+        /// החזרת מבחנים לפי קטגוריה מסוימת
+        /// </summary>
+        /// <param name="categoryId"></param>
+        /// <returns></returns>
         public static TestVM GetByCategory(int categoryId)
         {
 
@@ -145,6 +176,11 @@ namespace BLL.Module
 
         }
 
+        /// <summary>
+        /// החזרת מבחנים לקטגוריה מסוימת
+        /// </summary>
+        /// <param name="catId"></param>
+        /// <returns></returns>
         public static List<TestVM> FilterByCategory(int catId)
         {
             using (testitprojectEntities ctx = new testitprojectEntities())
@@ -163,6 +199,11 @@ namespace BLL.Module
             }
         }
 
+        /// <summary>
+        /// שליפת מבחן לתלמיד
+        /// </summary>
+        /// <param name="testId"></param>
+        /// <returns></returns>
         public static TestForStudentVM GetByTestIdForStudent(int testId)
         {
 
@@ -204,6 +245,11 @@ namespace BLL.Module
             }
         }
 
+        /// <summary>
+        /// החזרת שאלות המבחן בצורה רנדומלית
+        /// </summary>
+        /// <param name="questionforTests"></param>
+        /// <returns></returns>
         private static List<QuestionforTest> RandomQuestions(List<QuestionforTest> questionforTests)
         {
             int num = 0;
