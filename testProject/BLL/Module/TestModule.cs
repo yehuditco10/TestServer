@@ -235,7 +235,7 @@ namespace BLL.Module
                         questionDescription = quenstion.Question.questionDescription,
                         Answers = answersVM,
                         nikud = quenstion.nikod,
-
+                        
                         //selectedAnswer =selectedAnswer.answerDescription
 
                     });

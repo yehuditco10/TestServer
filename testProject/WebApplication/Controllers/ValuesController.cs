@@ -30,6 +30,11 @@ namespace WebApplication.Controllers
         //    }
         //    return null;
         //}
+        /// <summary>
+        /// login
+        /// </summary>
+        /// <param name="t"></param>
+        /// <returns></returns>
         [Route("login")]
         [HttpPost]
         public int login(Teacher t)
@@ -38,7 +43,11 @@ namespace WebApplication.Controllers
             return Class1.Signin(t);
             
         }
-
+        /// <summary>
+        /// register
+        /// </summary>
+        /// <param name="t"></param>
+        /// <returns></returns>
         [Route("register")]
         [HttpPost]
         public HttpResponseMessage register(Teacher t)

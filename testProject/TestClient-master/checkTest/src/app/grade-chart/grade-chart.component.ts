@@ -20,15 +20,16 @@ export class GradeChartComponent implements OnInit {
     private testService: TestService) { }
  
   ngOnInit() {
-    this.f();
+  // this.f();
+    debugger;
     this.id = this.route.snapshot.paramMap.get('id');
     console.log(this.id);
-    // if (this.id != null) {
-    //   this.testService.GetGradeChart(Number(this.id)).subscribe((res: Mark[]) => {
-    //     this.marks = res;
-    //     console.log(this.marks);
-    //   })
-    // }
+    if (this.id != null) {
+      this.testService.GetGradeChart(Number(this.id)).subscribe((res: Mark[]) => {
+        this.marks = res;
+        console.log(this.marks);
+      })
+    }
   }
 f(){
   this.marks.push(new Mark('רחלי',"1234567",100));
@@ -40,6 +41,7 @@ f(){
 }
 public captureScreen()  
   {  
+    debugger;
     var data = document.getElementById('contentToConvert');  
     html2canvas(data).then(canvas => {  
       // Few necessary setting options  

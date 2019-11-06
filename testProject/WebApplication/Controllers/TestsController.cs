@@ -92,8 +92,8 @@ namespace WebApplication.Controllers
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        [Route("GetGradeChart")]
-        [HttpPost]
+        [Route("GetGradeChart/{id}")]
+        [HttpGet]
         public List<MarkVM> GetGradeChart(int id)
         {
             return TestModule.GetGradeChart(id);

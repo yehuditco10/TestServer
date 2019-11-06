@@ -37,11 +37,9 @@ import { DisplayTestComponent } from './tests/display-test/display-test.componen
 import {MatIconModule} from '@angular/material/icon';
 import { HeaderComponent } from './header/header.component';
 import { ReportSumUsersComponent } from './reports/report-sum-users/report-sum-users.component';
-import { FabComponent } from './fab/fab.component';
 import { HeaderManagerComponent } from './header-manager/header-manager.component';
 import { ReportsComponent } from './reports/reports/reports.component';
 import { ReportSumQuestionsComponent } from './reports/report-sum-questions/report-sum-questions.component';
-import { TryComponent } from './try/try.component';
 import { UploadComponent } from './upload/upload.component';
 import { DisplayTestResultsComponent } from './tests/display-test-results/display-test-results.component';
 import { HomepageComponent } from './homepage/homepage.component';
@@ -78,11 +76,9 @@ import { PfdComponent } from './pfd/pfd.component';
     DisplayTestComponent,
     HeaderComponent,
     ReportSumUsersComponent,
-    FabComponent,
     HeaderManagerComponent,
     ReportsComponent,
     ReportSumQuestionsComponent,
-    TryComponent,
     UploadComponent,
     DisplayTestResultsComponent,
     HomepageComponent,

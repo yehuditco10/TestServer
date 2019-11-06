@@ -17,6 +17,6 @@ sumStudents:number;
     return this.http.get(environment.baseRoute + 'report/getStudents');
   }
   getStaticMark(id:number){
-    return this.http.post(environment.baseRoute+"getStaticMark",id);
+    return this.http.get(environment.baseRoute+"report/getStaticMark/"+id);
   }
 }

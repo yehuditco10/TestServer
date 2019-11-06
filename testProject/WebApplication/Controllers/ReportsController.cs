@@ -56,7 +56,7 @@ namespace WebApplication.Controllers
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        [System.Web.Http.Route("getStaticMark")]
+        [System.Web.Http.Route("getStaticMark/{id}")]
         [System.Web.Http.HttpGet]
         public HttpResponseMessage getStaticMark(int id)
         {
