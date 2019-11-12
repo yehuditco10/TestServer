@@ -19,7 +19,7 @@ namespace BLL.CRUD
                 name = test_vm.name
             };//active route
             ctx.Tests.Add(test);
-            ctx.SaveChanges();//inorder to get the id
+            ctx.SaveChanges();//in order to get the id
             test.link +=test.testId;
             ctx.SaveChanges();
             return test;

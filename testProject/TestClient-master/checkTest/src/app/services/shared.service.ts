@@ -4,6 +4,6 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class SharedService {
-isHome:boolean=false;
+isHome:boolean=true;
   constructor() { }
 }

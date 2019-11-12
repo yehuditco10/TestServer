@@ -32,6 +32,6 @@ test:TestForStudentVM;
     return this.http.post(environment.baseRoute+ "studentForTest",students);
   }
   GetGradeChart(id:number){
-    return this.http.post(environment.baseRoute+"GetGradeChart",id);
+    return this.http.get(environment.baseRoute+"GetGradeChart/"+id);
   }
 }
