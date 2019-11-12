@@ -1,0 +1,623 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="testitprojectModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Answers">
+          <Key>
+            <PropertyRef Name="answerId" />
+          </Key>
+          <Property Name="answerId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="answerDescription" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="questionId" Type="int" Nullable="false" />
+          <Property Name="isCorrect" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Category">
+          <Key>
+            <PropertyRef Name="categoryId" />
+          </Key>
+          <Property Name="categoryId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="categoryName" Type="nvarchar" MaxLength="50" />
+          <Property Name="parentCategoryId" Type="int" />
+        </EntityType>
+        <EntityType Name="Class">
+          <Key>
+            <PropertyRef Name="classId" />
+          </Key>
+          <Property Name="classId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="className" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Course">
+          <Key>
+            <PropertyRef Name="CourseId" />
+          </Key>
+          <Property Name="CourseId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CourseName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="TeacherId" Type="int" Nullable="false" />
+          <Property Name="IsOpen" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="QuestionforTest">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="testid" Type="int" Nullable="false" />
+          <Property Name="questionId" Type="int" Nullable="false" />
+          <Property Name="nikod" Type="int" Nullable="false" />
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Questions">
+          <Key>
+            <PropertyRef Name="questionId" />
+          </Key>
+          <Property Name="questionId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="questionDescription" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="categoriId" Type="int" Nullable="false" />
+          <Property Name="createById" Type="int" Nullable="false" />
+          <Property Name="isPrivate" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="student">
+          <Key>
+            <PropertyRef Name="studentId" />
+          </Key>
+          <Property Name="studentId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="studentName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="classId" Type="int" Nullable="false" />
+          <Property Name="password" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="email" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="StudentForCourse">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="studentId" Type="int" Nullable="false" />
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="courseId" Type="int" Nullable="false" />
+          <Property Name="tz" Type="nvarchar" MaxLength="50" />
+          <Property Name="password" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Teachers">
+          <Key>
+            <PropertyRef Name="teacherId" />
+          </Key>
+          <Property Name="teacherId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="teacherName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="teacherPassword" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="isManager" Type="bit" />
+          <Property Name="email" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Test">
+          <Key>
+            <PropertyRef Name="testId" />
+          </Key>
+          <Property Name="testId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="teacherId" Type="int" Nullable="false" />
+          <Property Name="link" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="categoriId" Type="int" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="TestForStudent">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="testId" Type="int" Nullable="false" />
+          <Property Name="studentId" Type="int" Nullable="false" />
+          <Property Name="mark" Type="int" Nullable="false" />
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="dateStart" Type="date" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Answers_Questions">
+          <End Role="Questions" Type="Self.Questions" Multiplicity="1" />
+          <End Role="Answers" Type="Self.Answers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Questions">
+              <PropertyRef Name="questionId" />
+            </Principal>
+            <Dependent Role="Answers">
+              <PropertyRef Name="questionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Course_Teachers">
+          <End Role="Teachers" Type="Self.Teachers" Multiplicity="1" />
+          <End Role="Course" Type="Self.Course" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Teachers">
+              <PropertyRef Name="teacherId" />
+            </Principal>
+            <Dependent Role="Course">
+              <PropertyRef Name="TeacherId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_QuestionforTest_Test">
+          <End Role="Test" Type="Self.Test" Multiplicity="1" />
+          <End Role="QuestionforTest" Type="Self.QuestionforTest" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Test">
+              <PropertyRef Name="testId" />
+            </Principal>
+            <Dependent Role="QuestionforTest">
+              <PropertyRef Name="testid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Questions_Category">
+          <End Role="Category" Type="Self.Category" Multiplicity="1" />
+          <End Role="Questions" Type="Self.Questions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="categoryId" />
+            </Principal>
+            <Dependent Role="Questions">
+              <PropertyRef Name="categoriId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_QuestionsforTest_Questions">
+          <End Role="Questions" Type="Self.Questions" Multiplicity="1" />
+          <End Role="QuestionforTest" Type="Self.QuestionforTest" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Questions">
+              <PropertyRef Name="questionId" />
+            </Principal>
+            <Dependent Role="QuestionforTest">
+              <PropertyRef Name="questionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TestForStudent_student">
+          <End Role="student" Type="Self.student" Multiplicity="1" />
+          <End Role="TestForStudent" Type="Self.TestForStudent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="student">
+              <PropertyRef Name="studentId" />
+            </Principal>
+            <Dependent Role="TestForStudent">
+              <PropertyRef Name="studentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TestForStudent_Test">
+          <End Role="Test" Type="Self.Test" Multiplicity="1" />
+          <End Role="TestForStudent" Type="Self.TestForStudent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Test">
+              <PropertyRef Name="testId" />
+            </Principal>
+            <Dependent Role="TestForStudent">
+              <PropertyRef Name="testId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="testitprojectModelStoreContainer">
+          <EntitySet Name="Answers" EntityType="Self.Answers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Category" EntityType="Self.Category" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Class" EntityType="Self.Class" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Course" EntityType="Self.Course" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="QuestionforTest" EntityType="Self.QuestionforTest" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Questions" EntityType="Self.Questions" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="student" EntityType="Self.student" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="StudentForCourse" EntityType="Self.StudentForCourse" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Teachers" EntityType="Self.Teachers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Test" EntityType="Self.Test" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TestForStudent" EntityType="Self.TestForStudent" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Answers_Questions" Association="Self.FK_Answers_Questions">
+            <End Role="Questions" EntitySet="Questions" />
+            <End Role="Answers" EntitySet="Answers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Course_Teachers" Association="Self.FK_Course_Teachers">
+            <End Role="Teachers" EntitySet="Teachers" />
+            <End Role="Course" EntitySet="Course" />
+          </AssociationSet>
+          <AssociationSet Name="FK_QuestionforTest_Test" Association="Self.FK_QuestionforTest_Test">
+            <End Role="Test" EntitySet="Test" />
+            <End Role="QuestionforTest" EntitySet="QuestionforTest" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Questions_Category" Association="Self.FK_Questions_Category">
+            <End Role="Category" EntitySet="Category" />
+            <End Role="Questions" EntitySet="Questions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_QuestionsforTest_Questions" Association="Self.FK_QuestionsforTest_Questions">
+            <End Role="Questions" EntitySet="Questions" />
+            <End Role="QuestionforTest" EntitySet="QuestionforTest" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TestForStudent_student" Association="Self.FK_TestForStudent_student">
+            <End Role="student" EntitySet="student" />
+            <End Role="TestForStudent" EntitySet="TestForStudent" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TestForStudent_Test" Association="Self.FK_TestForStudent_Test">
+            <End Role="Test" EntitySet="Test" />
+            <End Role="TestForStudent" EntitySet="TestForStudent" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="testitprojectModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Answer">
+          <Key>
+            <PropertyRef Name="answerId" />
+          </Key>
+          <Property Name="answerId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="answerDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="questionId" Type="Int32" Nullable="false" />
+          <Property Name="isCorrect" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Question" Relationship="Self.FK_Answers_Questions" FromRole="Answers" ToRole="Questions" />
+        </EntityType>
+        <EntityType Name="Category">
+          <Key>
+            <PropertyRef Name="categoryId" />
+          </Key>
+          <Property Name="categoryId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="categoryName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="parentCategoryId" Type="Int32" />
+          <NavigationProperty Name="Questions" Relationship="Self.FK_Questions_Category" FromRole="Category" ToRole="Questions" />
+        </EntityType>
+        <EntityType Name="Class">
+          <Key>
+            <PropertyRef Name="classId" />
+          </Key>
+          <Property Name="classId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="className" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Course">
+          <Key>
+            <PropertyRef Name="CourseId" />
+          </Key>
+          <Property Name="CourseId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CourseName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="TeacherId" Type="Int32" Nullable="false" />
+          <Property Name="IsOpen" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Teacher" Relationship="Self.FK_Course_Teachers" FromRole="Course" ToRole="Teachers" />
+        </EntityType>
+        <EntityType Name="QuestionforTest">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="testid" Type="Int32" Nullable="false" />
+          <Property Name="questionId" Type="Int32" Nullable="false" />
+          <Property Name="nikod" Type="Int32" Nullable="false" />
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="Test" Relationship="Self.FK_QuestionforTest_Test" FromRole="QuestionforTest" ToRole="Test" />
+          <NavigationProperty Name="Question" Relationship="Self.FK_QuestionsforTest_Questions" FromRole="QuestionforTest" ToRole="Questions" />
+        </EntityType>
+        <EntityType Name="Question">
+          <Key>
+            <PropertyRef Name="questionId" />
+          </Key>
+          <Property Name="questionId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="questionDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="categoriId" Type="Int32" Nullable="false" />
+          <Property Name="createById" Type="Int32" Nullable="false" />
+          <Property Name="isPrivate" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Answers" Relationship="Self.FK_Answers_Questions" FromRole="Questions" ToRole="Answers" />
+          <NavigationProperty Name="Category" Relationship="Self.FK_Questions_Category" FromRole="Questions" ToRole="Category" />
+          <NavigationProperty Name="QuestionforTests" Relationship="Self.FK_QuestionsforTest_Questions" FromRole="Questions" ToRole="QuestionforTest" />
+        </EntityType>
+        <EntityType Name="student">
+          <Key>
+            <PropertyRef Name="studentId" />
+          </Key>
+          <Property Name="studentId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="studentName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="classId" Type="Int32" Nullable="false" />
+          <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="TestForStudents" Relationship="Self.FK_TestForStudent_student" FromRole="student" ToRole="TestForStudent" />
+        </EntityType>
+        <EntityType Name="StudentForCourse">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="studentId" Type="Int32" Nullable="false" />
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="courseId" Type="Int32" Nullable="false" />
+          <Property Name="tz" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Teacher">
+          <Key>
+            <PropertyRef Name="teacherId" />
+          </Key>
+          <Property Name="teacherId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="teacherName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="teacherPassword" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="isManager" Type="Boolean" />
+          <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Courses" Relationship="Self.FK_Course_Teachers" FromRole="Teachers" ToRole="Course" />
+        </EntityType>
+        <EntityType Name="Test">
+          <Key>
+            <PropertyRef Name="testId" />
+          </Key>
+          <Property Name="testId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="teacherId" Type="Int32" Nullable="false" />
+          <Property Name="link" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="categoriId" Type="Int32" Nullable="false" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="QuestionforTests" Relationship="Self.FK_QuestionforTest_Test" FromRole="Test" ToRole="QuestionforTest" />
+          <NavigationProperty Name="TestForStudents" Relationship="Self.FK_TestForStudent_Test" FromRole="Test" ToRole="TestForStudent" />
+        </EntityType>
+        <EntityType Name="TestForStudent">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="testId" Type="Int32" Nullable="false" />
+          <Property Name="studentId" Type="Int32" Nullable="false" />
+          <Property Name="mark" Type="Int32" Nullable="false" />
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="dateStart" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="student" Relationship="Self.FK_TestForStudent_student" FromRole="TestForStudent" ToRole="student" />
+          <NavigationProperty Name="Test" Relationship="Self.FK_TestForStudent_Test" FromRole="TestForStudent" ToRole="Test" />
+        </EntityType>
+        <Association Name="FK_Answers_Questions">
+          <End Role="Questions" Type="Self.Question" Multiplicity="1" />
+          <End Role="Answers" Type="Self.Answer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Questions">
+              <PropertyRef Name="questionId" />
+            </Principal>
+            <Dependent Role="Answers">
+              <PropertyRef Name="questionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Questions_Category">
+          <End Role="Category" Type="Self.Category" Multiplicity="1" />
+          <End Role="Questions" Type="Self.Question" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="categoryId" />
+            </Principal>
+            <Dependent Role="Questions">
+              <PropertyRef Name="categoriId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Course_Teachers">
+          <End Role="Teachers" Type="Self.Teacher" Multiplicity="1" />
+          <End Role="Course" Type="Self.Course" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Teachers">
+              <PropertyRef Name="teacherId" />
+            </Principal>
+            <Dependent Role="Course">
+              <PropertyRef Name="TeacherId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_QuestionforTest_Test">
+          <End Role="Test" Type="Self.Test" Multiplicity="1" />
+          <End Role="QuestionforTest" Type="Self.QuestionforTest" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Test">
+              <PropertyRef Name="testId" />
+            </Principal>
+            <Dependent Role="QuestionforTest">
+              <PropertyRef Name="testid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_QuestionsforTest_Questions">
+          <End Role="Questions" Type="Self.Question" Multiplicity="1" />
+          <End Role="QuestionforTest" Type="Self.QuestionforTest" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Questions">
+              <PropertyRef Name="questionId" />
+            </Principal>
+            <Dependent Role="QuestionforTest">
+              <PropertyRef Name="questionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TestForStudent_student">
+          <End Role="student" Type="Self.student" Multiplicity="1" />
+          <End Role="TestForStudent" Type="Self.TestForStudent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="student">
+              <PropertyRef Name="studentId" />
+            </Principal>
+            <Dependent Role="TestForStudent">
+              <PropertyRef Name="studentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TestForStudent_Test">
+          <End Role="Test" Type="Self.Test" Multiplicity="1" />
+          <End Role="TestForStudent" Type="Self.TestForStudent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Test">
+              <PropertyRef Name="testId" />
+            </Principal>
+            <Dependent Role="TestForStudent">
+              <PropertyRef Name="testId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="testitprojectEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Answers" EntityType="Self.Answer" />
+          <EntitySet Name="Categories" EntityType="Self.Category" />
+          <EntitySet Name="Classes" EntityType="Self.Class" />
+          <EntitySet Name="Courses" EntityType="Self.Course" />
+          <EntitySet Name="QuestionforTests" EntityType="Self.QuestionforTest" />
+          <EntitySet Name="Questions" EntityType="Self.Question" />
+          <EntitySet Name="students" EntityType="Self.student" />
+          <EntitySet Name="StudentForCourses" EntityType="Self.StudentForCourse" />
+          <EntitySet Name="Teachers" EntityType="Self.Teacher" />
+          <EntitySet Name="Tests" EntityType="Self.Test" />
+          <EntitySet Name="TestForStudents" EntityType="Self.TestForStudent" />
+          <AssociationSet Name="FK_Answers_Questions" Association="Self.FK_Answers_Questions">
+            <End Role="Questions" EntitySet="Questions" />
+            <End Role="Answers" EntitySet="Answers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Questions_Category" Association="Self.FK_Questions_Category">
+            <End Role="Category" EntitySet="Categories" />
+            <End Role="Questions" EntitySet="Questions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Course_Teachers" Association="Self.FK_Course_Teachers">
+            <End Role="Teachers" EntitySet="Teachers" />
+            <End Role="Course" EntitySet="Courses" />
+          </AssociationSet>
+          <AssociationSet Name="FK_QuestionforTest_Test" Association="Self.FK_QuestionforTest_Test">
+            <End Role="Test" EntitySet="Tests" />
+            <End Role="QuestionforTest" EntitySet="QuestionforTests" />
+          </AssociationSet>
+          <AssociationSet Name="FK_QuestionsforTest_Questions" Association="Self.FK_QuestionsforTest_Questions">
+            <End Role="Questions" EntitySet="Questions" />
+            <End Role="QuestionforTest" EntitySet="QuestionforTests" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TestForStudent_student" Association="Self.FK_TestForStudent_student">
+            <End Role="student" EntitySet="students" />
+            <End Role="TestForStudent" EntitySet="TestForStudents" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TestForStudent_Test" Association="Self.FK_TestForStudent_Test">
+            <End Role="Test" EntitySet="Tests" />
+            <End Role="TestForStudent" EntitySet="TestForStudents" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="testitprojectModelStoreContainer" CdmEntityContainer="testitprojectEntities">
+          <EntitySetMapping Name="Answers">
+            <EntityTypeMapping TypeName="testitprojectModel.Answer">
+              <MappingFragment StoreEntitySet="Answers">
+                <ScalarProperty Name="answerId" ColumnName="answerId" />
+                <ScalarProperty Name="answerDescription" ColumnName="answerDescription" />
+                <ScalarProperty Name="questionId" ColumnName="questionId" />
+                <ScalarProperty Name="isCorrect" ColumnName="isCorrect" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Categories">
+            <EntityTypeMapping TypeName="testitprojectModel.Category">
+              <MappingFragment StoreEntitySet="Category">
+                <ScalarProperty Name="categoryId" ColumnName="categoryId" />
+                <ScalarProperty Name="categoryName" ColumnName="categoryName" />
+                <ScalarProperty Name="parentCategoryId" ColumnName="parentCategoryId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Classes">
+            <EntityTypeMapping TypeName="testitprojectModel.Class">
+              <MappingFragment StoreEntitySet="Class">
+                <ScalarProperty Name="classId" ColumnName="classId" />
+                <ScalarProperty Name="className" ColumnName="className" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Courses">
+            <EntityTypeMapping TypeName="testitprojectModel.Course">
+              <MappingFragment StoreEntitySet="Course">
+                <ScalarProperty Name="CourseId" ColumnName="CourseId" />
+                <ScalarProperty Name="CourseName" ColumnName="CourseName" />
+                <ScalarProperty Name="TeacherId" ColumnName="TeacherId" />
+                <ScalarProperty Name="IsOpen" ColumnName="IsOpen" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="QuestionforTests">
+            <EntityTypeMapping TypeName="testitprojectModel.QuestionforTest">
+              <MappingFragment StoreEntitySet="QuestionforTest">
+                <ScalarProperty Name="testid" ColumnName="testid" />
+                <ScalarProperty Name="questionId" ColumnName="questionId" />
+                <ScalarProperty Name="nikod" ColumnName="nikod" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Questions">
+            <EntityTypeMapping TypeName="testitprojectModel.Question">
+              <MappingFragment StoreEntitySet="Questions">
+                <ScalarProperty Name="questionId" ColumnName="questionId" />
+                <ScalarProperty Name="questionDescription" ColumnName="questionDescription" />
+                <ScalarProperty Name="categoriId" ColumnName="categoriId" />
+                <ScalarProperty Name="createById" ColumnName="createById" />
+                <ScalarProperty Name="isPrivate" ColumnName="isPrivate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="students">
+            <EntityTypeMapping TypeName="testitprojectModel.student">
+              <MappingFragment StoreEntitySet="student">
+                <ScalarProperty Name="studentId" ColumnName="studentId" />
+                <ScalarProperty Name="studentName" ColumnName="studentName" />
+                <ScalarProperty Name="classId" ColumnName="classId" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="email" ColumnName="email" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="StudentForCourses">
+            <EntityTypeMapping TypeName="testitprojectModel.StudentForCourse">
+              <MappingFragment StoreEntitySet="StudentForCourse">
+                <ScalarProperty Name="studentId" ColumnName="studentId" />
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="courseId" ColumnName="courseId" />
+                <ScalarProperty Name="tz" ColumnName="tz" />
+                <ScalarProperty Name="password" ColumnName="password" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Teachers">
+            <EntityTypeMapping TypeName="testitprojectModel.Teacher">
+              <MappingFragment StoreEntitySet="Teachers">
+                <ScalarProperty Name="teacherId" ColumnName="teacherId" />
+                <ScalarProperty Name="teacherName" ColumnName="teacherName" />
+                <ScalarProperty Name="teacherPassword" ColumnName="teacherPassword" />
+                <ScalarProperty Name="isManager" ColumnName="isManager" />
+                <ScalarProperty Name="email" ColumnName="email" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tests">
+            <EntityTypeMapping TypeName="testitprojectModel.Test">
+              <MappingFragment StoreEntitySet="Test">
+                <ScalarProperty Name="testId" ColumnName="testId" />
+                <ScalarProperty Name="teacherId" ColumnName="teacherId" />
+                <ScalarProperty Name="link" ColumnName="link" />
+                <ScalarProperty Name="categoriId" ColumnName="categoriId" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TestForStudents">
+            <EntityTypeMapping TypeName="testitprojectModel.TestForStudent">
+              <MappingFragment StoreEntitySet="TestForStudent">
+                <ScalarProperty Name="testId" ColumnName="testId" />
+                <ScalarProperty Name="studentId" ColumnName="studentId" />
+                <ScalarProperty Name="mark" ColumnName="mark" />
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="dateStart" ColumnName="dateStart" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

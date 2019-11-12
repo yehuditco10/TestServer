@@ -27,14 +27,15 @@ export class LoginComponent implements OnInit {
 
   login() {
     this.loginS.login(this.t.teacherName, this.t.teacherPassword).subscribe(
-      (res: any) => {
+      (res:any) => {
         if (res) {
           this.globalVariable.setToken(res.body.access_token);
           this.loginS.getUser().subscribe((res) => {
             this.router.navigate(["/TestList"]);
           }, err => { console.log(err);})
         }
-      }, (err) => {
+      }, 
+      (err) => {
         alert("שם משתמש או סיסמא שגויים");
       });
   }

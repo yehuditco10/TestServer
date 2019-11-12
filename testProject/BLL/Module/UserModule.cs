@@ -1,4 +1,5 @@
-﻿using DAL;
+﻿using BLL.ViewModels;
+using DAL;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,12 +10,18 @@ namespace BLL.Module
 {
     public static class UserModule
     {
-        public static Teacher GetUserDetailById(string id)
+        public static UserVM GetUserDetailById(string id)
         {
             using (testitprojectEntities ctx = new testitprojectEntities())
             {
                 var user = ctx.Teachers.FirstOrDefault(p => p.teacherId.ToString() == id);
-                return user;
+                return new UserVM()
+                {
+                    Id = user.teacherId,
+                    email = user.email,
+                    isManager = user.isManager!=null? (bool)user.isManager:false,
+                    Name = user.teacherName
+                };
             }
         }
     }

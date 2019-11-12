@@ -22,7 +22,7 @@ export class LoginService {
     });
   }
   getUser(){
-    return this.http.post(environment.baseRoute+'getCurrentUser',this.globalVariable.httpOptions );
+    return this.http.get(environment.baseRoute+'Account/getCurrentUser',this.globalVariable.httpOptions );
   }
 
 

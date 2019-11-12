@@ -13,33 +13,10 @@ using BLL.Module;
 
 namespace WebApplication.Controllers
 {
-    [RoutePrefix("api")]
-    public class ValuesController : ApiController
+    [RoutePrefix("api/Account")]
+    [EnableCors(origins: "*", headers: "*", methods: "*")]
+    public class AccountController : ApiController
     {
-
-
-        // GET api/values
-        //[Route("login")]
-        //[HttpPost]
-        //public HttpResponseMessage login(Teacher t)
-        //{
-        //    int i = Class1.Signin(t);
-        //    //bool b= BLL.Class1.Enter("חנה", "123");
-        //    bool b = Class1.Enter(t);
-        //    if (b == true)
-        //    {
-        //      return  Request.CreateResponse(HttpStatusCode.OK);
-        //    }
-        //    return null;
-        //}
-        /// <summary>
-        /// login
-        /// </summary>
-        /// <param name="t"></param>
-        /// <returns></returns>
-        [Route("login")]
-        [HttpPost]
-        public int login(Teacher t)
         [Route("getCurrentUser")]
         [HttpGet]
         public HttpResponseMessage getCurrentUserDetails()
@@ -68,21 +45,6 @@ namespace WebApplication.Controllers
         }
 
 
-        // POST api/values
-        [HttpPost]
-        public bool Post(string value)
-        {
-            return true;
-        }
 
-        // PUT api/values/5
-        public void Put(int id, [FromBody]string value)
-        {
-        }
-
-        // DELETE api/values/5
-        public void Delete(int id)
-        {
-        }
     }
 }
