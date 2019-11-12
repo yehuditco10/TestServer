@@ -13,9 +13,10 @@ import { GlobalVariables } from '../global/global-variable';
 })
 
 export class LoginComponent implements OnInit {
+  status:string='login';
   userName: string;
   password: string;
-  t: Teachers = new Teachers(null, null, null,null);
+  t: Teachers = new Teachers();
   constructor(private globalVariable: GlobalVariables,private loginS: LoginService, private router: Router,private RegisterService:RegisterService) {
 
 
@@ -57,5 +58,8 @@ export class LoginComponent implements OnInit {
     this.loginS.Forgotpassword(id).subscribe(res=>{
       alert("הסיסמא נשלחה למייל שלך")
     })
+  }
+  clearTeacher(){
+    this.t=new Teachers();
   }
 }
