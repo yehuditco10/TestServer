@@ -3,7 +3,7 @@ export class Teachers {
     teacherName:string;
     teacherPassword:string;
     email:string;
-    constructor(teacherId,teacherName,teacherPassword,email)
+    constructor(teacherId?,teacherName?,teacherPassword?,email?)
     {
         this.teacherId=teacherId;
         this.teacherName=teacherName;

@@ -1,19 +1,41 @@
+<div class="login-page">
+    <div class="login-nav">
+        <button class="fl" (click)="status='login';clearTeacher()">login</button>
+        <button class="fl" (click)="status='reg';clearTeacher()">register</button>
+    </div>
+    <div *ngIf="status=='login'" class="login-reg-content">
+        <div class="row">
+            <p>הכנס שם</p>
+            <input type="text" [(ngModel)]="t.teacherName">
+        </div>
+        <div class="row">
+            <p>הכנס סיסמא</p>
+            <input type="password" [(ngModel)]="t.teacherPassword">
+        </div>
+        <div class="row">
+            <p></p>
+            <input type="submit" (click)="login()">
+        </div>
+    </div>
+    <div *ngIf="status=='reg'" class="login-reg-content">
+        <div class="row">
+            <p>הכנס שם</p>
+            <input type="text" [(ngModel)]="t.teacherName">
+        </div>
+        <div class="row">
+            <p>הכנס מייל</p>
+            <input type="text" [(ngModel)]="t.email">
+        </div>
+        <div class="row">
+            <p>הכנס סיסמא</p>
+            <input type="password" [(ngModel)]="t.teacherPassword">
+        </div>
+        <div class="row">
+            <p></p>
+            <input type="submit" (click)="register()">
+        </div>
+    </div>
 
-
-
-----
-<div class="row">
-  <p>הכנס שם</p>
-  <input type="text" [(ngModel)]="t.teacherName">
-</div>
-<div class="row">
-    <p>הכנס סיסמא</p>
-  <input type="password" [(ngModel)]="t.teacherPassword">
-</div>
-<div class="row">
-  <p></p>
-  <input type="submit" (click)="login()" >
-  
 </div>
 <!-- <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
