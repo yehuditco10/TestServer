@@ -14,7 +14,6 @@ using BLL.Module;
 namespace WebApplication.Controllers
 {
     [RoutePrefix("api/Account")]
-    [EnableCors(origins: "*", headers: "*", methods: "*")]
     public class AccountController : ApiController
     {
         [Route("getCurrentUser")]
