@@ -48,5 +48,10 @@ namespace BLL.CRUD
             Test tests = ctx.Tests.FirstOrDefault(t => t.testId == testId);
             return tests;
         }
+        public static Question GetByQuestionForManager(testitprojectEntities ctx, int questionId)
+        {
+            Question question = ctx.Questions.FirstOrDefault(q => q.questionId == questionId);
+            return question;
+        }
     }
 }

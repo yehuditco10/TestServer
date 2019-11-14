@@ -21,6 +21,8 @@ import { DisplayTestResultsComponent } from './tests/display-test-results/displa
 import { HomepageComponent } from './homepage/homepage.component';
 import { ReportsTeachersComponent } from './reports/reports-teachers/reports-teachers.component';
 import { GradeChartComponent } from './grade-chart/grade-chart.component';
+import { HeaderManagerComponent } from './header-manager/header-manager.component';
+import { QuestionautoComponent } from './questionauto/questionauto.component';
 // import { LoginUserComponent } from './login-user/login-user.component';
 
 
@@ -51,12 +53,13 @@ const routes: Routes = [
 
 {path:'TestResults',component:DisplayTestResultsComponent},
 {path:'Homepage',component:HomepageComponent},
+{path:'headerManager',component:HeaderManagerComponent},
 
 
+{path:'Questionauto/:id',component:QuestionautoComponent},
 
 
-
-  // {path:'',component:AppComponent}
+  {path:'',component:HomepageComponent}
 ];
 
 @NgModule({

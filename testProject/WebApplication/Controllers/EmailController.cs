@@ -23,6 +23,7 @@ namespace WebApplication.Controllers
         public bool suggestQuestion(QuestionVM newQuestion)
         {
             int categoryid = newQuestion.categoryId;
+            int questionid = Entity.db.Questions.FirstOrDefault(q => newQuestion.questionId == q.questionId).questionId;
             string category = "מתמטיקה";//לשנותתת - זה נפל פה!!!
             //string category = Entity.db.Categories.FirstOrDefault(c => c.categoryId == categoryid).ToString();
 
@@ -34,7 +35,7 @@ namespace WebApplication.Controllers
                         </style>
                     </head>
                     <body>";
-            htmlText += "<h1>מנהל המאגר היקר  </h1><p>" + "הרי לפניך הצעת שאלה חדשה למאגר השאלות </p>" + "<h3>נושא השאלה :</h3>" + category + "<br/>" + "<h3>" + newQuestion.questionDescription + "</h3><br><a href='http://localhost:4200/AddQuestion'>הוסף עכשיו</a><br>";
+            htmlText += "<h1>מנהל המאגר היקר  </h1><p>" + "הרי לפניך הצעת שאלה חדשה למאגר השאלות </p>" + "<h3>נושא השאלה :</h3>" + category + "<br/>" + "<h3>" + newQuestion.questionDescription + "</h3><br><a href='http://localhost:4200/Questionauto/"+questionid+">הוסף עכשיו</a><br>";
             List<Answer> answers = Entity.db.Answers.Where(a => a.questionId == newQuestion.questionId).ToList();
             int num = 0;
             foreach (var item in answers)

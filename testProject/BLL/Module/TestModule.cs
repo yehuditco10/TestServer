@@ -246,6 +246,25 @@ namespace BLL.Module
         }
 
         /// <summary>
+        /// שליפת שאלה למנהל
+        /// </summary>
+        /// <param name="testId"></param>
+        /// <returns></returns>
+        public static Question GetByQuestionForManager(int questionId)
+        {
+
+            using (testitprojectEntities ctx = new testitprojectEntities())
+            {
+
+                Question question = ctx.Questions.FirstOrDefault(q => q.questionId == questionId);
+                return question;
+                
+               
+
+            }
+        }
+
+        /// <summary>
         /// החזרת שאלות המבחן בצורה רנדומלית
         /// </summary>
         /// <param name="questionforTests"></param>

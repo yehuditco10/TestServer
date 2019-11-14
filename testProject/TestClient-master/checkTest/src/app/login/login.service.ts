@@ -29,4 +29,14 @@ export class LoginService {
   Forgotpassword(id){
     return this.http.post(environment.baseRoute+'Forgotpassword',id);
   }
+  register(userName: string, password: string,email:string) {
+    const body = new HttpParams()      
+    .set('grant_type', 'password')      
+    .set('username', userName)
+    .set('password', password)
+    .set('email',email)
+    return this.http.post(environment.baseRoute2+'token', body.toString(), {observe: 'response',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+    });
+  }
 }

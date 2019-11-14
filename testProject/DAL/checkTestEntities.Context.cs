@@ -36,5 +36,6 @@ namespace DAL
         public virtual DbSet<Teacher> Teachers { get; set; }
         public virtual DbSet<Test> Tests { get; set; }
         public virtual DbSet<TestForStudent> TestForStudents { get; set; }
+        public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
     }
 }

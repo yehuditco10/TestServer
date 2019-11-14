@@ -90,6 +90,9 @@
     <Compile Include="StudentForCourse.cs">
       <DependentUpon>checkTestEntities.tt</DependentUpon>
     </Compile>
+    <Compile Include="sysdiagram.cs">
+      <DependentUpon>checkTestEntities.tt</DependentUpon>
+    </Compile>
     <Compile Include="Teacher.cs">
       <DependentUpon>checkTestEntities.tt</DependentUpon>
     </Compile>

@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
 export class HeaderComponent implements OnInit {
 
   constructor(private sharedService:SharedService,
-    private router:Router) { }
+    private router:Router,private SharedService:SharedService) { }
 
   ngOnInit() {
   }

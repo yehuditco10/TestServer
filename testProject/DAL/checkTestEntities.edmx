@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="checkTestEntities.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="checkTestEntities.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Answers">
           <Key>
             <PropertyRef Name="answerId" />
@@ -77,6 +77,16 @@
           <Property Name="tz" Type="nvarchar" MaxLength="50" />
           <Property Name="password" Type="nvarchar" MaxLength="50" />
         </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
         <EntityType Name="Teachers">
           <Key>
             <PropertyRef Name="teacherId" />
@@ -106,6 +116,7 @@
           <Property Name="mark" Type="int" Nullable="false" />
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="dateStart" Type="date" Nullable="false" />
+          <Property Name="imageUrl" Type="nvarchar(max)" />
         </EntityType>
         <Association Name="FK_Answers_Questions">
           <End Role="Questions" Type="Self.Questions" Multiplicity="1" />
@@ -179,6 +190,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_TestForStudent_Test">
+          <End Role="Test" Type="Self.Test" Multiplicity="1" />
+          <End Role="TestForStudent" Type="Self.TestForStudent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Test">
+              <PropertyRef Name="testId" />
+            </Principal>
+            <Dependent Role="TestForStudent">
+              <PropertyRef Name="testId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="checkTestEntitiesStoreContainer">
           <EntitySet Name="Answers" EntityType="Self.Answers" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Category" EntityType="Self.Category" Schema="dbo" store:Type="Tables" />
@@ -188,6 +211,7 @@
           <EntitySet Name="Questions" EntityType="Self.Questions" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="student" EntityType="Self.student" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="StudentForCourse" EntityType="Self.StudentForCourse" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Teachers" EntityType="Self.Teachers" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Test" EntityType="Self.Test" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TestForStudent" EntityType="Self.TestForStudent" Schema="dbo" store:Type="Tables" />
@@ -215,9 +239,12 @@
             <End Role="student" EntitySet="student" />
             <End Role="TestForStudent" EntitySet="TestForStudent" />
           </AssociationSet>
+          <AssociationSet Name="FK_TestForStudent_Test" Association="Self.FK_TestForStudent_Test">
+            <End Role="Test" EntitySet="Test" />
+            <End Role="TestForStudent" EntitySet="TestForStudent" />
+          </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="checkTestEntities" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -323,6 +350,7 @@
           <Property Name="categoriId" Type="Int32" Nullable="false" />
           <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="QuestionforTests" Relationship="Self.FK_QuestionforTest_Test" FromRole="Test" ToRole="QuestionforTest" />
+          <NavigationProperty Name="TestForStudents" Relationship="checkTestEntities.FK_TestForStudent_Test" FromRole="Test" ToRole="TestForStudent" />
         </EntityType>
         <EntityType Name="TestForStudent">
           <Key>
@@ -334,6 +362,8 @@
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="dateStart" Type="DateTime" Nullable="false" Precision="0" />
           <NavigationProperty Name="student" Relationship="Self.FK_TestForStudent_student" FromRole="TestForStudent" ToRole="student" />
+          <Property Name="imageUrl" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Test" Relationship="checkTestEntities.FK_TestForStudent_Test" FromRole="TestForStudent" ToRole="Test" />
         </EntityType>
         <Association Name="FK_Answers_Questions">
           <End Role="Questions" Type="Self.Question" Multiplicity="1" />
@@ -443,7 +473,34 @@
             <End Role="student" EntitySet="students" />
             <End Role="TestForStudent" EntitySet="TestForStudents" />
           </AssociationSet>
+          <EntitySet Name="sysdiagrams" EntityType="checkTestEntities.sysdiagram" />
+          <AssociationSet Name="FK_TestForStudent_Test" Association="checkTestEntities.FK_TestForStudent_Test">
+            <End Role="Test" EntitySet="Tests" />
+            <End Role="TestForStudent" EntitySet="TestForStudents" />
+          </AssociationSet>
         </EntityContainer>
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <Association Name="FK_TestForStudent_Test">
+          <End Type="checkTestEntities.Test" Role="Test" Multiplicity="1" />
+          <End Type="checkTestEntities.TestForStudent" Role="TestForStudent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Test">
+              <PropertyRef Name="testId" />
+            </Principal>
+            <Dependent Role="TestForStudent">
+              <PropertyRef Name="testId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -555,11 +612,23 @@
           <EntitySetMapping Name="TestForStudents">
             <EntityTypeMapping TypeName="checkTestEntities.TestForStudent">
               <MappingFragment StoreEntitySet="TestForStudent">
+                <ScalarProperty Name="imageUrl" ColumnName="imageUrl" />
                 <ScalarProperty Name="testId" ColumnName="testId" />
                 <ScalarProperty Name="studentId" ColumnName="studentId" />
                 <ScalarProperty Name="mark" ColumnName="mark" />
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="dateStart" ColumnName="dateStart" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="checkTestEntities.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="definition" ColumnName="definition" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="name" ColumnName="name" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

@@ -6,6 +6,7 @@ import { Test } from 'src/app/shared/models/test';
 import { TestForStudent } from 'src/app/shared/models/test-for-student';
 import { TestForStudentVM } from 'src/app/shared/models/test-for-student-vm';
 import { Title } from '@angular/platform-browser';
+import html2canvas from 'html2canvas';  
 
 @Component({
   selector: 'app-display-test',
@@ -67,4 +68,17 @@ this.MaxMark+=element.nikud;
     alert(this.mark+"/"+this.MaxMark);
   }
   // test
+  downloadPng(){
+    // var container =document.getElementById('contentToConvertto');  
+    var container =document.body;
+    html2canvas(container).then(function(canvas){
+  var link =document.createElement("a");
+  document.body.appendChild(link);
+  link.download="html_image.png";
+  link.href=canvas.toDataURL("image/png");
+  console.log(link.href);
+  link.target='_blank';
+  link.click();
+    });
+   }
 }

@@ -62,6 +62,17 @@ namespace WebApplication.Controllers
         }
 
         /// <summary>
+        ///ID מחזירה שאלה למנהל
+        /// </summary>
+        /// <param name="testId"></param>
+        /// <returns></returns>
+        [Route("GetByQuestionForManager")]
+        [HttpPost]
+        public Question GetByQuestionForManager(int questionId)
+        {
+            return TestModule.GetByQuestionForManager(questionId);
+        }
+        /// <summary>
         /// אישור פתיחת מבחן לתלמיד
         /// </summary>
         /// <param name="testId"></param>

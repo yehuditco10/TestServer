@@ -1,5 +1,6 @@
-<div class="login-page">
+<div class="login-page" style="z-index: 1010">
     <div class="login-nav">
+       
         <button class="fl" class="btn btn-primary" (click)="status='login';clearTeacher()" style="margin-left: 1vw;">login</button>
         <button class="fl"  class="btn btn-secondary"(click)="status='reg';clearTeacher()">registerr</button>
     </div>
@@ -19,7 +20,7 @@
                         lock
                     </i></span>
             </div>
-            <input type="text"[(ngModel)]="t.teacherPassword" class="form-control" placeholder="הכנס כתובת מייל" aria-label="Username"
+            <input type="text"[(ngModel)]="t.teacherPassword" class="form-control" placeholder="הכנס סיסמא" aria-label="Username"
                 aria-describedby="basic-addon1">
         </div>
         <!-- <div class="row">
@@ -60,7 +61,7 @@
                                     lock
                                 </i></span>
                         </div>
-                        <input type="text"[(ngModel)]="t.teacherPassword" class="form-control" placeholder="הכנס כתובת מייל" aria-label="Username"
+                        <input type="text"[(ngModel)]="t.teacherPassword" class="form-control" placeholder="הכנס סיסמא " aria-label="Username"
                             aria-describedby="basic-addon1">
                     </div>
         <!-- <div class="row">

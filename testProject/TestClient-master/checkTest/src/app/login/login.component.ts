@@ -4,6 +4,7 @@ import { Teachers } from '../shared/models/teachers';
 import { Router } from '@angular/router';
 import { RegisterService } from '../services/register.service';
 import { GlobalVariables } from '../global/global-variable';
+import { SharedService } from '../services/shared.service';
 
 
 @Component({
@@ -13,11 +14,11 @@ import { GlobalVariables } from '../global/global-variable';
 })
 
 export class LoginComponent implements OnInit {
-  status:string='login';
+  status: string = 'login';
   userName: string;
   password: string;
   t: Teachers = new Teachers();
-  constructor(private globalVariable: GlobalVariables,private loginS: LoginService, private router: Router,private RegisterService:RegisterService) {
+  constructor(private globalVariable: GlobalVariables, private loginS: LoginService, private router: Router, private RegisterService: RegisterService, private SharedService: SharedService) {
 
 
   }
@@ -28,14 +29,17 @@ export class LoginComponent implements OnInit {
 
   login() {
     this.loginS.login(this.t.teacherName, this.t.teacherPassword).subscribe(
-      (res:any) => {
+      (res: any) => {
         if (res) {
           this.globalVariable.setToken(res.body.access_token);
           this.loginS.getUser().subscribe((res) => {
-            this.router.navigate(["/TestList"]);
-          }, err => { console.log(err);})
+            this.SharedService.teacherName = this.t.teacherName;
+            if(res['isManager']==true)
+            this.router.navigate(["/headerManager"]);
+           else this.router.navigate(["/TestList"]);
+          }, err => { console.log(err); })
         }
-      }, 
+      },
       (err) => {
         alert("שם משתמש או סיסמא שגויים");
       });
@@ -50,16 +54,16 @@ export class LoginComponent implements OnInit {
 
       },
       (err) => {
-       alert("משתמש קיים")
+        alert("משתמש קיים")
       }
     )
   }
-  Forgotpassword(id:number){
-    this.loginS.Forgotpassword(id).subscribe(res=>{
+  Forgotpassword(id: number) {
+    this.loginS.Forgotpassword(id).subscribe(res => {
       alert("הסיסמא נשלחה למייל שלך")
     })
   }
-  clearTeacher(){
-    this.t=new Teachers();
+  clearTeacher() {
+    this.t = new Teachers();
   }
 }

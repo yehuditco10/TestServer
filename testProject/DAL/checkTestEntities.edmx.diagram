@@ -22,6 +22,8 @@
         <AssociationConnector Association="checkTestEntities.FK_QuestionforTest_Test" ManuallyRouted="false" />
         <AssociationConnector Association="checkTestEntities.FK_QuestionsforTest_Questions" ManuallyRouted="false" />
         <AssociationConnector Association="checkTestEntities.FK_TestForStudent_student" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="checkTestEntities.sysdiagram" Width="1.5" PointX="0.75" PointY="0.75" />
+        <AssociationConnector Association="checkTestEntities.FK_TestForStudent_Test" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -48,6 +48,7 @@ import { ReportsTeachersComponent } from './reports/reports-teachers/reports-tea
 import { ReportKnowledgeQuestionComponent } from './reports/report-knowledge-question/report-knowledge-question.component';
 import { GradeChartComponent } from './grade-chart/grade-chart.component';
 import { PfdComponent } from './pfd/pfd.component';
+import { QuestionautoComponent } from './questionauto/questionauto.component';
 // import { LoginUserComponent } from './login-user/login-user.component';
 
 
@@ -87,6 +88,7 @@ import { PfdComponent } from './pfd/pfd.component';
     ReportKnowledgeQuestionComponent,
     GradeChartComponent,
     PfdComponent,
+    QuestionautoComponent,
     // LoginUserComponent
   ],
   imports: [

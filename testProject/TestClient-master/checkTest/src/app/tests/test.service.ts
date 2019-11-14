@@ -16,6 +16,10 @@ return this.http.post(environment.baseRoute+ "FilterByCategory?categoryId="+id,n
     // alert("in service"+id);
     return this.http.post(environment.baseRoute+ "GetByTestIdForStudent?testId="+id,null);
   }
+  GetByQuestionForManager(id){
+    // alert("in service"+id);
+    return this.http.post(environment.baseRoute+ "GetByQuestionForManager?questionId="+id,null);
+  }
   GetTestByCategoryId(id){
     return this.http.post(environment.baseRoute+ "GetTestById?categoryId="+id,null);
   }

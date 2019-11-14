@@ -12,16 +12,12 @@ namespace DAL
     using System;
     using System.Collections.Generic;
     
-    public partial class TestForStudent
+    public partial class sysdiagram
     {
-        public int testId { get; set; }
-        public int studentId { get; set; }
-        public int mark { get; set; }
-        public int id { get; set; }
-        public System.DateTime dateStart { get; set; }
-        public string imageUrl { get; set; }
-    
-        public virtual student student { get; set; }
-        public virtual Test Test { get; set; }
+        public string name { get; set; }
+        public int principal_id { get; set; }
+        public int diagram_id { get; set; }
+        public Nullable<int> version { get; set; }
+        public byte[] definition { get; set; }
     }
 }
