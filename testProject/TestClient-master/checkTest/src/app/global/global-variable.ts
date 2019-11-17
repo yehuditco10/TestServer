@@ -1,5 +1,5 @@
 import { Subject } from 'rxjs';
-import { Injectable } from '@angular/core';
+import { Injectable,EventEmitter } from '@angular/core';
 import { Router } from '@angular/router';
 import { HttpHeaders } from '@angular/common/http';
 
@@ -10,6 +10,8 @@ export class GlobalVariables {
     constructor() {
 
     }
+    userChange: EventEmitter<any> = new EventEmitter();
+
     httpOptions = {
         headers: new HttpHeaders({
             'Content-Type': 'application/json',
@@ -17,6 +19,9 @@ export class GlobalVariables {
         })
     };
 
+    getUserChangeEmitter() {
+        return this.userChange;
+      }
     setToken(token: string): void {
         localStorage.setItem("token", token);
         this.changeToken(token);

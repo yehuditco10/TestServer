@@ -1,34 +1,5 @@
 <div class="header fl">
   <img class="fl" src="../../assets/לוגו.png" width="50vw">
-
-  <!-- <nav class="fr">
-    <ul>
-        <li class="fl">
-            <a href="#about" style="text-decoration:none">
-              <i class="material-icons">search</i></a>
-          </li>
-      <li class="fl">
-        <a href="#about" style="text-decoration:none">
-          <i class="icon-user"></i>אודות</a>
-      </li>
-      
-      <li class="fl">
-        <a href="#logo" style="text-decoration:none"(click)="ishome()" routerLink="/Homepage">
-        <i class="material-icons" id="icon-home" >home</i>
-        </a>
-      </li>
-      <li class="fl">
-        <a href="#" style="text-decoration:none" routerLink="/login">
-          <i class="icon-phone"></i>
-          <i class="material-icons" id="person">person</i>
-        </a>
-        token-teacher name -->
-        <!-- <div *ngIf="SharedService.teacherName!=null">{{SharedService.teacherName}}</div>
-      </li>
-    </ul>
-  </nav> -->
-
-  <!-- <div *ngIf="isMnager==true"> -->
       <nav class="fr">
           <ul>
               <li class="fl">
@@ -63,16 +34,16 @@
               <i class="material-icons" id="icon-home" >home</i>
               </a>
             </li>
-            <li class="fl">
+            <li class="fl" *ngIf="currentUser==null">
               <a href="#" style="text-decoration:none" routerLink="/login">
                 <i class="icon-phone"></i>
                 <i class="material-icons" id="person">person</i>
               </a>
-              <!-- token-teacher name -->
-              <div *ngIf="SharedService.teacherName!=null">{{SharedService.teacherName}}</div>
+            </li>
+            <li class="fl" *ngIf="currentUser">
+              <button class="userButton" (click)="goToUserPage()">{{userDataLetter}}</button>
             </li>
    </ul>
           
         </nav>
-  <!-- </div> -->
 </div>
