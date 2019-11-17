@@ -19,6 +19,7 @@ namespace BLL.CRUD
                 isPrivate=true//TODO create permission and then change    
             };
             ctx.Questions.Add(newQ);
+            ctx.SaveChanges();
             return newQ;
         }
     }

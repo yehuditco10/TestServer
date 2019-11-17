@@ -18,6 +18,7 @@ namespace DAL
         public Test()
         {
             this.QuestionforTests = new HashSet<QuestionforTest>();
+            this.TestForStudents = new HashSet<TestForStudent>();
         }
     
         public int testId { get; set; }
@@ -28,5 +29,7 @@ namespace DAL
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<QuestionforTest> QuestionforTests { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<TestForStudent> TestForStudents { get; set; }
     }
 }

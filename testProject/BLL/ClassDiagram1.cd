@@ -1,0 +1,102 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="BLL.Class1">
+    <Position X="13.5" Y="0.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAACAAAAACAAIAA2BFAIAAQAAAAARAAAA=</HashCode>
+      <FileName>Class1.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BLL.report">
+    <Position X="11.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAgAAAAgAAAAAAAIAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>report.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BLL.Tests">
+    <Position X="4.25" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Tests.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BLL.CRUD.AnswerCRUD" Collapsed="true">
+    <Position X="9.5" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>CRUD\AnswerCRUD.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BLL.CRUD.CategoryCRUD" Collapsed="true">
+    <Position X="11.75" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>CRUD\CategoryCRUD.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BLL.CRUD.QuestionCRUD" Collapsed="true">
+    <Position X="9.5" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>CRUD\QuestionCRUD.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BLL.CRUD.QuestionForTestCRUD">
+    <Position X="13.5" Y="4.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAA=</HashCode>
+      <FileName>CRUD\QuestionForTestCRUD.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BLL.CRUD.TestCRUD">
+    <Position X="7.75" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAEAAAAAAAABAQAAAAAAAAAAAAAAAEIAAgAAAAAAA=</HashCode>
+      <FileName>CRUD\TestCRUD.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BLL.Models.CategoryTreeItem">
+    <Position X="7.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAQAAAAAAAAAAAAEAAAAAAAAAAAAAgA=</HashCode>
+      <FileName>Models\CategoryTreeItem.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BLL.Module.CategoryTreeModule">
+    <Position X="9.5" Y="0.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAEAAAAAAAAAAAAAQAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Module\CategoryTreeModule.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BLL.Module.QuestionModule">
+    <Position X="9.5" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Module\QuestionModule.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BLL.Module.StatisticModule">
+    <Position X="9.5" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgA=</HashCode>
+      <FileName>Module\StatisticModule.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BLL.Module.TestModule">
+    <Position X="11.75" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AECAAAAIAAAAAAAAAAAAAAEAAAAAAAAAIAAggAAABIA=</HashCode>
+      <FileName>Module\TestModule.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BLL.ViewModels.StaticMark">
+    <Position X="7.75" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAgAAAAAAA=</HashCode>
+      <FileName>ViewModels\StaticMark.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

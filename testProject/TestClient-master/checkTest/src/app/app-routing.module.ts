@@ -19,6 +19,10 @@ import { ReportsComponent } from './reports/reports/reports.component';
 import { AppComponent } from './app.component';
 import { DisplayTestResultsComponent } from './tests/display-test-results/display-test-results.component';
 import { HomepageComponent } from './homepage/homepage.component';
+import { ReportsTeachersComponent } from './reports/reports-teachers/reports-teachers.component';
+import { GradeChartComponent } from './grade-chart/grade-chart.component';
+import { HeaderManagerComponent } from './header-manager/header-manager.component';
+import { QuestionautoComponent } from './questionauto/questionauto.component';
 // import { LoginUserComponent } from './login-user/login-user.component';
 
 
@@ -28,6 +32,8 @@ const routes: Routes = [
 {path:'regist',component:RegistStudentComponent},
 {path:'create-test',component:CreateTestComponent},
 {path:'edit-test/:id',component:CreateTestComponent},
+{path:'GradeChart/:id',component:GradeChartComponent},
+{path:'reports-teachers/:id',component:ReportsTeachersComponent},
 {path:'test/:id',component:DisplayTestComponent},
 {path:'create-question',component:CreateQuestionComponent},
 {path:'menu-manager',component:MenuManagerComponent},
@@ -39,16 +45,21 @@ const routes: Routes = [
 {path:'FinishTest',component:FinishTestComponent},
 {path:'TestList',component:TestListComponent},
 {path:'reports',component:ReportsComponent},
+
+
+
 // {path:'login-user',component:LoginUserComponent},
 {path:'AddCategory',component:AddCategoryComponent},
 
 {path:'TestResults',component:DisplayTestResultsComponent},
 {path:'Homepage',component:HomepageComponent},
+{path:'headerManager',component:HeaderManagerComponent},
 
 
+{path:'Questionauto/:id',component:QuestionautoComponent},
 
 
-  // {path:'',component:AppComponent}
+  {path:'',component:HomepageComponent}
 ];
 
 @NgModule({

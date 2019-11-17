@@ -19,7 +19,9 @@ namespace DAL
         public int mark { get; set; }
         public int id { get; set; }
         public System.DateTime dateStart { get; set; }
+        public string imageUrl { get; set; }
     
         public virtual student student { get; set; }
+        public virtual Test Test { get; set; }
     }
 }

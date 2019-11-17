@@ -1,6 +1,7 @@
 ﻿
 
 using BLL;
+using BLL.CRUD;
 using BLL.ViewModels;
 using DAL;
 using System.Collections.Generic;
@@ -10,16 +11,71 @@ using System.Web.Http.Cors;
 
 namespace WebApplication.Controllers
 {
-    [EnableCors(origins: "*", headers: "*", methods: "*")]
     [RoutePrefix("api")]
     public class EmailController : ApiController
     {
+        /// <summary>
+        /// הצעת שאלה חדשה למאגר
+        /// </summary>
+        /// <param name="newQuestion"></param>
+        /// <returns></returns>
         [HttpPost]
         [Route("email/suggestQuestion")]
         public bool suggestQuestion(QuestionVM newQuestion)
         {
-            int categoryid = newQuestion.categoryId;
-            string category = "מתמטיקה";//לשנותתת - זה נפל פה!!!
+            newQuestion.categoryId = 1;//TODO  
+            //newQuestion.questionDescription = "תעבוד?";
+            QuestionCRUD.CreateQuestion(Entity.db, newQuestion);//הוספת השאלה למאגר
+            Question newq = Entity.db.Questions.FirstOrDefault(q => q.questionDescription == newQuestion.questionDescription);
+            //newq.Answers = null;
+            foreach (var ans in newQuestion.Answers)
+            {
+                if (ans.answerDescription != null)
+                {
+                    AnswerCRUD.CreateAnswer(Entity.db, newq, ans);//הוספת התשובות למאגר
+                    newq.Answers.Add(Entity.db.Answers.FirstOrDefault(a => a.answerDescription == ans.answerDescription));
+                }
+            }
+
+            //List<AnswerVM> answersvm = new List<AnswerVM>();
+            //foreach (var a in newq.Answers)
+            //{
+            //    answersvm.Add(new AnswerVM()
+            //    {
+            //        answerDescription = a.answerDescription,
+            //        answerId = a.answerId,
+            //        isCorrect = a.isCorrect
+            //    });
+            //}
+            //newQuestion = new QuestionVM()
+            //{
+            //    questionDescription = newq.questionDescription,
+            //    Answers = answersvm,
+            //    categoryId = newq.categoriId,
+            //    isPrivate = newq.isPrivate,
+            //    nikud = 0,
+            //    questionId = newq.questionId,
+            //    teacherId = 25//to change
+            //};
+            
+            //if (Entity.db.Questions.FirstOrDefault(q => newQuestion.questionId == q.questionId) == null)
+            //{
+            //    newQuestion.categoryId = 1;//TODO  
+            //    newQuestion.questionDescription = "מה איתך?";
+            //    questionid = 18;
+            //}
+            //else
+            //{
+            //
+           // newQuestion.categoryId = 1;//TODO 
+              //  questionid = Entity.db.Questions.FirstOrDefault(q => newq.questionId == q.questionId).questionId;
+           // }
+
+            Entity.db.SaveChanges();
+      //      int categoryid = newq.categoriId;
+
+            //int questionid = Entity.db.Questions.FirstOrDefault(q => newQuestion.questionId == q.questionId).questionId;
+           // string category = "מתמטיקה";//לשנותתת - זה נפל פה!!!
             //string category = Entity.db.Categories.FirstOrDefault(c => c.categoryId == categoryid).ToString();
 
             string htmlText = @"
@@ -30,22 +86,27 @@ namespace WebApplication.Controllers
                         </style>
                     </head>
                     <body>";
-            htmlText += "<h1>מנהל המאגר היקר  </h1><p>" + "הרי לפניך הצעת שאלה חדשה למאגר השאלות </p>" + "<h3>נושא השאלה :</h3>" + category + "<br/>" + "<h3>" + newQuestion.questionDescription + "</h3><br><a href='http://localhost:4200/AddQuestion'>הוסף עכשיו</a><br>";
-            List<Answer> answers = Entity.db.Answers.Where(a => a.questionId == newQuestion.questionId).ToList();
+            htmlText += "<h1>מנהל המאגר היקר  </h1><p>" + "הרי לפניך הצעת שאלה חדשה למאגר השאלות </p>" + "<h3>נושא השאלה :" + newq.categoriId + "</h3></br><h3> " + newq.questionDescription + " </h3></br>";
+            List<Answer> answers = Entity.db.Answers.Where(a => a.questionId == newq.questionId).ToList();
             int num = 0;
-            foreach (var item in answers)
+            foreach (var item in newq.Answers)
             {
-                htmlText += "<h4>תשובה   <p>" + ++num + item.answerDescription + " </p></h4>";
+                htmlText += "<h4>תשובה   " + ++num +". <p>"+ item.answerDescription + " </p></h4>";
             }
+            htmlText += "</br><a href='http://localhost:4200/Questionauto/" + newq.questionId + "'>הוסף עכשיו</a>";
             htmlText += "</body>";
             //htmlText += " <img src='cid:G:/ל סיון/C#IDEAL/GUI/UploadFile/.JPG'></body>";
             Class1.SendEmail(htmlText, "הצעת שאלה חדשה  ");
 
             return true;
         }
+
+        /// <summary>
+        /// פונקציה לשחזור סיסמא
+        /// </summary>
+        /// <returns></returns>
         [Route("Forgotpassword")]
         [HttpPost]
-     
         public static bool Forgotpassword()
         {
             int id = 1;
@@ -73,7 +134,7 @@ namespace WebApplication.Controllers
             return false;
 
         }
-        //Forgotpassword
+
     }
 
 }

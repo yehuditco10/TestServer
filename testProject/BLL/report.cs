@@ -33,6 +33,21 @@ namespace BLL
             return 0;
         }
 
+        public static List<int> getKnowledge(int testID)
+        {
+            int []marks = new int[100];
+            List<TestForStudent> test = Entity.db.TestForStudents.Where(t => t.testId == testID).ToList();
+            int x = test.Min(mark => mark.mark);
+            if (test != null)
+            {
+                foreach (var item in test)
+                {
+
+                }
+            }
+            return null;
+        }
+
         public static int getStudents()
         {
             try

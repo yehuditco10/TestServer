@@ -1,64 +1,49 @@
-
-<header>
-  
-  <!-- <a href="https://www.linkedin.com/in/sutharmayur" id="logo" target="_blank" style="text-decoration:none" > TestIt</a> -->
-  <img src="../../assets/לוגו.png" width="50vw">
-  <label for="toggle-1" class="toggle-menu"><ul><li></li> <li></li> <li></li></ul></label>
-  <input type="checkbox" id="toggle-1">
-  
-  <nav>
-  <ul>
-  <!-- <li><a href="#" style="text-decoration:none"  data-toggle="modal" data-target="#exampleModalCenterr"><i class="icon-home"></i>login</a></li> -->
-
-  <li><a href="#logo" style="text-decoration:none"><i class="icon-home"></i>Home</a></li>
-  <li><a href="#about" style="text-decoration:none"><i class="icon-user"></i>About</a></li>
-  <!-- <li><a href="#portfolio"style="text-decoration:none"><i class="icon-thumbs-up-alt"></i>Portfolio</a></li> -->
-  <li><a href="#gallery" style="text-decoration:none"><i class="icon-picture"></i>MarkSheets</a></li>
-  <li><a href="#services" style="text-decoration:none"><i class="icon-gear"></i>Statistics</a></li>
-  <li><a href="#"  style="text-decoration:none" routerLink="/login"><i class="icon-phone"></i><i class="material-icons" id="person">person</i></a></li>
-  </ul>
-  </nav>
-
-  </header>
-
- 
-   <!-- Modal -->
-   <!-- <div class="modal fade" id="exampleModalCenterr" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-      <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content" >
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLongTitle">login </h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body">
-            <div  class="myform">
-              <form>
-                  <div class="form-group">
-                    <label for="exampleInputEmail1">Email address</label>
-                    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
-                    <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
-                  </div>
-                  <div class="form-group">
-                    <label for="exampleInputPassword1">Password</label>
-                    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
-                  </div>
-                  <div class="form-group form-check">
-                    <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                    <label class="form-check-label" for="exampleCheck1">Check me out</label>
-                  </div>
-                  <button type="submit" class="btn btn-primary">Submit</button>
-                </form>
-              </div>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">סיימתי</button>
-           <button type="button" class="btn btn-primary">Save changes</button> -->
-          <!-- </div>
-        </div>
-      </div>
-    </div> -->
- 
-
-  
+<div class="header fl">
+  <img class="fl" src="../../assets/לוגו.png" width="50vw">
+      <nav class="fr">
+          <ul>
+              <li class="fl">
+                  <a href="#about" style="text-decoration:none" routerLink="/AddCategory">
+                    <!-- <i class="material-icons">הוספת קטגוריה</i> -->
+                    הוספת קטגוריה
+                  </a>
+                </li>
+                <li class="fl">
+                    <a href="#about" style="text-decoration:none"routerLink="/AddQuestion">
+                      <!-- <i class="material-icons">הוספת שאלה</i> -->
+                      הוספת שאלה
+                    </a>
+                  </li>
+                  <li class="fl">
+                      <a href="#about" style="text-decoration:none"routerLink="/reports">
+                        <!-- <i class="material-icons">סטטיסטיקות</i> -->
+                        סטטיסטיקות מנהל
+                      </a>
+                    </li>
+              <li class="fl">
+                  <a href="#about" style="text-decoration:none" routerLink="/search">
+                    <i class="material-icons">search</i></a>
+                </li>
+            <li class="fl">
+              <a href="#about" style="text-decoration:none">
+                <i class="icon-user"></i>אודות</a>
+            </li>
+            
+            <li class="fl">
+              <a href="#logo" style="text-decoration:none"(click)="ishome()" routerLink="/Homepage">
+              <i class="material-icons" id="icon-home" >home</i>
+              </a>
+            </li>
+            <li class="fl" *ngIf="currentUser==null">
+              <a href="#" style="text-decoration:none" routerLink="/login">
+                <i class="icon-phone"></i>
+                <i class="material-icons" id="person">person</i>
+              </a>
+            </li>
+            <li class="fl" *ngIf="currentUser">
+              <button class="userButton" (click)="goToUserPage()">{{userDataLetter}}</button>
+            </li>
+   </ul>
+          
+        </nav>
+</div>

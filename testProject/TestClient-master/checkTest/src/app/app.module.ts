@@ -37,14 +37,18 @@ import { DisplayTestComponent } from './tests/display-test/display-test.componen
 import {MatIconModule} from '@angular/material/icon';
 import { HeaderComponent } from './header/header.component';
 import { ReportSumUsersComponent } from './reports/report-sum-users/report-sum-users.component';
-import { FabComponent } from './fab/fab.component';
 import { HeaderManagerComponent } from './header-manager/header-manager.component';
 import { ReportsComponent } from './reports/reports/reports.component';
 import { ReportSumQuestionsComponent } from './reports/report-sum-questions/report-sum-questions.component';
-import { TryComponent } from './try/try.component';
 import { UploadComponent } from './upload/upload.component';
 import { DisplayTestResultsComponent } from './tests/display-test-results/display-test-results.component';
 import { HomepageComponent } from './homepage/homepage.component';
+import { ReportKnowledgeComponent } from './reports/report-knowledge/report-knowledge.component';
+import { ReportsTeachersComponent } from './reports/reports-teachers/reports-teachers.component';
+import { ReportKnowledgeQuestionComponent } from './reports/report-knowledge-question/report-knowledge-question.component';
+import { GradeChartComponent } from './grade-chart/grade-chart.component';
+import { PfdComponent } from './pfd/pfd.component';
+import { QuestionautoComponent } from './questionauto/questionauto.component';
 // import { LoginUserComponent } from './login-user/login-user.component';
 
 
@@ -73,14 +77,18 @@ import { HomepageComponent } from './homepage/homepage.component';
     DisplayTestComponent,
     HeaderComponent,
     ReportSumUsersComponent,
-    FabComponent,
     HeaderManagerComponent,
     ReportsComponent,
     ReportSumQuestionsComponent,
-    TryComponent,
     UploadComponent,
     DisplayTestResultsComponent,
     HomepageComponent,
+    ReportKnowledgeComponent,
+    ReportsTeachersComponent,
+    ReportKnowledgeQuestionComponent,
+    GradeChartComponent,
+    PfdComponent,
+    QuestionautoComponent,
     // LoginUserComponent
   ],
   imports: [

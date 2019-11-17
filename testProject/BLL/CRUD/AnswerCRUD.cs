@@ -18,6 +18,7 @@ namespace BLL.CRUD
                 isCorrect=ans.isCorrect,
                 Question = q
             });
+            ctx.SaveChanges();
         }
     }
 }

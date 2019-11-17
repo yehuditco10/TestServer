@@ -19,7 +19,7 @@ namespace BLL.CRUD
                 name = test_vm.name
             };//active route
             ctx.Tests.Add(test);
-            ctx.SaveChanges();//inorder to get the id
+            ctx.SaveChanges();//in order to get the id
             test.link +=test.testId;
             ctx.SaveChanges();
             return test;
@@ -48,5 +48,10 @@ namespace BLL.CRUD
             Test tests = ctx.Tests.FirstOrDefault(t => t.testId == testId);
             return tests;
         }
+        //public static Question GetByQuestionForManager(testitprojectEntities ctx, int questionId)
+        //{
+        //    Question question = ctx.Questions.FirstOrDefault(q => q.questionId == questionId);
+        //    return question;
+        //}
     }
 }

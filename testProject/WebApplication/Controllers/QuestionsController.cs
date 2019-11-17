@@ -11,12 +11,15 @@ using BLL.Module;
 
 namespace WebApplication.Controllers
 {
-    [EnableCors(origins: "*", headers: "*", methods: "*")]
     [RoutePrefix("api")]
     public class QuestionsController : ApiController
     {
-
-       // מחזיר שאלות מהמאגר לפי הקטגוריה שנבחרה
+        /// <summary>
+        /// מחזיר שאלות מהמאגר לפי קטגוריה מסוימת
+        /// </summary>
+        /// <param name="categoryId"></param>
+        /// <returns></returns>
+       // 
         [System.Web.Http.Route("getQuestions/{categoryId}")]
         [HttpGet]
         public IHttpActionResult GetQuestions(int categoryId=0)
@@ -32,6 +35,12 @@ namespace WebApplication.Controllers
             //categoryId = Entity.db.Categories.FirstOrDefault(c => c == category).categoryId;
             //return Ok(Class1.GetQuestion(categoryId));
         }
+
+        /// <summary>
+        /// החזרת שאלות לפי קטגוריה מסוימת
+        /// </summary>
+        /// <param name="categoryId"></param>
+        /// <returns></returns>
         [System.Web.Http.Route("getQuestionForCat/{categoryId}")]
         [HttpGet]
         public IHttpActionResult getQuestionForCat(int categoryId = 0)
@@ -45,19 +54,41 @@ namespace WebApplication.Controllers
             //categoryId = Entity.db.Categories.FirstOrDefault(c => c == category).categoryId;
             //return Ok(Class1.GetQuestion(categoryId));
         }
+
+        /// <summary>
+        /// ????
+        /// </summary>
+        /// <returns></returns>
         [Route("getQuestions1")]
         [HttpGet]
         public IHttpActionResult getQuestions1()
         {
             return Ok(Class1.getQuestion1());
         }
-        //מחזיר את האפשריות של השאלה
+
+        /// <summary>
+        /// מחזירה תשובות אפשריות לשאלה
+        /// </summary>
+        /// <param name="questionId"></param>
+        /// <returns></returns>
         [System.Web.Http.Route("GetAnswers/{questionId}")]
         [System.Web.Http.HttpGet]
         public IHttpActionResult GetAnswers(int questionId)
         {
             return Ok(Class1.GetAnswers(questionId));
         }
+
+            [System.Web.Http.Route("publicQuestion/{questionId}")]
+        [System.Web.Http.HttpGet]
+        public IHttpActionResult publicQuestion(int questionId)
+        {
+            return Ok(QuestionModule.publicQuestion(questionId));
+        }
+        /// <summary>
+        /// הוספת שאלה חדשה
+        /// </summary>
+        /// <param name="question"></param>
+        /// <returns></returns>
         [Route("addNewQuestion")]
         [HttpPost]
         public IHttpActionResult addNewQuestion(QuestionVM question)
@@ -65,6 +96,11 @@ namespace WebApplication.Controllers
             
             return Ok(QuestionModule.CreateQuestion(question));
         }
+
+        /// <summary>
+        /// ??????
+        /// </summary>
+        /// <returns></returns>
         [Route("Forgotpassword")]
         [HttpPost]
         public static bool Forgotpassword()

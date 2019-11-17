@@ -3,29 +3,40 @@ import {HttpClient, HttpParams, HttpHeaders} from '@angular/common/http'
 import { Teachers } from '../shared/models/teachers';
 import { environment } from 'src/environments/environment';
 import { GlobalService } from '../global/global.service';
+import { GlobalVariables } from '../global/global-variable';
 
 @Injectable({
   providedIn: 'root'
 })
 export class LoginService {
   
-  constructor(private http:HttpClient,private globalService:GlobalService) { }
+  constructor(private http:HttpClient,private globalService:GlobalService, private globalVariable: GlobalVariables) { }
 
-  login(teachers:Teachers){
-    const body = new HttpParams()          
-    .set('grant_type',"password")          
-    .set('username',teachers.teacherName)    
-    .set('password',  teachers.teacherPassword)    
-    return this.http.post(environment.baseRoute2+'token', body.toString(), {observe: 'response',    
-      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },    
-    });    
+  login(userName: string, password: string) {
+    const body = new HttpParams()      
+    .set('grant_type', 'password')      
+    .set('username', userName)
+    .set('password', password)
+    return this.http.post(environment.baseRoute2+'token', body.toString(), {observe: 'response',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+    });
+  }
+  getUser(){
+    return this.http.get(environment.baseRoute+'Account/getCurrentUser',this.globalVariable.httpOptions );
   }
 
-  getUserData(token){
-    // var httpHeader=new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': "Bearer " + token })
-    return this.http.get(environment.baseRoute+"User",this.globalService.httpOptions );
-  }
+
   Forgotpassword(id){
     return this.http.post(environment.baseRoute+'Forgotpassword',id);
+  }
+  register(userName: string, password: string,email:string) {
+    const body = new HttpParams()      
+    .set('grant_type', 'password')      
+    .set('username', userName)
+    .set('password', password)
+    .set('email',email)
+    return this.http.post(environment.baseRoute2+'token', body.toString(), {observe: 'response',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+    });
   }
 }

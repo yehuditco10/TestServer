@@ -4,7 +4,9 @@
   <div class="card-body">
     <h5 class="card-title">{{test.name}}</h5>
    
-    <a routerLink="/edit-test/{{test.testId}}"  class="btn btn-primary">Edit</a>
+    <a routerLink="/edit-test/{{test.testId}}"  class="btn btn-primary">עריכה</a>
+    <a routerLink="/GradeChart/{{test.testId}}"  class="btn btn-secondary">גליון ציונים</a>
+    <a routerLink="/reports-teachers//{{test.testId}}"  class="btn btn-info">סטטיסטיקות</a>
   </div>
 </div>
 
