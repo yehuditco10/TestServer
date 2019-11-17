@@ -32,6 +32,15 @@ namespace BLL.Module
                     }
                     QuestionForTestCRUD.CreateQuestionForTest(ctx, question, test, quest.nikud);
                 }
+                List<StudentForCourse> st = new List<StudentForCourse>();
+                st=ctx.StudentForCourses.Where(t => t.courseId == -1).ToList();
+                if(st!=null)
+                {
+                    for (int i = 0; i < st.Count(); i++)
+                    {
+                        st[i].courseId = testvm.testId;
+                    }
+                }
                 ctx.SaveChanges();
                 return true;
             }
@@ -128,7 +137,8 @@ namespace BLL.Module
                 {
 
                     password = student.password,
-                    tz = student.tz
+                    tz = student.tz,
+                    courseId = -1
 
                 });
                 Entity.db.SaveChanges();

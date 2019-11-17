@@ -16,9 +16,9 @@ return this.http.post(environment.baseRoute+ "FilterByCategory?categoryId="+id,n
     // alert("in service"+id);
     return this.http.post(environment.baseRoute+ "GetByTestIdForStudent?testId="+id,null);
   }
-  GetByQuestionForManager(id){
+  GetByQuestionForManager(questionId:number){
     // alert("in service"+id);
-    return this.http.get(environment.baseRoute+ "GetByQuestionForManager?id="+id,null);
+    return this.http.get(environment.baseRoute+ "GetByQuestionForManager/"+questionId);
   }
   GetTestByCategoryId(id){
     return this.http.post(environment.baseRoute+ "GetTestById?categoryId="+id,null);
