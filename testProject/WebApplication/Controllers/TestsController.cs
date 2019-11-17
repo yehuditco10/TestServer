@@ -66,11 +66,11 @@ namespace WebApplication.Controllers
         /// </summary>
         /// <param name="testId"></param>
         /// <returns></returns>
-        [Route("GetByQuestionForManager")]
-        [HttpPost]
-        public Question GetByQuestionForManager(int questionId)
+        [Route("GetByQuestionForManager/{id}")]
+        [HttpGet]
+        public Question GetByQuestionForManager(int id)
         {
-            return TestModule.GetByQuestionForManager(questionId);
+            return TestModule.GetByQuestionForManager(id);
         }
         /// <summary>
         /// אישור פתיחת מבחן לתלמיד
