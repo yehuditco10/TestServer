@@ -1,4 +1,6 @@
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -6,5 +8,9 @@ import { Injectable } from '@angular/core';
 export class SharedService {
   isHome: boolean = true;
   currentUser = null;
-  constructor() { }
+  constructor(private http:HttpClient) { }
+  publicQuestion( questionId:number){
+    debugger;
+    return this.http.get(environment.baseRoute+"publicQuestion/"+questionId);
+  }
 }

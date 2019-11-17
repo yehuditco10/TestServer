@@ -17,6 +17,7 @@ export class HeaderComponent implements OnInit {
     private router:Router,private SharedService:SharedService,private globalVariable:GlobalVariables) {
       this.globalVariable.getUserChangeEmitter().subscribe((res)=>{
         this.currentUser=res;
+        // this.userDataLetter=res.Name;
         this.userDataLetter=res.Name.substring(0,1).toUpperCase();
       })
      }

@@ -78,6 +78,12 @@ namespace WebApplication.Controllers
             return Ok(Class1.GetAnswers(questionId));
         }
 
+            [System.Web.Http.Route("publicQuestion/{questionId}")]
+        [System.Web.Http.HttpGet]
+        public IHttpActionResult publicQuestion(int questionId)
+        {
+            return Ok(QuestionModule.publicQuestion(questionId));
+        }
         /// <summary>
         /// הוספת שאלה חדשה
         /// </summary>
