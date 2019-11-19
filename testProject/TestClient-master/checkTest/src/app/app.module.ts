@@ -51,7 +51,6 @@ import { PfdComponent } from './pfd/pfd.component';
 import { QuestionautoComponent } from './questionauto/questionauto.component';
 // import { LoginUserComponent } from './login-user/login-user.component';
 
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -105,7 +104,8 @@ import { QuestionautoComponent } from './questionauto/questionauto.component';
     ReactiveFormsModule,
     TreeModule.forRoot(),
     MatRadioModule,
-    MatIconModule
+    MatIconModule,
+    //FontAwesomeModule
     // MatButtonModule, MatCheckboxModule,BrowserAnimationsModule
   ],
   providers: [

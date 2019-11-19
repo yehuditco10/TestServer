@@ -27,7 +27,7 @@ export class CreateTestComponent implements OnInit {
   questions: Questions[];
   test: Test;
   testName:string;
- 
+  faCoffee = false;
   constructor(private categoriesService: CategoriesService,
     private getQuestionService: GetQuestionService,
     private GetDataQuestionService: GetDataQuestionService,
@@ -98,9 +98,7 @@ export class CreateTestComponent implements OnInit {
     console.log(que);
   }
   getCategories() {
-    debugger;
     this.categoriesService.getCategories().subscribe((res: Category[]) => {
-      debugger;
       this.categoriesService.categories=res;
       this.categories = res;
       this.selectedCategory = res.filter(i => i.categoryId == this.test.categoriId)[0];

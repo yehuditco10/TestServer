@@ -14,7 +14,6 @@ export class FinishTestComponent implements OnInit {
   public uploadData(event: any) : void { 
     // get data from file upload       
     let filesData = event.target.files;
-    debugger;
     console.log(filesData[0]);
 }
 
