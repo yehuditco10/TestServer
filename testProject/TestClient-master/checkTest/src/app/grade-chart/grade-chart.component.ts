@@ -44,7 +44,6 @@ f(){
 }
 public captureScreen()  
   {  
-    debugger;
     var data = document.getElementById('contentToConvert');  
     html2canvas(data).then(canvas => {  
       // Few necessary setting options  

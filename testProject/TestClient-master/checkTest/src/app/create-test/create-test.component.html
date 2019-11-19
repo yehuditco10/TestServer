@@ -1,22 +1,22 @@
-
-<div *ngIf="selectedCategory">
+<!-- <img src="../../assets/test11.png" id="image1"> -->
+<div *ngIf="selectedCategory" class="pos">
   <h2 *ngIf="title !=null">{{title}}</h2>
-<input type="text" placeholder="הכנס כותרת למבחן" [(ngModel)]="testName">
+<input type="text" placeholder="הכנס כותרת למבחן" id="input" [(ngModel)]="testName">
 </div>
 
 
 <!-- https://www.npmjs.com/package/ngx-modal -->
 <!-- Modal -->
 <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
-  aria-hidden="true">
+  aria-hidden="true" style="position: absolute;top:20vh">
   <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
+    <div class="modal-content" style="direction: rtl;">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLongTitle">הוספת שאלה</h5>
-       
+        <h5 class="modal-title" id="exampleModalLongTitle">+הוספת שאלה</h5>
+<!--        
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
-        </button>
+        </button> -->
       </div>
       <div class="modal-body">
      <!-- aaa -->
@@ -44,12 +44,12 @@
 <div class="modal fade" id="exampleModalCenter2" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
   aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
+    <div class="modal-content" style="direction: rtl; text-align: right;">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLongTitle">הוספת שאלה</h5>
-        <button type="button"  class="close" data-dismiss="modal" aria-label="Close">
+        <h5 class="modal-title" id="exampleModalLongTitle">+הוספת שאלה</h5>
+        <!-- <button type="button"  class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
-        </button>
+        </button> -->
       </div>
       
       <div class="modal-body">
@@ -64,17 +64,17 @@
   </div>
 </div>
 
-<div *ngFor="let ques of test.questionArr">
-  <app-display-question [questions]="ques" (q)="RemoveQuestion($event)"  (editQuestionEvent)="editQuestion($event)"  ></app-display-question>
-
-</div>
 
 
 <br>
 <br>
-<div class="dropdown">
-  <button class="btn btn-primary dropdown-toggle" class="btn btn-primary" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-   הוספת שאלה 
+<div class="dropdown" style="margin-top: 30vh;
+text-align: right;
+direction: rtl;
+margin-right: 18vw;
+">
+  <button style="margin-left: 1vw;" class="btn btn-primary dropdown-toggle" id="exampleModalLongTitle" class="btn btn-primary" type="button"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+   הוספת שאלה+ 
   </button>
   <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
     
@@ -89,13 +89,29 @@
     
   </div>
   <!-- Button trigger modal -->
-<button type="button" class="btn btn-info" data-toggle="modal" data-target="#exampleModalCenterr">
+<button type="button" class="btn btn-info" style=" 
+/* position: absolute !important; */
+top: -63vh;
+right: 26vw;
+z-index: 100;
+height: 6vh;margin-left: 1vw;" data-toggle="modal" data-target="#exampleModalCenterr">
     הכנס רשימת תלמידים
    </button>
-  <button (click)="saveTest()"> שמור מבחן</button>
+  <button style="
+   /* position: absolute !important; */
+  top: -63vh;
+  right: 36.5vw;
+  z-index: 100;
+  height: 6vh;
+  background-color: #fdcd20;
+  border-color: #fdcd20;margin-left: 1vw;" class="btn btn-info" (click)="saveTest()"> שמור מבחן</button>
 </div>
 
 
+<div  class="card-deck" style="direction: rtl;text-align: right;">
+    <app-display-question *ngFor="let ques of test.questionArr" [questions]="ques" (q)="RemoveQuestion($event)"  (editQuestionEvent)="editQuestion($event)"  ></app-display-question>
+  
+  </div>
   <!-- Modal -->
   <div class="modal fade" id="exampleModalCenterr" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">

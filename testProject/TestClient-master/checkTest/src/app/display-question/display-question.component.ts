@@ -30,7 +30,7 @@ export class DisplayQuestionComponent implements OnInit {
   }
   suggestQuestion(){
    
-    debugger; alert("in display");
+    alert("in display");
     console.log(this.questions.categoryId);
     this.questions.categoryId=this.TestService.categoryId;
     
