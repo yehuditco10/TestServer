@@ -33,12 +33,12 @@ namespace BLL.Module
                     QuestionForTestCRUD.CreateQuestionForTest(ctx, question, test, quest.nikud);
                 }
                 List<StudentForCourse> st = new List<StudentForCourse>();
-                st=ctx.StudentForCourses.Where(t => t.courseId == -1).ToList();
-                if(st!=null)
+                st = ctx.StudentForCourses.Where(t => t.courseId == -1).ToList();
+                if (st != null)
                 {
                     for (int i = 0; i < st.Count(); i++)
                     {
-                        st[i].courseId = testvm.testId;
+                        st[i].courseId = test.testId;
                     }
                 }
                 ctx.SaveChanges();
@@ -121,7 +121,7 @@ namespace BLL.Module
             }
             return marks;
         }
-        
+
         /// <summary>
         /// הוספת רשימת תלמידים
         /// </summary>
@@ -157,8 +157,9 @@ namespace BLL.Module
         {
             //------------!!!!!!!!!!!!להחזיר את זה
             //  var x = Entity.db.StudentForCourses.FirstOrDefault(s => s.courseId == testId);
-            var x = 1;
-            // var x = Entity.db.StudentForCourses.FirstOrDefault(s => s.studentId == studentTZ && s.courseId == testId);
+            // var x = 1;
+            //password is the TZ
+            StudentForCourse x = Entity.db.StudentForCourses.FirstOrDefault(s => s.tz == studentTZ && s.courseId == testId);
             if (x != null)
                 return true;
             return false;
@@ -245,7 +246,7 @@ namespace BLL.Module
                         questionDescription = quenstion.Question.questionDescription,
                         Answers = answersVM,
                         nikud = quenstion.nikod,
-                        
+
                         //selectedAnswer =selectedAnswer.answerDescription
 
                     });
@@ -260,16 +261,35 @@ namespace BLL.Module
         /// </summary>
         /// <param name="testId"></param>
         /// <returns></returns>
-        public static Question GetByQuestionForManager(int questionId)
+        public static QuestionVM GetByQuestionForManager(int questionId)
         {
 
             using (testitprojectEntities ctx = new testitprojectEntities())
             {
 
                 Question question = ctx.Questions.FirstOrDefault(q => q.questionId == questionId);
-                return question;
-                
-               
+                List<AnswerVM> answersvm = new List<AnswerVM>();
+                foreach (var item in question.Answers)
+                {
+                    answersvm.Add(new AnswerVM()
+                    {
+                        answerDescription = item.answerDescription,
+                        answerId = item.answerId,
+                        isCorrect = item.isCorrect
+
+                    });
+                }
+                QuestionVM questionVm=new QuestionVM()
+                {
+                    isPrivate = false,
+                    questionDescription = question.questionDescription,
+                    Answers = answersvm,
+                    categoryId = question.categoriId,
+                    questionId = question.questionId
+                };
+                return questionVm;
+
+
 
             }
         }

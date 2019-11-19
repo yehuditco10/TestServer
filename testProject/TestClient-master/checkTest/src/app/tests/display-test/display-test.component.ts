@@ -6,7 +6,7 @@ import { Test } from 'src/app/shared/models/test';
 import { TestForStudent } from 'src/app/shared/models/test-for-student';
 import { TestForStudentVM } from 'src/app/shared/models/test-for-student-vm';
 import { Title } from '@angular/platform-browser';
-import html2canvas from 'html2canvas';  
+import html2canvas from 'html2canvas';
 
 @Component({
   selector: 'app-display-test',
@@ -17,11 +17,11 @@ export class DisplayTestComponent implements OnInit {
   test: TestForStudentVM;
   constructor(private route: ActivatedRoute,
     private TestService: TestService,
-    private testS:TestService) { }
+    private testS: TestService) { }
   testId: number = 0;
   studentTz: string;
-  mark:number=0;
-  MaxMark:number=0;
+  mark: number = 0;
+  MaxMark: number = 0;
   ngOnInit() {
     this.testId = +this.route.snapshot.paramMap.get('id');
     if (!this.testId) {
@@ -29,7 +29,7 @@ export class DisplayTestComponent implements OnInit {
     }
     this.test = new TestForStudentVM();
   }
-  isOk = false;
+  isOk: number = 0;
   sendStudentId() {
 
     //send test id+ student id
@@ -37,11 +37,16 @@ export class DisplayTestComponent implements OnInit {
       //פניה לסרבר ועדכון על תחילת מבחן
       if (res == true) {
         this.TestService.GetByTestIdForStudent(this.testId).subscribe((res: TestForStudentVM) => {
+debugger;
+          if (res != null) {
           this.test = res;
-          this.isOk = true;
-          console.log(this.test.questionArr);
-          console.log(this.test);
+            this.isOk = 1;
+            console.log(this.test.questionArr);
+            console.log(this.test);
+          }
 
+        }, err => {
+          this.isOk = -1;
         });
       }
     })
@@ -53,32 +58,32 @@ export class DisplayTestComponent implements OnInit {
     //   console.log(this.test);
     // })
     //מקבל מהסרבר אם יכול לעשות את המבחן-ואחר כך  מציג לפי הפרמטר הזה
-    this.isOk = true;
+   
   }
   sendTest() {
-    this.TestService.currentTest=this.test;
+    this.TestService.currentTest = this.test;
     // console.log(this.test.questionArr);
-this.test.questionArr.forEach(element => {
-this.MaxMark+=element.nikud;
-  if(element.selectedAnswer.isCorrect==true)
-  this.mark+=element.nikud;
- // console.log(element.selectedAnswer)
-});
-    console.log(this.mark+"/"+this.MaxMark);
-    alert(this.mark+"/"+this.MaxMark);
+    this.test.questionArr.forEach(element => {
+      this.MaxMark += element.nikud;
+      if (element.selectedAnswer.isCorrect == true)
+        this.mark += element.nikud;
+      // console.log(element.selectedAnswer)
+    });
+    console.log(this.mark + "/" + this.MaxMark);
+    alert(this.mark + "/" + this.MaxMark);
   }
   // test
-  downloadPng(){
+  downloadPng() {
     // var container =document.getElementById('contentToConvertto');  
-    var container =document.body;
-    html2canvas(container).then(function(canvas){
-  var link =document.createElement("a");
-  document.body.appendChild(link);
-  link.download="html_image.png";
-  link.href=canvas.toDataURL("image/png");
-  console.log(link.href);
-  link.target='_blank';
-  link.click();
+    var container = document.body;
+    html2canvas(container).then(function (canvas) {
+      var link = document.createElement("a");
+      document.body.appendChild(link);
+      link.download = "html_image.png";
+      link.href = canvas.toDataURL("image/png");
+      console.log(link.href);
+      link.target = '_blank';
+      link.click();
     });
-   }
+  }
 }

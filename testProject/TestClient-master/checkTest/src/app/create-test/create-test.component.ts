@@ -69,6 +69,7 @@ export class CreateTestComponent implements OnInit {
 
   }
   PushNewQuestion() {
+    console.log(this.currentQuestion);
     if (this.currentQuestion.isNew) {
       this.currentQuestion.isNew = false;
       this.test.questionArr.push(this.currentQuestion);
@@ -112,7 +113,7 @@ export class CreateTestComponent implements OnInit {
   }
   showModal: boolean = false;
   createNewQuestion() {
-    // this.currentQuestion=new Questions();
+    this.currentQuestion=new Questions();
     this.showModal = true;
   }
 

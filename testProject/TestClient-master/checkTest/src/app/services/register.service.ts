@@ -11,6 +11,6 @@ export class RegisterService {
   constructor(private http:HttpClient) { }
   register(teachers:Teachers){
     
-    return this.http.post(environment.baseRoute + 'register',teachers);
+    return this.http.post(environment.baseRoute + 'Account/register',teachers);
   }
 }

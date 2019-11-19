@@ -21,6 +21,7 @@ namespace BLL.CRUD
             ctx.Tests.Add(test);
             ctx.SaveChanges();//in order to get the id
             test.link +=test.testId;
+
             ctx.SaveChanges();
             return test;
         }

@@ -50,10 +50,24 @@ export class LoginComponent implements OnInit {
   register() {
     this.RegisterService.register(this.t).subscribe(
       (res) => {
+        this.loginS.login(this.t.teacherName, this.t.teacherPassword).subscribe(
+          (res: any) => {
+            if (res) {
+              this.globalVariable.setToken(res.body.access_token);
+              this.loginS.getUser().subscribe((res1:any) => {
+                this.globalVariable.userChange.next(res1);
+                localStorage.setItem("currentUser",JSON.stringify(res1));
+                this.SharedService.currentUser = res1;
+                if (res1['isManager'] == true)
+                  this.router.navigate(["/headerManager"]);
+                else this.router.navigate(["/TestList"]);
+              }, err => { console.log(err); })
+            }
+          });
         this.router.navigate(["/menu"]);
       },
       (err) => {
-        alert("משתמש קיים")
+        alert("err")
       }
     )
   }

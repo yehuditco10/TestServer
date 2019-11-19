@@ -68,7 +68,7 @@ namespace WebApplication.Controllers
         /// <returns></returns>
         [Route("GetByQuestionForManager/{questionId}")]
         [HttpGet]
-        public Question GetByQuestionForManager(int questionId)
+        public QuestionVM GetByQuestionForManager(int questionId)
         {
             return TestModule.GetByQuestionForManager(questionId);
         }

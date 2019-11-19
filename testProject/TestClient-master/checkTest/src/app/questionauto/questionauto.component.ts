@@ -19,12 +19,12 @@ export class QuestionautoComponent implements OnInit {
 
   ngOnInit() {
     this.questionId = +this.route.snapshot.paramMap.get('id');
-// this.TestService.GetByQuestionForManager(this.questionId).subscribe((res:Questions)=>{
-//   debugger;
-// this.question=res;
-// alert(res.questionDescription);
-// console.log(res.questionDescription);
-// });
+this.TestService.GetByQuestionForManager(this.questionId).subscribe((res:Questions)=>{
+  debugger;
+this.question=res;
+alert(res.questionDescription);
+console.log(res.questionDescription);
+});
    }
    publicQuestion(){
 this.sharesService.publicQuestion(this.questionId).subscribe((res:any)=>{

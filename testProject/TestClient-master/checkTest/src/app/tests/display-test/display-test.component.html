@@ -1,3 +1,11 @@
+<div  *ngIf="isOk==-1">
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+    <strong>שגיאה ! נסה להוסיף מאוחר יותר</strong>
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+</div>
 <label>id</label>
 <input type="text" [(ngModel)]="studentTz">
 
@@ -27,7 +35,7 @@
 </div> -->
 
 <!--  -->
-<div *ngIf="isOk">
+<div *ngIf="isOk==1">
     <div class="quiz" id="contentToConvertto">
         <div *ngFor="let question of test.questionArr">
             <h2 class="quiz-question">{{question.questionDescription}}</h2>
@@ -47,6 +55,7 @@
         </div>
 
     </div>
+  
     <button (click)="sendTest()" class="btn btn-success">
             <mat-icon aria-hidden="false" aria-label="done_outline">done_outline</mat-icon>סיום מבחן
         </button>

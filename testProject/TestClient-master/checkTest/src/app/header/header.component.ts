@@ -33,4 +33,10 @@ export class HeaderComponent implements OnInit {
   goToUserPage(){
     
   }
+  signOut(){
+    this.globalVariable.userChange.next(null);
+    localStorage.removeItem("currentUser");
+    localStorage.removeItem("token");
+    this.router.navigate['/login'];
+  }
 }
