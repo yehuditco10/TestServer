@@ -71,6 +71,7 @@
     <Compile Include="ViewModels\StaticMark.cs" />
     <Compile Include="ViewModels\StudentForTestVM.cs" />
     <Compile Include="ViewModels\TestForStudentVM.cs" />
+    <Compile Include="ViewModels\TestToSave.cs" />
     <Compile Include="ViewModels\TestVM.cs" />
     <Compile Include="ViewModels\UserVM.cs" />
   </ItemGroup>

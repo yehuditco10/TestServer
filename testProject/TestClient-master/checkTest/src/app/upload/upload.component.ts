@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import * as XLSX from 'ts-xlsx';
 import { UpStudent } from '../shared/models/up-student';
 import { TestService } from '../services/test.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-upload',
@@ -10,15 +11,17 @@ import { TestService } from '../services/test.service';
 })
 export class UploadComponent implements OnInit {
 
-  constructor(private testService:TestService) { }
+  constructor(private testService:TestService,private route:ActivatedRoute) { }
   sheet: Array<UpStudent>;
   students: Array<UpStudent>=new Array<UpStudent>();
   currentStudent: UpStudent = new UpStudent();
   arrayBuffer: any;
   file: File;
+  testId:number;
   incomingfile(event) {
     this.file = event.target.files[0];
     this.Upload();
+    console.log(this.testId);
   }
 
   Upload() {
@@ -43,6 +46,7 @@ export class UploadComponent implements OnInit {
         this.currentStudent = new UpStudent();
         this.currentStudent.tz = this.sheet[index]["tz"];
         this.currentStudent.password = this.sheet[index]["password"];
+        this.currentStudent.testid=this.testId;
         this.students.push(this.currentStudent);
 
       }
@@ -53,6 +57,8 @@ export class UploadComponent implements OnInit {
     fileReader.readAsArrayBuffer(this.file);
   }
   ngOnInit() {
+    this.testId=Number(this.route.snapshot.paramMap.get('id'));
+  
   }
 
 }

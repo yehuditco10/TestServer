@@ -84,7 +84,13 @@ namespace WebApplication.Controllers
         {
             return TestModule.openTest(testId,studentTZ);
         }
-
+        [Route("TestSaved")]
+        [HttpPost]
+        public bool TestSaved(TestToSave test)
+        {
+            return TestModule.TestSaved(test);
+        }
+        //TestSaved
         /// <summary>
         /// הוספת רשימת תלמידים למבחן
         /// </summary>

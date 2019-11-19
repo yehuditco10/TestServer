@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { TestForStudentVM } from '../shared/models/test-for-student-vm';
+import { TestSaved } from '../shared/models/test-saved';
 
 @Injectable({
   providedIn: 'root'
@@ -29,5 +30,8 @@ return this.http.post(environment.baseRoute+ "FilterByCategory?categoryId="+id,n
     // data.append('testid',testid);
     // var body='testid=testid+&studentTZ=studentTZ';
     // return this.http.post(environment.baseRoute+'openTest',body);
+  }
+  checktest(tested:TestSaved){
+    return this.http.post(environment.baseRoute+"TestSaved",tested);
   }
 }

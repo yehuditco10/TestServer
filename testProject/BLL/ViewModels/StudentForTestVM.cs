@@ -10,5 +10,6 @@ namespace BLL.ViewModels
     {
         public string tz { get; set; }
         public string password { get; set; }
+        public int testid { get; set; }
     }
 }

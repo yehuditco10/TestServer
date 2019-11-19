@@ -4,6 +4,7 @@ import { TestService } from '../services/test.service';
 import { Mark } from '../shared/models/mark';
 import * as jspdf from 'jspdf';  
 import html2canvas from 'html2canvas';  
+// import {MatTooltipModule} from '@angular/material/tooltip';
 @Component({
   selector: 'app-grade-chart',
   templateUrl: './grade-chart.component.html',
@@ -18,8 +19,10 @@ export class GradeChartComponent implements OnInit {
    marks:Array<Mark>=new Array<Mark>();
   constructor(private route: ActivatedRoute,
     private testService: TestService) { }
- 
+    urls:string[];
   ngOnInit() {
+   this.urls= ["../../assets/מבחן חסר.png","../../assets/מבחן חסר.png","../../assets/html_image (20).png","../../assets/html_image (20).png"] ;
+
   // this.f();
     debugger;
     this.id = this.route.snapshot.paramMap.get('id');

@@ -23,6 +23,7 @@ import { ReportsTeachersComponent } from './reports/reports-teachers/reports-tea
 import { GradeChartComponent } from './grade-chart/grade-chart.component';
 import { HeaderManagerComponent } from './header-manager/header-manager.component';
 import { QuestionautoComponent } from './questionauto/questionauto.component';
+import { PfdComponent } from './pfd/pfd.component';
 // import { LoginUserComponent } from './login-user/login-user.component';
 
 
@@ -59,7 +60,8 @@ const routes: Routes = [
 {path:'Questionauto/:id',component:QuestionautoComponent},
 
 
-  {path:'',component:HomepageComponent}
+  {path:'',component:HomepageComponent},
+  {path:'pdf',component:PfdComponent}
 ];
 
 @NgModule({
