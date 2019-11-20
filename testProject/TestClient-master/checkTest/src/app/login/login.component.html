@@ -1,19 +1,19 @@
 <div class="login-page" style="z-index: 1010">
     <div class="login-nav">
 
-        <button class="fl" class="btn btn-link" (click)="status='login';clearTeacher()" style="margin-left: 1vw;"
-            value="כניסה"><span>login</span></button>
-        <button class="fl" class="btn btn-link" (click)="status='reg';clearTeacher()"
-            value="הרשמה"><span>register</span></button>
+        <div *ngIf="status=='login'"  class="btn btn" (click)="status='login';clearTeacher()" style="margin-right: -4vw;"
+            value="כניסה"><span>כניסה</span></div>
+        <button *ngIf="status=='reg'"  class="btn btn" (click)="status='reg';clearTeacher()"style="margin-right: -4vw;"
+            value="הרשמה"><span>הרשמה</span></button>
     </div>
     <div *ngIf="status=='login'" class="login-reg-content">
         <div class="input-group mb-3">
             <div class="input-group-prepend">
                 <span class="input-group-text" id="basic-addon1"><i class="material-icons">
-                        email
+                        person
                     </i></span>
             </div>
-            <input type="text" [(ngModel)]="t.teacherName" class="form-control" placeholder="הכנס כתובת מייל"
+            <input type="text" [(ngModel)]="t.teacherName" class="form-control" placeholder="שם משתמש"
                 aria-label="Username" aria-describedby="basic-addon1">
         </div>
         <div class="input-group mb-3">
@@ -22,9 +22,12 @@
                         lock
                     </i></span>
             </div>
-            <input type="text" [(ngModel)]="t.teacherPassword" class="form-control" placeholder="הכנס סיסמא"
+            <input type="text" [(ngModel)]="t.teacherPassword" class="form-control" placeholder="סיסמא"
                 aria-label="Username" aria-describedby="basic-addon1">
         </div>
+      <p id="p1">? אין לך חשבון עדיין</p> 
+        <button class="fl" class="btn btn-link" (click)="status='reg';clearTeacher()"
+        value="הרשמה" style="padding: 0px;"><span style="font-size: 1.2vw;"> הרשם</span></button>
         <!-- <div class="row">
             <p>הכנס שם</p>
             <input type="text" [(ngModel)]="t.teacherName">
@@ -35,7 +38,11 @@
         </div> -->
         <div class="row">
             <div class="btnsubmit">
-                <input type="submit" (click)="login()" class="btn btn-primary btn-lg btn-block">
+                <input type="submit" (click)="login()" class="btn btn-primary btn-lg btn-block" value="הכנס"style="
+                        width: 84%;
+    height: 34%;
+    margin-top: 12vh;
+    margin-left: 8.7vw;">
             </div>
         </div>
     </div>
@@ -46,7 +53,7 @@
                         person
                     </i></span>
             </div>
-            <input type="text" [(ngModel)]="t.teacherName" class="form-control" placeholder="הכנס שם משתמש"
+            <input type="text" [(ngModel)]="t.teacherName" class="form-control" placeholder="שם משתמש"
                 aria-label="Username" aria-describedby="basic-addon1">
         </div>
         <div class="input-group mb-3">
@@ -55,7 +62,7 @@
                         email
                     </i></span>
             </div>
-            <input type="text" [(ngModel)]="t.email" class="form-control" placeholder="הכנס כתובת מייל"
+            <input type="text" [(ngModel)]="t.email" class="form-control" placeholder="כתובת מייל"
                 aria-label="Username" aria-describedby="basic-addon1">
         </div>
         <div class="input-group mb-3">
@@ -64,9 +71,13 @@
                         lock
                     </i></span>
             </div>
-            <input type="text" [(ngModel)]="t.teacherPassword" class="form-control" placeholder="הכנס סיסמא "
+            <input type="text" [(ngModel)]="t.teacherPassword" class="form-control" placeholder="סיסמא "
                 aria-label="Username" aria-describedby="basic-addon1">
         </div>
+        <p id="p1">? יש לך כבר חשבון</p> 
+        <button class="fl" class="btn btn-link" (click)="status='login';clearTeacher()"
+        value="כניסה" style="padding: 0px;"><span style="font-size: 1.2vw;"> הכנס</span></button>
+       
         <!-- <div class="row">
             <p>הכנס שם</p>
             <input type="text" [(ngModel)]="t.teacherName">
@@ -81,11 +92,11 @@
         </div> -->
         <div class="row">
             <div class="btnsubmit">
-                <input type="submit" (click)="register()" class="btn btn-primary btn-lg btn-block reg" style=" 
-              width: 93%;
-    height: 42%;
-    margin-top: 8.5vh;
-    margin-left: 8.2vw;;">
+                <input type="submit" (click)="register()"value="הרשם" class="btn btn-primary btn-lg btn-block reg" style=" 
+           width: 84%;
+    height: 48%;
+    margin-top: 5.5vh;
+    margin-left: 8.2vw;">
             </div>
         </div>
     </div>

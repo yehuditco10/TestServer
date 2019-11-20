@@ -26,6 +26,7 @@ name:string="";
   ngOnInit() {
     this.currentUser=JSON.parse(localStorage.getItem("currentUser"));
     this.userDataLetter=this.currentUser.Name.substring(0,1).toUpperCase();
+    this.name=this.currentUser.Name;
     console.log(this.sharedService.isManager);
   }
   ishome(){

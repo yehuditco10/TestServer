@@ -11,32 +11,33 @@
             </a>
           </li>
           <li class="fl" *ngIf="SharedService.isManager==true">
-            <a href="#about" style="text-decoration:none" routerLink="/AddQuestion">
+            <a href="#about" style="text-decoration:none" routerLink="/AddQuestion" class="link2">
               הוספת שאלה
             </a>
           </li>
           <li class="fl" *ngIf="SharedService.isManager==true">
-            <a href="#about" style="text-decoration:none" routerLink="/reports">
+            <a href="#about" style="text-decoration:none" routerLink="/reports"class="link2">
               סטטיסטיקות מנהל
             </a>
           </li>
-      <li class="fl">
-        <a href="#about" style="text-decoration:none" routerLink="/search">
+      <li class="fl" >
+        <a href="#about" style="text-decoration:none"   routerLink="/search">
           <i class="material-icons">search</i></a>
       </li>
      
 
-      <li class="fl">
+      <li class="fl" >
         <a href="#logo" style="text-decoration:none" (click)="ishome()" routerLink="/Homepage">
           <i class="material-icons" id="icon-home">home</i>
         </a>
       </li>
       <li class="fl">
-          <span *ngIf="currentUser!=null" style="color: white;font-size: 18px;">{{name}} שלום</span>
-          <span *ngIf="currentUser!=null"style="color: white;font-size: 18px;cursor: pointer;"  (click)="signOut()">, התנתק .</span>
-          <span *ngIf="currentUser==null" style="color: white;font-size: 18px;">  שלום אורח</span>
+          <span *ngIf="currentUser!=null" style="color: white;font-size: 18px;">שלום {{name}} , </span>
+          <span *ngIf="currentUser!=null"style="font-size: 18px;cursor: pointer;   "class="link"   (click)="signOut()">התנתק</span>
+          <span *ngIf="currentUser==null" style="color: white;font-size: 18px;">שלום אורח , </span>
 
-          <span *ngIf="currentUser==null"style="color: white;font-size: 18px;cursor: pointer;" routerLink="/login"> , התחבר | הרשם</span>
+          <span *ngIf="currentUser==null"style="font-size: 18px;cursor: pointer;"class="link" routerLink="/login">התחבר | הרשם</span>
+          <!-- <span *ngIf="currentUser==null"style="font-size: 18px;cursor: pointer;"class="link" routerLink="/login">התחבר | הרשם</span> -->
      
         </li>
       <!-- <li class="fl" *ngIf="currentUser==null">
@@ -47,11 +48,11 @@
       </li> -->
     
      
-      <li class="fl" *ngIf="currentUser">
-        <button class="userButton" (click)="signOut()">צא</button>
+      <!-- <li class="fl" *ngIf="currentUser">
+        <button class="userButton" (click)="signOut()">צא</button> -->
 
         <!-- <button class="userButton" (click)="signOut()"><span>{{userDataLetter}}</span></button> -->
-      </li>
+      <!-- </li> -->
     </ul>
 
   </nav>
