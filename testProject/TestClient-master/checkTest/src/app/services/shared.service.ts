@@ -8,6 +8,7 @@ import { environment } from 'src/environments/environment';
 export class SharedService {
   isHome: boolean = true;
   currentUser = null;
+  isManager:boolean=false;
   constructor(private http:HttpClient) { }
   publicQuestion( questionId:number){
     debugger;

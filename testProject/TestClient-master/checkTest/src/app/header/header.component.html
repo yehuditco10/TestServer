@@ -1,52 +1,104 @@
 <div class="header fl">
-  <img class="fl" src="../../assets/לוגו.png"style="  
-    width: 11vw;
+  <img class="fl" src="../../assets/logoblue.png" style="  
+    width: 10vw;
   height: auto;
   margin-left: 1vw;">
-      <nav class="fr">
-          <ul>
-              <li class="fl">
-                  <a href="#about" style="text-decoration:none" routerLink="/AddCategory">
-                    <!-- <i class="material-icons">הוספת קטגוריה</i> -->
-                    הוספת קטגוריה
-                  </a>
-                </li>
-                <li class="fl">
-                    <a href="#about" style="text-decoration:none"routerLink="/AddQuestion">
-                      <!-- <i class="material-icons">הוספת שאלה</i> -->
-                      הוספת שאלה
-                    </a>
-                  </li>
-                  <li class="fl">
-                      <a href="#about" style="text-decoration:none"routerLink="/reports">
-                        <!-- <i class="material-icons">סטטיסטיקות</i> -->
-                        סטטיסטיקות מנהל
-                      </a>
-                    </li>
-              <li class="fl">
-                  <a href="#about" style="text-decoration:none" routerLink="/search">
-                    <i class="material-icons">search</i></a>
-                </li>
-            <li class="fl">
-              <a href="#about" style="text-decoration:none">
-                <i class="icon-user"></i>אודות</a>
-            </li>
-            
-            <li class="fl">
-              <a href="#logo" style="text-decoration:none"(click)="ishome()" routerLink="/Homepage">
-              <i class="material-icons" id="icon-home" >home</i>
-              </a>
-            </li>
-            <li class="fl" *ngIf="currentUser==null">
-              <a href="#" style="text-decoration:none" routerLink="/login">
-                <i class="icon-phone"></i>
-                <i class="material-icons" id="person">person</i>
-              </a>
-            </li>
-            <li class="fl" *ngIf="currentUser">
-              <button class="userButton" (click)="signOut()">{{userDataLetter}}</button>
-            </li>
-   </ul>
-          
-        </nav>
+  <nav class="fr">
+    <ul>
+        <li class="fl" *ngIf="SharedService.isManager==true">
+            <a href="#about" style="text-decoration:none" routerLink="/AddCategory">
+              הוספת קטגוריה
+            </a>
+          </li>
+          <li class="fl" *ngIf="SharedService.isManager==true">
+            <a href="#about" style="text-decoration:none" routerLink="/AddQuestion">
+              הוספת שאלה
+            </a>
+          </li>
+          <li class="fl" *ngIf="SharedService.isManager==true">
+            <a href="#about" style="text-decoration:none" routerLink="/reports">
+              סטטיסטיקות מנהל
+            </a>
+          </li>
+      <li class="fl">
+        <a href="#about" style="text-decoration:none" routerLink="/search">
+          <i class="material-icons">search</i></a>
+      </li>
+     
+
+      <li class="fl">
+        <a href="#logo" style="text-decoration:none" (click)="ishome()" routerLink="/Homepage">
+          <i class="material-icons" id="icon-home">home</i>
+        </a>
+      </li>
+      <li class="fl">
+          <span *ngIf="currentUser!=null" style="color: white;font-size: 18px;">{{name}} שלום</span>
+          <span *ngIf="currentUser!=null"style="color: white;font-size: 18px;cursor: pointer;"  (click)="signOut()">, התנתק .</span>
+          <span *ngIf="currentUser==null" style="color: white;font-size: 18px;">  שלום אורח</span>
+
+          <span *ngIf="currentUser==null"style="color: white;font-size: 18px;cursor: pointer;" routerLink="/login"> , התחבר | הרשם</span>
+     
+        </li>
+      <!-- <li class="fl" *ngIf="currentUser==null">
+        <a href="#" style="text-decoration:none" routerLink="/login">
+          <i class="icon-phone"></i>
+          <i class="material-icons" id="person">person</i>
+        </a>
+      </li> -->
+    
+     
+      <li class="fl" *ngIf="currentUser">
+        <button class="userButton" (click)="signOut()">צא</button>
+
+        <!-- <button class="userButton" (click)="signOut()"><span>{{userDataLetter}}</span></button> -->
+      </li>
+    </ul>
+
+  </nav>
+   <!-- <nav *ngIf="SharedService.isManager==true" class="fr">
+      <ul>
+        <li class="fl">
+          <a href="#about" style="text-decoration:none" routerLink="/AddCategory">
+            הוספת קטגוריה
+          </a>
+        </li>
+        <li class="fl">
+          <a href="#about" style="text-decoration:none" routerLink="/AddQuestion">
+            הוספת שאלה
+          </a>
+        </li>
+        <li class="fl">
+          <a href="#about" style="text-decoration:none" routerLink="/reports">
+            סטטיסטיקות מנהל
+          </a>
+        </li>
+        <li class="fl">
+          <a href="#about" style="text-decoration:none" routerLink="/search">
+            <i class="material-icons">search</i></a>
+        </li>
+        <li class="fl">
+          <a href="#about" style="text-decoration:none">
+            <i class="icon-user"></i>אודות</a>
+        </li>
+  
+        <li class="fl">
+          <a href="#logo" style="text-decoration:none" (click)="ishome()" routerLink="/Homepage">
+            <i class="material-icons" id="icon-home">home</i>
+          </a>
+        </li>
+        <li class="fl" *ngIf="currentUser==null">
+          <a href="#" style="text-decoration:none" routerLink="/login">
+            <i class="icon-phone"></i>
+            <i class="material-icons" id="person">person</i>
+          </a>
+        </li>
+        <span style="color: white">{{name}}</span>
+        <li class="fl" *ngIf="currentUser">
+          <button class="userButton" (click)="signOut()">צא</button> -->
+
+        <!-- <button class="userButton" (click)="signOut()"><span>{{userDataLetter}}</span></button> --> -->
+      <!-- </li>
+      </ul>
+  
+    </nav>  -->
 </div>

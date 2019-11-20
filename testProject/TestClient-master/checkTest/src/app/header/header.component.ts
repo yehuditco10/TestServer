@@ -12,19 +12,21 @@ export class HeaderComponent implements OnInit {
 
   currentUser:any;
   userDataLetter:string="";
-
+name:string="";
   constructor(private sharedService:SharedService,
     private router:Router,private SharedService:SharedService,private globalVariable:GlobalVariables) {
       this.globalVariable.getUserChangeEmitter().subscribe((res)=>{
         this.currentUser=res;
         // this.userDataLetter=res.Name;
         this.userDataLetter=res.Name.substring(0,1).toUpperCase();
+        this.name=res.Name;
       })
      }
 
   ngOnInit() {
     this.currentUser=JSON.parse(localStorage.getItem("currentUser"));
     this.userDataLetter=this.currentUser.Name.substring(0,1).toUpperCase();
+    console.log(this.sharedService.isManager);
   }
   ishome(){
   this.sharedService.isHome=true;
@@ -37,6 +39,10 @@ export class HeaderComponent implements OnInit {
     this.globalVariable.userChange.next(null);
     localStorage.removeItem("currentUser");
     localStorage.removeItem("token");
-    this.router.navigate['/login'];
+    this.SharedService.isManager=false;
+    // this.name="";
+    this.currentUser=null;
+    this.router.navigate['/homepage'];
+    
   }
 }

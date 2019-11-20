@@ -37,7 +37,8 @@ export class LoginComponent implements OnInit {
             localStorage.setItem("currentUser",JSON.stringify(res1));
             this.SharedService.currentUser = res1;
             if (res1['isManager'] == true)
-              this.router.navigate(["/headerManager"]);
+            this.SharedService.isManager=true;
+              // this.router.navigate(["/headerManager"]);
             else this.router.navigate(["/TestList"]);
           }, err => { console.log(err); })
         }
@@ -59,12 +60,13 @@ export class LoginComponent implements OnInit {
                 localStorage.setItem("currentUser",JSON.stringify(res1));
                 this.SharedService.currentUser = res1;
                 if (res1['isManager'] == true)
-                  this.router.navigate(["/headerManager"]);
+                this.SharedService.isManager=true;
+                  // this.router.navigate(["/headerManager"]);
                 else this.router.navigate(["/TestList"]);
               }, err => { console.log(err); })
             }
           });
-        this.router.navigate(["/menu"]);
+        // this.router.navigate(["/menu"]);
       },
       (err) => {
         alert("err")
