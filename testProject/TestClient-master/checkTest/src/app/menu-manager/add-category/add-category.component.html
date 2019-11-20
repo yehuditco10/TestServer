@@ -1,12 +1,39 @@
-<p>
-  add-category works!
-</p>
-<input type="text"[(ngModel)]="categorydes">
+
+<!-- <input type="text"[(ngModel)]="categorydes">
 {{categorydes}}
-<br>
-בחר קטגוריית אב
+<br> -->
+<!-- בחר קטגוריית אב
 <select [(ngModel)]="selectedParentCategory">
   <option *ngFor="let parentCategory of categories" [ngValue]="parentCategory">{{parentCategory.categoryName}}</option>
-</select>
-<button (click)="addCategory()">הוסף</button>
+</select> -->
 
+
+
+<div class="row">
+    <div class="col">
+   
+    </div>
+    <div class="col-5"  style="margin-top: 15vh;">
+        <div class="input-group mb-3">
+            <input type="text"[(ngModel)]="categorydes" class="form-control" placeholder="" aria-label="" aria-describedby="basic-addon2">
+            <div class="input-group-append">
+              <span class="input-group-text" id="basic-addon2">שם הקטגוריה</span>
+            </div>
+          </div>
+
+        <div class="input-group mb-3">
+            <select [(ngModel)]="selectedParentCategory" class="custom-select" id="inputGroupSelect02">
+                <option *ngFor="let parentCategory of categories" [ngValue]="parentCategory">{{parentCategory.categoryName}}</option>
+        
+            </select>
+            <div class="input-group-append">
+              <label class="input-group-text" for="inputGroupSelect02"> קטגוריית אב</label>
+            </div>
+          </div>
+<!-- <button >הוסף</button> -->
+<button type="button"(click)="addCategory()" class="btn btn-primary btn-lg btn-block">הוסף</button>
+    </div>
+    <div class="col">
+    
+    </div>
+  </div>

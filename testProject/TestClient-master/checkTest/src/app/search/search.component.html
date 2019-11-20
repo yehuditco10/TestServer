@@ -1,4 +1,11 @@
 
+  <div class="container">
+  <div class="row">
+    <div class="col-2">
+
+    </div>
+    <div class="col-8">
+      
 <form #f="ngForm" class="example-form" (ngSubmit)="getQuestions(f)">
     <mat-form-field class="example-full-width"  [(ngModel)]="selectedCategory" >
      <input matInput  placeholder="בחר קטגוריה"  [(ngModel)]="selectedCategory" name="b"  [matAutocomplete]="auto"  [formControl]="myControl"/> 
@@ -8,11 +15,22 @@
           </mat-option>
         </mat-autocomplete> 
     </mat-form-field>
-    <input type="submit"  value="חפש">
+    <input type="submit" class="btn btn-primary"  value="חפש">
   </form>
-
- 
-
+  <div *ngFor="let question of questions" >
+    <div class="question">
+      <h4>{{question.questionDescription }}</h4>
+      <div *ngFor="let answer of question.Answers">
+        <h5> * {{answer.answerDescription}}</h5>
+      </div>
+      </div>
+    </div>
+  
+ </div>
+  <div class="col">
+      <img src="../../assets/search.jpg" class="search" >
+    
+    </div>
 <!-- <span>בחר לפי קטגוריה</span>
   <select [(ngModel)]="selectedCategory"  >בחר קטגוריה
     <option *ngFor="let item of categories" [ngValue]="item">{{item.categoryName}}</option>
@@ -20,11 +38,7 @@
 <br><br>
 <input type="button" (click)="getQuestions()" value="חפש">
 <br><br>-->
-<div></div>
-<div *ngFor="let question of questions" >
-<h4>{{question.questionDescription }}</h4>
-<div *ngFor="let answer of question.Answers">
-  <h5> * {{answer.answerDescription}}</h5>
-</div>
+<!-- <div></div> -->
+
 </div> 
 

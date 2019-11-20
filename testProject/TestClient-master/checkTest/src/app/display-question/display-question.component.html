@@ -1,16 +1,30 @@
-<div class="card row" style="width: 18rem;" >
+<div class="card row" style="width: 60vw; border-color:  #0278f7;;">
   <div class="card-body card-body text-danger co-md-4">
-   
+    <div class="row">
+        <div class="col-10">
 
-    <h3 class="card-title">{{questions.questionDescription}}</h3>
-    
-    <p *ngFor="let ans of questions.Answers">
-      {{  ans.answerDescription}} </p>
-     <input type="number" value="0" [(ngModel)]="questions.nikud">בחר ניקוד
-    <button class="btn btn-warning" (click)="EditQuestion()"><mat-icon aria-hidden="false" aria-label="border_color">border_color</mat-icon> </button>
-    
-    <button class="btn btn-secondary" (click)="RemoveQuestion()"><mat-icon aria-hidden="false" aria-label="delete_forever">delete_forever</mat-icon></button>
-    
-    <button class="btn btn-secondary" (click)="suggestQuestion()">הצעת שאלה למאגר <mat-icon aria-hidden="false" aria-label="mail_outline">mail_outline</mat-icon></button>
+
+            <h3 class="card-title">{{questions.questionDescription}}</h3>
+            
+            <p *ngFor="let ans of questions.Answers">
+              {{  ans.answerDescription}} </p>
+          </div>
+      <div class="col-1">
+        <button class="btn btn-warning" (click)="EditQuestion()"style="margin-bottom: 2vh;margin-top: 2vh;">
+          <mat-icon aria-hidden="false" aria-label="border_color">border_color</mat-icon>
+        </button>
+
+        <button class="btn btn-primary" (click)="RemoveQuestion()" style="margin-bottom: 2vh;">
+          <mat-icon aria-hidden="false" aria-label="delete_forever">delete_forever</mat-icon>
+        </button>
+
+        <button class="btn btn-secondary" (click)="suggestQuestion()"style="margin-bottom: 2vh;">
+          <mat-icon aria-hidden="false" aria-label="mail_outline">mail_outline</mat-icon>
+        </button>
+       <p>בחר ניקוד</p> 
+        <input type="number" class="num" value="0" [(ngModel)]="questions.nikud">
+
+      </div>
+    </div>
   </div>
 </div>
