@@ -113,6 +113,11 @@ namespace BLL.Module
         /// <returns></returns>
         public static List<MarkVM> GetGradeChart(int id)
         {
+            //List<StudentForCourse> studentForTest = Entity.db.StudentForCourses.Where(s => s.courseId == id).ToList();//courseid=testid
+            //if (studentForTest != null)
+            //{
+
+            //}
             List<TestForStudent> tests = Entity.db.TestForStudents.Where(t => t.testId == id).ToList();
             List<MarkVM> marks = new List<MarkVM>();
             student student = new student();
@@ -157,6 +162,12 @@ namespace BLL.Module
                     courseId = student.testid
 
                 });
+                //Entity.db.students.Add(new student()
+                //{
+
+                   
+
+                //});
                 Entity.db.SaveChanges();
             }
             Entity.db.SaveChanges();
