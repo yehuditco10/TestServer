@@ -18,6 +18,7 @@ export class LoginComponent implements OnInit {
   userName: string;
   password: string;
   t: Teachers = new Teachers();
+  showPassword:boolean=false;
   constructor(private globalVariable: GlobalVariables, private loginS: LoginService, private router: Router, private RegisterService: RegisterService, private SharedService: SharedService) {
 
 
@@ -39,7 +40,8 @@ export class LoginComponent implements OnInit {
             if (res1['isManager'] == true)
             this.SharedService.isManager=true;
               // this.router.navigate(["/headerManager"]);
-            else this.router.navigate(["/TestList"]);
+            // else 
+            this.router.navigate(["/TestList"]);
           }, err => { console.log(err); })
         }
       },
@@ -73,12 +75,17 @@ export class LoginComponent implements OnInit {
       }
     )
   }
-  Forgotpassword(id: number) {
-    this.loginS.Forgotpassword(id).subscribe(res => {
+  Forgotpassword() {
+    debugger;
+    this.showEmailForPassword();
+    this.loginS.Forgotpassword(this.t).subscribe(res => {
       alert("הסיסמא נשלחה למייל שלך")
     })
   }
   clearTeacher() {
     this.t = new Teachers();
+  }
+  showEmailForPassword(){
+    this.showPassword=!this.showPassword;
   }
 }

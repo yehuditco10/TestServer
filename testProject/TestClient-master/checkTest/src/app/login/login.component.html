@@ -25,10 +25,23 @@
             <input type="text" [(ngModel)]="t.teacherPassword" class="form-control" placeholder="סיסמא"
                 aria-label="Username" aria-describedby="basic-addon1">
         </div>
+
+        <button class="fl" class="btn btn-link" (click)="showEmailForPassword()"
+        value="סיסמא" style="    padding: 0px;
+        margin-right: 9vw;
+        margin-top: -5.5vh;"><span style="font-size: 1.2vw;"> שכחתי סיסמא</span>
+    </button>
+    <div *ngIf="showPassword==true" class="input-group mb-3">
+        <input type="text" [(ngModel)]="t.email" class="form-control"style="height: 5.8vh;" placeholder="הכנס כתובת מייל" aria-label="שלח" aria-describedby="basic-addon2">
+        <div class="input-group-append"  (click)="Forgotpassword()">
+          <button class="btn btn-outline-primary" title="שלח" type="button"><i class="material-icons">send</i></button>
+        </div>
+      </div>
+    <div>
       <p id="p1">? אין לך חשבון עדיין</p> 
         <button class="fl" class="btn btn-link" (click)="status='reg';clearTeacher()"
         value="הרשמה" style="padding: 0px;"><span style="font-size: 1.2vw;"> הרשם</span></button>
-        <!-- <div class="row">
+        </div><!-- <div class="row">
             <p>הכנס שם</p>
             <input type="text" [(ngModel)]="t.teacherName">
         </div>
@@ -36,12 +49,13 @@
             <p>הכנס סיסמא</p>
             <input type="password" [(ngModel)]="t.teacherPassword">
         </div> -->
+      
         <div class="row">
             <div class="btnsubmit">
                 <input type="submit" (click)="login()" class="btn btn-primary btn-lg btn-block" value="הכנס"style="
-                        width: 84%;
+                          width: 84%;
     height: 34%;
-    margin-top: 12vh;
+    margin-top: 10vh;
     margin-left: 8.7vw;">
             </div>
         </div>
@@ -90,6 +104,8 @@
             <p>הכנס סיסמא</p>
             <input type="password" [(ngModel)]="t.teacherPassword">
         </div> -->
+      
+       
         <div class="row">
             <div class="btnsubmit">
                 <input type="submit" (click)="register()"value="הרשם" class="btn btn-primary btn-lg btn-block reg" style=" 

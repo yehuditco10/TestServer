@@ -26,8 +26,9 @@ export class LoginService {
   }
 
 
-  Forgotpassword(id){
-    return this.http.post(environment.baseRoute+'Forgotpassword',id);
+  Forgotpassword(teac:Teachers){
+debugger;
+    return this.http.post(environment.baseRoute+"email/Forgotpassword",teac);
   }
   register(userName: string, password: string,email:string) {
     const body = new HttpParams()      

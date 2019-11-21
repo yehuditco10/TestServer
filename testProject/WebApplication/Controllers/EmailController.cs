@@ -105,15 +105,13 @@ namespace WebApplication.Controllers
         /// פונקציה לשחזור סיסמא
         /// </summary>
         /// <returns></returns>
-        [Route("Forgotpassword")]
+        [Route("email/Forgotpassword")]
         [HttpPost]
-        public static bool Forgotpassword()
+        public static bool Forgotpassword([FromBody]Teacher teac)
         {
-            int id = 1;
-            Teacher teacher = null;
-            string emailAddress = null;
+            string emailAddress="";
             string password = "";
-            teacher = Entity.db.Teachers.FirstOrDefault(t => t.teacherId == id);
+           Teacher teacher = Entity.db.Teachers.FirstOrDefault(t => t.email == teac.email && t.teacherName == teac.teacherName);
             if (teacher != null)//אם יש כזו מורה
             {
                 emailAddress = teacher.email;
