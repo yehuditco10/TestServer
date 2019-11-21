@@ -33,7 +33,7 @@
       </li>
       <li class="fl">
           <span *ngIf="currentUser!=null" style="color: white;font-size: 18px;">שלום {{name}} , </span>
-          <span *ngIf="currentUser!=null"style="font-size: 18px;cursor: pointer;   "class="link"   (click)="signOut()">התנתק</span>
+          <span *ngIf="currentUser!=null"style="font-size: 18px;cursor: pointer;   "class="link"   (click)="signOut()"routerLink="/Homepage">התנתק</span>
           <span *ngIf="currentUser==null" style="color: white;font-size: 18px;">שלום אורח , </span>
 
           <span *ngIf="currentUser==null"style="font-size: 18px;cursor: pointer;"class="link" routerLink="/login">התחבר | הרשם</span>

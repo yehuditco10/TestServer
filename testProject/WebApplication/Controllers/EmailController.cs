@@ -105,9 +105,9 @@ namespace WebApplication.Controllers
         /// פונקציה לשחזור סיסמא
         /// </summary>
         /// <returns></returns>
-        [Route("Forgotpassword")]
+        [Route("email/Forgotpassword")]
         [HttpPost]
-        public static bool Forgotpassword()
+        public static bool Forgotpassword([FromBody]Teacher teac)
         {
             int id = 1;
             Teacher teacher = null;
