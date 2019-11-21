@@ -96,7 +96,7 @@ namespace WebApplication.Controllers
             htmlText += "</br><a href='http://localhost:4200/Questionauto/" + newq.questionId + "'>הוסף עכשיו</a>";
             htmlText += "</body>";
             //htmlText += " <img src='cid:G:/ל סיון/C#IDEAL/GUI/UploadFile/.JPG'></body>";
-            Class1.SendEmail(htmlText, "הצעת שאלה חדשה  ");
+            Class1.SendEmail(htmlText, "הצעת שאלה חדשה  ","");
 
             return true;
         }
@@ -107,7 +107,7 @@ namespace WebApplication.Controllers
         /// <returns></returns>
         [Route("email/Forgotpassword")]
         [HttpPost]
-        public static bool Forgotpassword([FromBody]Teacher teac)
+        public  bool Forgotpassword([FromBody]Teacher teac)
         {
             string emailAddress="";
             string password = "";
@@ -126,7 +126,7 @@ namespace WebApplication.Controllers
                     <body>";
                 htmlText += "<h1>הסיסמא שלך היא   </h1><br/><h3>" + password + "</h3><br><a href='http://localhost:4200/login'>לחזרה לאתר</a><br>";
                 htmlText += "</body>";
-                Class1.SendEmail(htmlText, "שחזור סיסמא  ");
+                Class1.SendEmail(htmlText, "שחזור סיסמא  ",teac.email);
                 return true;
             }
             return false;

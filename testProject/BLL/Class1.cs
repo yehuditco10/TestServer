@@ -143,7 +143,7 @@ namespace BLL
             }
         static string fromMail = "coursekamatech@gmail.com";
         static string ToMail = "coursekamatech@gmail.com";
-        public static MailMessage SendEmail(string htmlText, string subject)
+        public static MailMessage SendEmail(string htmlText, string subject,string toMail)
         {
             try
             {
@@ -157,8 +157,8 @@ namespace BLL
 .CreateAlternateViewFromString("Some plaintext", Encoding.UTF8, "text/plain");
                 // We have something to show in real old mail clients.
                 smtp.EnableSsl = true;
-                //if (toMail == "")
-                //    toMail = ToMail;
+                if (toMail == "")
+                 toMail = ToMail;
                 MailMessage mail = new MailMessage(fromMail, ToMail, subject, htmlText);
                 mail.AlternateViews.Add(plainView);
 

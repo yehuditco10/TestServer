@@ -15,7 +15,7 @@ namespace WebApplication.Controllers
 {
     [RoutePrefix("api/Account")]
 
-    [EnableCors(origins: "*", headers: "*", methods: "*")]
+    //[EnableCors(origins: "*", headers: "*", methods: "*")]
    
     public class AccountController : ApiController
     {
