@@ -1,4 +1,20 @@
 
+
+<img src="../../../assets/איקון מבחן.png" id="imagetest">
+<div class="card" style="width: 16vw;height: 26vh;z-index: 10;">
+
+  <div class="card-body">
+    <div class="blue">
+    <h5 class="card-title">{{test.name}}</h5>
+   
+    <a routerLink="/edit-test/{{test.testId}}" >
+      <i class="material-icons">
+      edit
+      </i></a>
+    <a routerLink="/GradeChart/{{test.testId}}"  >גליון ציונים</a>
+    <a routerLink="/reports-teachers//{{test.testId}}" >סטטיסטיקות</a></div>
+  </div>
+</div>
 <!-- <div class="card" style="width: 18rem;">
 
   <div class="card-body">
@@ -9,7 +25,7 @@
     <a routerLink="/reports-teachers//{{test.testId}}"  class="btn btn-info">סטטיסטיקות</a>
   </div>
 </div> -->
-<img src="../../../assets/ריבוע מבחן.png">
+<!-- <img src="../../../assets/ריבוע מבחן.png"> -->
 <!-- 
 <ul class="tilesWrap">
     <li>
