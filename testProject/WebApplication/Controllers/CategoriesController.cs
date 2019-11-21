@@ -6,6 +6,7 @@ using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Cors;
 using BLL;
+using DAL;
 
 namespace WebApplication.Controllers
 {
@@ -28,11 +29,10 @@ namespace WebApplication.Controllers
     /// <param name="id"></param>
     /// <param name="categoryName"></param>
     /// <returns></returns>
-        [Route("addCategory")]
-        [HttpGet]
-        public IHttpActionResult Addcategory(int id, string categoryName)
+        [HttpPost]
+        public IHttpActionResult Addcategory(Category category)
         {
-           Class1.AddCategories(id, categoryName);
+           Class1.AddCategories((int)category.parentCategoryId, category.categoryName);
            return Ok();
           // return Ok(Class1.AddCategories(id,categoryName));
         }
