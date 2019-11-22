@@ -3,14 +3,20 @@
 width:200px;
 float:right;
 color: white;
-background-color: blue;
+background-color: #1173de;
 height: 100vh;
 " (NodeClicked)="nodeClicked($event)"></app-categories-tree>
 
 <div *ngIf="category">
     <h1>{{category.name}}</h1>
-    
-    <button (click)="addNewTest()">+</button>
+    <i class="material-icons" style="    color: #1173de;
+    font-size: 4.5vw;
+    margin-left: 3vw;
+    margin-top: 5vh;
+    cursor: pointer;" (click)="addNewTest()">
+        add_circle
+        </i>
+   
     
     <div style=" display: inline;">
        

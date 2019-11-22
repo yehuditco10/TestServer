@@ -22,7 +22,7 @@
                         lock
                     </i></span>
             </div>
-            <input type="text" [(ngModel)]="t.teacherPassword" class="form-control" placeholder="סיסמא"
+            <input type="password" [(ngModel)]="t.teacherPassword" class="form-control" placeholder="סיסמא"
                 aria-label="Username" aria-describedby="basic-addon1">
         </div>
 
@@ -32,7 +32,7 @@
         margin-top: -5.5vh;"><span style="font-size: 1.2vw;"> שכחתי סיסמא</span>
     </button>
     <div *ngIf="showPassword==true" class="input-group mb-3">
-        <input type="text" [(ngModel)]="t.email" class="form-control"style="height: 5.8vh;" placeholder="הכנס כתובת מייל" aria-label="שלח" aria-describedby="basic-addon2">
+        <input type="email" name="email" email [(ngModel)]="t.email" class="form-control"style="height: 5.8vh;" placeholder="הכנס כתובת מייל" aria-label="שלח" aria-describedby="basic-addon2">
         <div class="input-group-append"  (click)="Forgotpassword()">
           <button class="btn btn-outline-primary" title="שלח" type="button"><i class="material-icons">send</i></button>
         </div>
@@ -76,7 +76,7 @@
                         email
                     </i></span>
             </div>
-            <input type="text" [(ngModel)]="t.email" class="form-control" placeholder="כתובת מייל"
+            <input type="email" name="email" email [(ngModel)]="t.email" class="form-control" placeholder="כתובת מייל"
                 aria-label="Username" aria-describedby="basic-addon1">
         </div>
         <div class="input-group mb-3">
@@ -85,7 +85,7 @@
                         lock
                     </i></span>
             </div>
-            <input type="text" [(ngModel)]="t.teacherPassword" class="form-control" placeholder="סיסמא "
+            <input type="password" [(ngModel)]="t.teacherPassword" class="form-control" placeholder="סיסמא "
                 aria-label="Username" aria-describedby="basic-addon1">
         </div>
         <p id="p1">? יש לך כבר חשבון</p> 

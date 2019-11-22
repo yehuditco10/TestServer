@@ -159,7 +159,7 @@ namespace BLL
                 smtp.EnableSsl = true;
                 if (toMail == "")
                  toMail = ToMail;
-                MailMessage mail = new MailMessage(fromMail, ToMail, subject, htmlText);
+                MailMessage mail = new MailMessage(fromMail, toMail, subject, htmlText);
                 mail.AlternateViews.Add(plainView);
 
                 AlternateView htmlView =

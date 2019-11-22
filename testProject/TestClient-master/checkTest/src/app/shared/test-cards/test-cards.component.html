@@ -1,18 +1,23 @@
-
-
 <img src="../../../assets/איקון מבחן.png" id="imagetest">
-<div class="card" style="width: 16vw;height: 26vh;z-index: 10;">
+<div class="card" style="width: 16vw;height: 26vh;z-index: -10;">
 
   <div class="card-body">
     <div class="blue">
-    <h5 class="card-title">{{test.name}}</h5>
-   
-    <a routerLink="/edit-test/{{test.testId}}" >
-      <i class="material-icons">
-      edit
-      </i></a>
-    <a routerLink="/GradeChart/{{test.testId}}"  >גליון ציונים</a>
-    <a routerLink="/reports-teachers//{{test.testId}}" >סטטיסטיקות</a></div>
+      <h5 class="card-title">{{test.name}} </h5>
+      <div class="icons">
+        <a routerLink="/edit-test/{{test.testId}}">
+          <i class="material-icons"style="font-size: 2.5vw;
+          color: white;
+          margin-left: 1vw;
+   ">
+            edit
+          </i></a>
+        <a routerLink="/GradeChart/{{test.testId}}"><i class="far fa-chart-bar" style="font-size: 2vw;
+          color: white;"></i></a>
+        <a routerLink="/reports-teachers//{{test.testId}}"><i class="fas fa-tasks" style="font-size: 2vw;
+          color: white;margin-left: 1vw;"></i></a>
+      </div>
+    </div>
   </div>
 </div>
 <!-- <div class="card" style="width: 18rem;">
@@ -39,8 +44,8 @@
        <img  src="../../../assets/great-checklist-background-with-pen-calculator_23-2147612123.jpg"
        width="10vw" height="auto" (click)="edit()" >
       </p> -->
-      <!-- <button routerLink="/edit-test/{{test.testId}}">Edit</button> -->
-      <!-- <button (click)="edit()">Edit</button>
+<!-- <button routerLink="/edit-test/{{test.testId}}">Edit</button> -->
+<!-- <button (click)="edit()">Edit</button>
 
     </li> -->
 
@@ -55,7 +60,7 @@
         </p>
         <button>Read more</button>
       </li> -->
-    <!-- <li>
+<!-- <li>
         <h2>--*--</h2>
         <h3>+</h3>
         <p>
@@ -63,8 +68,6 @@
         </p>
         <button>creat</button>
       </li> -->
-   
-     
-  <!-- </ul> -->
 
 
+<!-- </ul> -->

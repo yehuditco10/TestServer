@@ -1,13 +1,18 @@
-<img src="../../assets/test11.png" id="image1">
-<div *ngIf="selectedCategory" class="pos">
-  <h2 *ngIf="title !=null">{{title}}</h2>
-<input type="text" placeholder="הכנס כותרת למבחן" id="input" [(ngModel)]="testName">
-</div>
 <!-- <img src="../../assets/test11.png" id="image1"> -->
+<div id="imgback">
 <div *ngIf="selectedCategory" class="pos">
-  <h2 *ngIf="title !=null">{{title}}</h2>
+  <h2 *ngIf="title !=null" style="    margin-top: -6vh;
+  font-size: 2rem;
+  float: right;">{{title}}</h2>
+  
 <input type="text" placeholder="הכנס כותרת למבחן" id="input" [(ngModel)]="testName">
 </div>
+
+<!-- <img src="../../assets/test11.png" id="image1"> -->
+<!-- <div *ngIf="selectedCategory" class="pos">
+  <h2 *ngIf="title !=null">{{title}}</h2>
+<input type="text" placeholder="הכנס כותרת למבחן" id="input" [(ngModel)]="testName">
+</div> -->
 
 
 <!-- https://www.npmjs.com/package/ngx-modal -->
@@ -18,10 +23,10 @@
     <div class="modal-content" style="direction: rtl;">
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLongTitle">+הוספת שאלה</h5>
-<!--        
+       
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
-        </button> -->
+        </button>
       </div>
       <div class="modal-body">
      <!-- aaa -->
@@ -52,9 +57,9 @@
     <div class="modal-content" style="direction: rtl; text-align: right;">
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLongTitle">+הוספת שאלה</h5>
-        <!-- <button type="button"  class="close" data-dismiss="modal" aria-label="Close">
+        <button type="button"  class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
-        </button> -->
+        </button>
       </div>
       
       <div class="modal-body">
@@ -74,19 +79,32 @@
 <br>
 <br>
 <div class="dropdown" style="margin-top: 30vh;
+    margin-right: 17vw;
 text-align: right;
 direction: rtl;
 margin-right: 18vw;
 ">
-  <button style="margin-left: 1vw;" class="btn btn-primary dropdown-toggle" id="exampleModalLongTitle" class="btn btn-primary" type="button"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-   הוספת שאלה+ 
-  </button>
-  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+  <!-- <button style="width: 62.6vw;
+  margin-right: 0.7vw;" class="btn btn-warning btn-lg btn-block dropdown-toggle" id="exampleModalLongTitle"  type="button"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+  + הוספת שאלה 
+  </button> -->
+<!-- 
+  <div class="btn-group dropleft">
+    <button style="width: 62.6vw;
+    margin-right: 0.7vw;"  type="button" class="btn btn-warning btn-lg btn-block dropdown-toggle"  id="exampleModalLongTitle"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      הוספת שאלה+ 
+    </button>
+    <div class="dropdown-menu"> -->
+      <!-- Dropdown menu links -->
+    <!-- </div>
+  </div> -->
+
+  <div class="dropdown-menu" id="drop" aria-labelledby="dropdownMenuButton">
     
-    <button type="button" (click)="getQuestion()" class="dropdown-item" class="btn btn-warning wi"  data-toggle="modal" data-target="#exampleModalCenter">
+    <button type="button" (click)="getQuestion()" class="dropdown-item" class="btn btn-secondary wi"  data-toggle="modal" data-target="#exampleModalCenter">
      TestIt שאלה ממאגר 
     </button><br>
-    <button type="button" id="openModalBtn" (click)="createNewQuestion()" class="dropdown-item" class="btn btn-danger wi" data-toggle="modal" data-target="#exampleModalCenter2">
+    <button type="button" id="openModalBtn" (click)="createNewQuestion()" class="dropdown-item" class="btn btn-dark wi" data-toggle="modal" data-target="#exampleModalCenter2">
  
      שאלה אישית
     </button>
@@ -97,7 +115,7 @@ margin-right: 18vw;
 
 
 
-<div  class="card-deck" style="direction: rtl;text-align: right;">
+<div  class="card-deck" style="direction: rtl;text-align: right; margin-left: -20vw">
     <app-display-question *ngFor="let ques of test.questionArr" [questions]="ques" (q)="RemoveQuestion($event)"  (editQuestionEvent)="editQuestion($event)"  ></app-display-question>
   
   </div>
@@ -129,6 +147,10 @@ z-index: 100;
 height: 6vh;margin-left: 1vw;" data-toggle="modal" data-target="#exampleModalCenterr">
     הכנס רשימת תלמידים
    </button> -->
+   <button style="width: 62.6vw;    margin-top: 3vh;
+   margin-right: 0.7vw;" class="btn btn-warning btn-lg btn-block dropdown-toggle" id="exampleModalLongTitle"  type="button"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+   + הוספת שאלה 
+   </button>
   <button style="
    /* position: absolute !important; */
   /* top: -63vh;
@@ -138,5 +160,9 @@ height: 6vh;margin-left: 1vw;" data-toggle="modal" data-target="#exampleModalCen
   background-color: #fdcd20;
   border-color: #fdcd20;margin-left: 1vw; */
   "
-   class="btn btn-primary btn-lg btn-block" (click)="saveTest()"style="width: 60vw;"> שמור מבחן</button>
+   class="btn btn-primary btn-lg btn-block" (click)="saveTest()"style="width: 62.6vw;
+   margin-right: 0.7vw;
+   margin-top: 3vh;"> שמור מבחן</button>
 </div>
+</div>
+
