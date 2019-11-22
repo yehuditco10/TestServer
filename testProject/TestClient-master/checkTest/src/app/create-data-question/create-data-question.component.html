@@ -1,17 +1,17 @@
-
 <label>כותרת השאלה</label>
 <!-- <div [froalaEditor]="options" [froalaModel] ="model"> </div> -->
 <input type="text" [(ngModel)]="question.questionDescription" class="form-control" style="margin-left: 7vw;">
 <br>
 <label>מס' נקודות לשאלה</label>
-  <input type="number" class="form-control" [(ngModel)]="question.nikud">
-  <br>
-  <div>
+<input type="number" class="form-control" [(ngModel)]="question.nikud">
+<br>
+<div>
   <p>תשובות אפשריות :</p>
   <!-- <p>מביא תיבות טקסט לתשובות ןמוסיף תיבה כשנגמר</p> -->
-  <div *ngFor="let ans of question.Answers">
-      <input type="radio" [(ngModel)]="ans.isCorrect" name="radioAnswer" >
- <input type="text" class="form-control"  [(ngModel)]="ans.answerDescription" (change)="addLine()">
- </div>
+  <div class="answer-div" *ngFor="let ans of question.Answers">
+    <button class="fr v-button" (click)="changeCorrectAnswer(ans)">V</button>
+    <input type="text" class="fr answer-text form-control" [ngClass]="{'correct-answer':ans.isCorrect}"
+      [(ngModel)]="ans.answerDescription" (change)="addLine()">
+  </div>
 </div>
-  <br>
+<br>

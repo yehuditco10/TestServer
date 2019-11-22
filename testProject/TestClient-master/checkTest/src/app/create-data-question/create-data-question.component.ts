@@ -7,14 +7,14 @@ import { Answer } from '../shared/models/answer';
   templateUrl: './create-data-question.component.html',
   styleUrls: ['./create-data-question.component.less']
 })
-export class CreateDataQuestionComponent implements OnInit,DoCheck {
+export class CreateDataQuestionComponent implements OnInit, DoCheck {
   public options: Object = {};
   public model: string;
   @Input() question: Questions;
-  @Output() questionChange:EventEmitter<any>=new EventEmitter();
-  constructor() {  }
+  @Output() questionChange: EventEmitter<any> = new EventEmitter();
+  constructor() { }
   // מנקה מודל שאלה
-  restart() { 
+  restart() {
   }
   ngOnInit() {
     //פורולה
@@ -35,8 +35,16 @@ export class CreateDataQuestionComponent implements OnInit,DoCheck {
     this.questionChange.emit(this.question);
   }
   //הוספת תיבת טקסט
-  addLine(){
-    if(this.question.Answers[this.question.Answers.length-1].answerDescription!=undefined)
-    this.question.Answers.push(new Answer());
+  addLine() {
+    if (this.question.Answers[this.question.Answers.length - 1].answerDescription != undefined)
+      this.question.Answers.push(new Answer());
+  }
+  changeCorrectAnswer(ans) {
+    this.question.Answers.forEach(answer => {
+      if (answer == ans)
+        answer.isCorrect = true;
+      else
+        answer.isCorrect = false;
+    });
   }
 }

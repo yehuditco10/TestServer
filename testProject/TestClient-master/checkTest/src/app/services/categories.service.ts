@@ -14,12 +14,11 @@ categories:Category[];
     return this.http.get(environment.baseRoute + 'Categories');
   }
   addCategory(id:number,categoryName:string){
-    alert("inservice");
-    alert(id);
-    alert(categoryName);
-
-    debugger;
+    var cat={
+      parentCategoryId:id,
+      categoryName:categoryName
+    }
     //שליחת שתי פרמטרים
-    return this.http.get(environment.baseRoute+ "addCategory?id="+id+'&categoryName='+categoryName);
+    return this.http.post(environment.baseRoute+ "Categories",cat);
   }
 }
