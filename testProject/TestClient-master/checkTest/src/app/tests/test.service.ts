@@ -13,9 +13,13 @@ currentTest:TestForStudentVM=new TestForStudentVM();
   getAllTestByCategoryId(id:number){
 return this.http.post(environment.baseRoute+ "FilterByCategory?categoryId="+id,null);
   }
-  GetByTestIdForStudent(id){
+  GetByTestIdForStudent(testId,studentId){
     // alert("in service"+id);
-    return this.http.post(environment.baseRoute+ "GetByTestIdForStudent?testId="+id,null);
+    var model={
+      testId:testId,
+      studentId:studentId
+    }
+    return this.http.post(environment.baseRoute+ "GetByTestIdForStudent",model);
   }
   GetByQuestionForManager(questionId:number){
     // alert("in service"+id);

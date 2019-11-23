@@ -10,50 +10,23 @@
 <input type="text" [(ngModel)]="studentTz">
 
 <button (click)="sendStudentId()" class="btn btn-warning">התחל מבחן</button>
-<!-- 
-<div *ngIf="isOk">
-    <div>
-        <label>{{test.title}}</label>
-        <div *ngFor="let question of test.questionArr">
-            <label>{{question.questionDescription}}</label>
-            <br>
-            <mat-radio-group [(ngModel)]="question.selectedAnswer"><br>
-                <div *ngFor="let answer of question.Answers">
-                    <mat-radio-button [value]="answer">
-                        <p>....................</p>{{answer}}
 
-                    </mat-radio-button>
-                </div>
-                <div></div>
-                <br>
-            </mat-radio-group>
-        </div>
-    </div>
-    <button (click)="sendTest()" class="btn btn-success">
-        <mat-icon aria-hidden="false" aria-label="done_outline">done_outline</mat-icon>סיום מבחן
-    </button>
-</div> -->
-
-<!--  -->
 <div *ngIf="isOk==1">
     <div class="quiz" id="contentToConvertto">
         <div *ngFor="let question of test.questionArr">
             <h2 class="quiz-question">{{question.questionDescription}}</h2>
             <ul data-quiz-question="2">
-           <mat-radio-group [(ngModel)]="question.selectedAnswer">
-                <div *ngFor="let answer of question.Answers">
-
-                    <li class="quiz-answer" data-quiz-answer="a">
+           <mat-radio-group [(ngModel)]="question.selectedAnswer" >
+                <div *ngFor="let answer of question.Answers" >
+                    <li class="quiz-answer" data-quiz-answer="a" [ngClass]="{'correct-answer':isFinishTest&&answer.isCorrect}">
                         <mat-radio-button [value]="answer" [name]="question.questionDescription">
                         </mat-radio-button>
                         {{answer.answerDescription}}
                     </li>
-
                 </div>
             </mat-radio-group>
             </ul>
         </div>
-
     </div>
   
     <button (click)="sendTest()" class="btn btn-success">

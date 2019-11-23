@@ -7,6 +7,7 @@ using DAL;
 using System.Collections.Generic;
 using System.Web.Http;
 using System.Web.Http.Cors;
+using WebApplication.Models;
 
 namespace WebApplication.Controllers
 {
@@ -56,9 +57,9 @@ namespace WebApplication.Controllers
         /// <returns></returns>
         [Route("GetByTestIdForStudent")]
         [HttpPost]
-        public TestForStudentVM GetByTestIdForStudent(int testId)
+        public TestForStudentVM GetByTestIdForStudent(StudentAndTestId model)
         {
-            return TestModule.GetByTestIdForStudent(testId);
+            return TestModule.GetByTestIdForStudent(model.testId,model.studentId);
         }
 
         /// <summary>
