@@ -160,7 +160,7 @@ namespace BLL.Module
             {
                 Entity.db.students.Add(new student()
                 {
-                    password = student.password,
+                    password = "1",
                     email = student.tz,
                     classId=1,
                     studentName=student.password              
@@ -169,7 +169,8 @@ namespace BLL.Module
                 student stude = Entity.db.students.FirstOrDefault(s => s.password == student.password && s.email == student.tz);
                 Entity.db.StudentForCourses.Add(new StudentForCourse()
                 {
-                    password = student.password,
+
+                    password = "1",
                     tz = student.tz,
                     courseId = student.testid,
                     studentId = stude.studentId
