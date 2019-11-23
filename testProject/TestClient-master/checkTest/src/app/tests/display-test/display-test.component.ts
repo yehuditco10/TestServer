@@ -90,7 +90,6 @@ export class DisplayTestComponent implements OnInit {
           link.download = "html_image.png";
           testImg = canvas.toDataURL("image/png");
         });
-      this.test.url = testImg;
       this.TestService.currentTest = this.test;
       await this.test.questionArr.forEach(element => {
         this.MaxMark += element.nikud;
