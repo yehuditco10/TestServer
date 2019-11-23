@@ -15,7 +15,7 @@ import html2canvas from 'html2canvas';
 export class GradeChartComponent implements OnInit {
   // id = +this.route.snapshot.paramMap.get('id');
   id: string = null;
-  
+  link:string="";
    marks:Array<Mark>=new Array<Mark>();
   constructor(private route: ActivatedRoute,
     private testService: TestService) { }
@@ -27,12 +27,21 @@ export class GradeChartComponent implements OnInit {
     debugger;
     this.id = this.route.snapshot.paramMap.get('id');
     console.log(this.id);
-    if (this.id != null) {
-      this.testService.GetGradeChart(Number(this.id)).subscribe((res: Mark[]) => {
-        this.marks = res;
-        console.log(this.marks);
-      })
-    }
+    this.testService.getLink(Number(this.id)).subscribe((res1:string)=>{
+      this.link=res1;
+      if (this.id != null) {
+        this.testService.GetGradeChart(Number(this.id)).subscribe((res: Mark[]) => {
+          this.marks = res;
+          console.log(this.marks);
+        })
+      }
+    })
+    // if (this.id != null) {
+    //   this.testService.GetGradeChart(Number(this.id)).subscribe((res: Mark[]) => {
+    //     this.marks = res;
+    //     console.log(this.marks);
+    //   })
+    // }
   }
 f(){
   this.marks.push(new Mark('רחלי',"1234567",100));
@@ -58,5 +67,18 @@ public captureScreen()
       pdf.addImage(contentDataURL, 'PNG', 0, position, imgWidth, imgHeight)  
       pdf.save('MYPdf.pdf'); // Generated PDF   
     });  
-  }  
+  } 
+  copyMessage(val: string){
+    const selBox = document.createElement('textarea');
+    selBox.style.position = 'fixed';
+    selBox.style.left = '0';
+    selBox.style.top = '0';
+    selBox.style.opacity = '0';
+    selBox.value = val;
+    document.body.appendChild(selBox);
+    selBox.focus();
+    selBox.select();
+    document.execCommand('copy');
+    document.body.removeChild(selBox);
+  } 
 }

@@ -35,4 +35,7 @@ test:TestForStudentVM;
   GetGradeChart(id:number){
     return this.http.get(environment.baseRoute+"GetGradeChart/"+id);
   }
+  getLink(id:number){
+    return this.http.get(environment.baseRoute+"getLink/"+id);
+  }
 }

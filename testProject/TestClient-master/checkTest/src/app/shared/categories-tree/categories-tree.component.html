@@ -1,6 +1,6 @@
 <tree-root #tree [nodes]="nodes" [options]="options" >
   <ng-template #treeNodeTemplate let-node let-index="index" >
-    <a (click)="nodeClicked(node.data)">
+    <a (click)="nodeClicked(node.data)"class="atest">
       {{node.data.name}}
     </a>
   </ng-template>

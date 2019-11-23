@@ -115,6 +115,18 @@ namespace WebApplication.Controllers
             return TestModule.GetGradeChart(id);
         }
 
+        /// <summary>
+        /// מחזירה לינק למבחן
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        [Route("getLink/{id}")]
+        [HttpGet]
+        public string getLink(int id)
+        {
+            return TestModule.getLink(id);
+        }
+        
 
     }
 }
