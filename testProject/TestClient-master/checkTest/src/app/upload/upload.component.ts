@@ -46,6 +46,7 @@ export class UploadComponent implements OnInit {
         this.currentStudent = new UpStudent();
         this.currentStudent.tz = this.sheet[index]["tz"];
         this.currentStudent.password = this.sheet[index]["password"];
+        
         this.currentStudent.testid=this.testId;
         this.students.push(this.currentStudent);
 

@@ -160,8 +160,14 @@ namespace BLL.Module
             {
                 Entity.db.students.Add(new student()
                 {
-                    password = student.password,
-                    email = student.tz
+                    //password = student.password,
+                    password="111",
+                    email = student.tz,
+                    classId = 1,//
+                    studentName=student.password,//
+                    
+                    
+
                     
                 });
                 Entity.db.SaveChanges();
@@ -169,10 +175,11 @@ namespace BLL.Module
                 Entity.db.StudentForCourses.Add(new StudentForCourse()
                 {
 
-                    password = student.password,
+                    password = "111",
                     tz = student.tz,
                     courseId = student.testid,
                     studentId = stude.studentId
+                
 
                 });
                 Entity.db.SaveChanges();
