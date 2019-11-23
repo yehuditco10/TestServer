@@ -8,6 +8,7 @@ import { TestForStudentVM } from 'src/app/shared/models/test-for-student-vm';
 import { Title } from '@angular/platform-browser';
 import html2canvas from 'html2canvas';
 import { TestSaved } from 'src/app/shared/models/test-saved';
+import { throwMatDialogContentAlreadyAttachedError } from '@angular/material';
 
 @Component({
   selector: 'app-display-test',
@@ -25,8 +26,8 @@ export class DisplayTestComponent implements OnInit {
   studentTz: string;
   mark: number = 0;
   MaxMark: number = 0;
+  isFinishTest: boolean = false;
   ngOnInit() {
- 
     this.testId = +this.route.snapshot.paramMap.get('id');
     if (!this.testId) {
       //error
@@ -35,18 +36,17 @@ export class DisplayTestComponent implements OnInit {
   }
   isOk: number = 0;
   sendStudentId() {
-    this.getUrl();//לשנות למקום אחר
     //send test id+ student id
     this.TestService.openTest(this.testId, this.studentTz).subscribe((res: Boolean) => {
       //פניה לסרבר ועדכון על תחילת מבחן
       if (res == true) {
-        this.TestService.GetByTestIdForStudent(this.testId).subscribe((res: TestForStudentVM) => {
-          debugger;
+        this.TestService.GetByTestIdForStudent(this.testId,this.studentTz).subscribe((res: TestForStudentVM) => {
           if (res != null) {
             this.test = res;
+            this.test.dateStart = new Date();
             this.isOk = 1;
-            console.log(this.test.questionArr);
-            console.log(this.test);
+            // console.log(this.test.questionArr);
+            // console.log(this.test);
           }
 
         }, err => {
@@ -64,66 +64,45 @@ export class DisplayTestComponent implements OnInit {
     //מקבל מהסרבר אם יכול לעשות את המבחן-ואחר כך  מציג לפי הפרמטר הזה
 
   }
-  sendTest() {
-    // this.getUrl().subscribe((res:string)=>{
-    //   this.TestService.currentTest = this.test;
-    // // console.log(this.test.questionArr);
-    // this.test.questionArr.forEach(element => {
-    //   this.MaxMark += element.nikud;
-    //   if (element.selectedAnswer.isCorrect == true)
-    //     this.mark += element.nikud;
-    //   // console.log(element.selectedAnswer)
-    // });
-    // console.log(this.mark + "/" + this.MaxMark);
-    // alert(this.mark + "/" + this.MaxMark);
-    // this.tested = new TestSaved(this.testId, res, "333333333", null, this.mark);
-    
-    // this.TestService.checktest(this.tested).subscribe((res:any)=>{
-
-    // });
-
-    // });
-    this.TestService.currentTest = this.test;
-    // console.log(this.test.questionArr);
-    this.test.questionArr.forEach(element => {
-      this.MaxMark += element.nikud;
-      if (element.selectedAnswer.isCorrect == true)
-        this.mark += element.nikud;
-      // console.log(element.selectedAnswer)
-    });
-    console.log(this.mark + "/" + this.MaxMark);
-    alert(this.mark + "/" + this.MaxMark);
-    this.tested = new TestSaved(this.testId, this.url,this.studentTz, null, this.mark);
-    
-    this.TestService.checktest(this.tested).subscribe((res:any)=>{
-
-    });
-  }
-  // test
+  
   downloadPng() {
-    // var container =document.getElementById('contentToConvertto');  
     var container = document.body;
-    html2canvas(container).then(function (canvas) {
-      var link = document.createElement("a");
-      document.body.appendChild(link);
-      link.download = "html_image.png";
-      link.href = canvas.toDataURL("image/png");
-      console.log(link.href);
-      link.target = '_blank';
-      link.click();
-    });
+    html2canvas(container).then(
+      function (canvas) {
+        var link = document.createElement("a");
+        document.body.appendChild(link);
+        link.download = "html_image.png";
+        canvas.toDataURL("image/png");
+        link.target = '_blank';
+        link.click();
+      });
   }
-  getUrl() {
-    var container = document.body;
-    html2canvas(container).then(function (canvas) {
-      var link = document.createElement("a");
-      document.body.appendChild(link);
-      link.download = "html_image.png";
-      link.href = canvas.toDataURL("image/png");
-      this.url = link.href;
-     
-    });
-     return this.url;
+  async sendTest() {
+    console.log(this.test);
+    this.isFinishTest = true;
+    setTimeout(async () => {
+      var container = document.body;
+      var testImg;
+      await html2canvas(container).then(
+        function (canvas) {
+          var link = document.createElement("a");
+          document.body.appendChild(link);
+          link.download = "html_image.png";
+          testImg = canvas.toDataURL("image/png");
+        });
+      this.test.url = testImg;
+      this.TestService.currentTest = this.test;
+      await this.test.questionArr.forEach(element => {
+        this.MaxMark += element.nikud;
+        if (element.selectedAnswer.isCorrect == true)
+          this.mark += element.nikud;
+      });
+      alert(this.mark + "/" + this.MaxMark);
+      this.tested = new TestSaved(this.testId,testImg, this.test.studentId, this.test.dateStart, this.mark);
+      this.TestService.checktest(this.tested).subscribe((res: any) => {
+
+      });
+    }, 1000);
   }
 }
 

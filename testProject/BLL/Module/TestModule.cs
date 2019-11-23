@@ -271,15 +271,17 @@ namespace BLL.Module
         /// </summary>
         /// <param name="testId"></param>
         /// <returns></returns>
-        public static TestForStudentVM GetByTestIdForStudent(int testId)
+        public static TestForStudentVM GetByTestIdForStudent(int testId,string studentId)
         {
 
             using (testitprojectEntities ctx = new testitprojectEntities())
             {
                 TestForStudentVM test = new TestForStudentVM();
                 Test t = TestCRUD.ReadTestById(ctx, testId);
+                student s = ctx.students.Where(i => i.email == studentId).FirstOrDefault();
                 test.title = t.name;
                 test.testId = t.testId;
+                test.studentId = s.studentId;
                 test.questionArr = new List<QuestionForTestVM>();
                 List<QuestionforTest> r = RandomQuestions(t.QuestionforTests.ToList());
                 foreach (var quenstion in r)//מעבר על כל שאלות המבחן
