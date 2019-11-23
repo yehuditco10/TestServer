@@ -233,6 +233,21 @@ namespace BLL.Module
                         testId = test.testId
                     });
                 }
+                if ((ctx.Categories.FirstOrDefault(c => c.parentCategoryId == catId)) != null)// אם יש לו ילדים
+                {
+                    List < Category >parents= ctx.Categories.Where(c => c.parentCategoryId == catId).ToList();
+                    foreach (var cat in parents)
+                    {
+                        foreach (var test in TestCRUD.ReadTestByCat(ctx, cat.categoryId))
+                        {
+                            testsList.Add(new TestVM()
+                            {
+                                name = test.name,
+                                testId = test.testId
+                            });
+                        }
+                    }
+                }
                 return testsList;
 
             }

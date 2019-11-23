@@ -1,23 +1,57 @@
-<img src="../../../assets/איקון מבחן.png" id="imagetest">
-<div class="card" style="width: 16vw;height: 26vh;z-index: -10;">
+<!-- <img src="../../../assets/איקון מבחן.png" id="imagetest"> -->
+<!-- <div class="card" style="width: 16vw;height: 26vh;z-index: -10;">
 
   <div class="card-body">
-    <div class="blue">
-      <h5 class="card-title">{{test.name}} </h5>
-      <div class="icons">
+    <div class="blue"> -->
+      <!-- <h5 class="card-title">{{test.name}} </h5> -->
+      <!-- <div class="icons">
         <a routerLink="/edit-test/{{test.testId}}">
           <i class="material-icons"style="font-size: 2.5vw;
           color: white;
           margin-left: 1vw;
    ">
             edit
-          </i></a>
+          </i>
+        </a>
         <a routerLink="/GradeChart/{{test.testId}}"><i class="far fa-chart-bar" style="font-size: 2vw;
           color: white;"></i></a>
         <a routerLink="/reports-teachers//{{test.testId}}"><i class="fas fa-tasks" style="font-size: 2vw;
           color: white;margin-left: 1vw;"></i></a>
       </div>
     </div>
+  </div>
+  <div class="card-footer bg-transparent border-success">Footer</div>
+  <h5 class="card-title">{{test.name}} </h5>
+</div> -->
+
+<div class="card" >
+  <img src="../../../assets/איקון מבחן.png" id="imagetest" class="card-img-top" alt="...">
+  <div class="card-body">
+    <!-- <h5 class="card-title">{{test.name}}</h5> -->
+    <p *ngIf="test.name==null" class="card-text"> ללא כותרת </p>
+
+    <p *ngIf="test.name"  class="card-text">  {{test.name}} </p>
+  </div>
+  <div class="card-footer">
+      <div >
+          <a routerLink="/edit-test/{{test.testId}}"title="עריכה" >
+            <i class="fas fa-pencil-alt"style="font-size: 2vw;
+            color: white;
+          
+     "></i>
+            <!-- <i class="material-icons"style="font-size: 2.5vw;
+            color: white;
+          
+     ">
+              edit
+            </i> -->
+          </a>
+          <a routerLink="/GradeChart/{{test.testId}}" title="גליון ציונים והוספת תלמידים" style="margin-left: 2vw;"><i class="far fa-chart-bar" style="font-size: 2vw;
+            color: white;"></i></a>
+          <a routerLink="/reports-teachers//{{test.testId}}"title="סטטיסטיקה" style="margin-left: 2vw;"><i class="fas fa-tasks" style="font-size: 2vw;
+            color: white;"></i></a>
+        </div>
+    <!-- <small class="text-muted">Last updated 3 mins ago</small> -->
   </div>
 </div>
 <!-- <div class="card" style="width: 18rem;">
