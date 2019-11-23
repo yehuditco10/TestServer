@@ -106,6 +106,12 @@ namespace BLL.Module
             return true;
         }
 
+        public static string getLink(int id)
+        {
+            Test test = Entity.db.Tests.FirstOrDefault(t => t.testId == id);
+            return test.link;
+        }
+
         /// <summary>
         /// שליפת גליון ציונים עבור מבחן מסוים
         /// </summary>
