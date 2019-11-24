@@ -107,7 +107,7 @@ namespace WebApplication.Controllers
         /// <returns></returns>
         [Route("email/Forgotpassword")]
         [HttpPost]
-        public  bool Forgotpassword([FromBody]Teacher teac)
+        public bool Forgotpassword([FromBody]Teacher teac)
         {
             string emailAddress="";
             string password = "";
