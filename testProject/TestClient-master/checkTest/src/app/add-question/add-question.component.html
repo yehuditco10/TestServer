@@ -1,6 +1,10 @@
+<div id="backimg">
+
+<div id="question">
+
 
 <!-- <app-create-data-question></app-create-data-question> -->
-<label>השאלה</label>
+<label style="margin-top: 25vh;">השאלה</label>
 <input type="text" placeholder="הכנס שאלתך כאן"[(ngModel)]="question.questionDescription">
 <br>
 <label>תשובות אפשריות :</label>
@@ -8,13 +12,28 @@
 <input type="text"  placeholder="הכנס תשובה אפשרית "[(ngModel)]="question.Answers[0].answerDescription" ><input  type="radio" id="radio1"  name="radioButton"><br><!-- [(ngModel)]="question.Answers[0].isCorrect" -->
 <input type="text"  placeholder="הכנס תשובה אפשרית " [(ngModel)]="question.Answers[1].answerDescription"><input type="radio" id="radio2"  name="radioButton"><br>
 <input type="text"  placeholder="הכנס תשובה אפשרית "[(ngModel)]="question.Answers[2].answerDescription" ><input type="radio"id="radio3"  name="radioButton">
-<br>
+<!-- <br>
 <label><span style="color: red">*</span> בחר קטגוריה</label>
 <br>
 <select  [(ngModel)]="question.categoryId">
   <option *ngFor="let item of categories" [ngValue]="item.categoryId">{{item.categoryName}}</option>
-</select>
+</select> -->
 <br>
-<input type="button" (click)="addNewQuestion()" value="הוסף למאגר">
 
-<mark>vghfvgh</mark>
+<div class="input-group mb-3" style="direction: ltr;    margin-top: 5vh;    width: 30vw;
+margin-right: 23vw;">
+    <select [(ngModel)]="selectedParentCategory" class="custom-select" id="inputGroupSelect02">
+        <option *ngFor="let parentCategory of categories" [ngValue]="parentCategory">{{parentCategory.categoryName}}</option>
+
+    </select>
+    <div class="input-group-append">
+      <label class="input-group-text" for="inputGroupSelect022"><span style="color: red">*</span>בחר קטגוריה</label>
+    </div>
+  </div>
+
+  
+<input type="button"class="btn btn-primary btn-lg btn-block" (click)="addNewQuestion()" value="הוסף למאגר" style="    width: 30vw;
+margin-right: 23vw;">
+</div>
+<!-- <mark>vghfvgh</mark> -->
+</div>

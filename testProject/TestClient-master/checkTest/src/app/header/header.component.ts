@@ -49,7 +49,7 @@ export class HeaderComponent implements OnInit {
     this.SharedService.isManager = false;
     // this.name="";
     this.currentUser = null;
-    this.router.navigate['/homepage'];
+    this.router.navigate['/login'];
 
   }
 }

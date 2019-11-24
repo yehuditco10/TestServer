@@ -159,25 +159,46 @@ namespace BLL.Module
         {
             foreach (var student in students)
             {
-                Entity.db.students.Add(new student()
-                {
-                  //  password = "1",
-                  password = student.tz,
-                    email = "coursekamatech@gmail.com",
-                    classId = 1,
-                    studentName = student.name
-                });
-                Entity.db.SaveChanges();
-                student stude = Entity.db.students.FirstOrDefault(s => s.password == student.tz && s.studentName == student.name);
-                Entity.db.StudentForCourses.Add(new StudentForCourse()
-                {
+                if (Entity.db.students.FirstOrDefault(stud => stud.studentName == student.name && student.tz == stud.password) == null) {
+                    Entity.db.students.Add(new student()
+                    {
+                        //  password = "1",
+                        password = student.tz,
+                        email = "coursekamatech@gmail.com",
+                        classId = 1,
+                        studentName = student.name
+                    });
+                    Entity.db.SaveChanges();
+                    student stude = Entity.db.students.FirstOrDefault(s => s.password == student.tz && s.studentName == student.name);
+                    Entity.db.StudentForCourses.Add(new StudentForCourse()
+                    {
 
-                    password = student.tz,
-                    tz = student.tz,
-                    courseId = student.testid,
-                    studentId = stude.studentId
-                });
-                Entity.db.SaveChanges();
+                        password = student.tz,
+                        tz = student.tz,
+                        courseId = student.testid,
+                        studentId = stude.studentId
+                    });
+                    Entity.db.SaveChanges();
+                }
+                //Entity.db.students.Add(new student()
+                //{
+                //  //  password = "1",
+                //  password = student.tz,
+                //    email = "coursekamatech@gmail.com",
+                //    classId = 1,
+                //    studentName = student.name
+                //});
+                //Entity.db.SaveChanges();
+                //student stude = Entity.db.students.FirstOrDefault(s => s.password == student.tz && s.studentName == student.name);
+                //Entity.db.StudentForCourses.Add(new StudentForCourse()
+                //{
+
+                //    password = student.tz,
+                //    tz = student.tz,
+                //    courseId = student.testid,
+                //    studentId = stude.studentId
+                //});
+                //Entity.db.SaveChanges();
             }
             Entity.db.SaveChanges();
             return true;

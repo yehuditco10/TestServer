@@ -24,7 +24,7 @@ namespace BLL.Module
                 var num = Entity.db.TestForStudents.Where(test => test.mark >= i && test.mark <= (i + 5)).Count();
                 ls.Add(new StaticMark()
                 {
-                    name = i + "-" + i + 5,
+                    name = i + "-" + (i + 5),
                     y = num
                 });
             }
