@@ -10,7 +10,7 @@ namespace BLL.ViewModels
     {
         public string studentName { get; set; }
         public string studentTZ { get; set; }
-        public int mark { get; set; }
+        public int? mark { get; set; }
         public string url { get; set; }
     }
 }
