@@ -19,6 +19,7 @@ export class UploadComponent implements OnInit {
   file: File;
   testId:number;
   incomingfile(event) {
+    
     this.file = event.target.files[0];
     this.Upload();
     console.log(this.testId);
@@ -44,13 +45,14 @@ export class UploadComponent implements OnInit {
       // console.log(this.sheet[0]["password"]);
       for (let index = 0; index < this.sheet.length; index++) {
         this.currentStudent = new UpStudent();
-        this.currentStudent.tz = this.sheet[index]["tz"];
-        this.currentStudent.password = this.sheet[index]["password"];
-        
+        this.currentStudent.tz = this.sheet[index]['tz'];
+        this.currentStudent.name = this.sheet[index]['name'];
         this.currentStudent.testid=this.testId;
+        this.currentStudent.password="11";
         this.students.push(this.currentStudent);
-
+debugger;
       }
+      // this.file=null;
       this.testService.studentForTest(this.students).subscribe((res)=>{
         console.log("after studentForTest")
       })
