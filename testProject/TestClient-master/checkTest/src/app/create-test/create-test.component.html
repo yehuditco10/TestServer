@@ -1,12 +1,11 @@
-  
-<div class="row"class="rowTop">.</div>
-<div class="row">
-        <div class="col" class="side1">
-          <img class="img1" src="../../../assets/type.png" width="12vw;">
-          <img class="img3" src="../../../assets/mouse.png" width="12vw;">
-        </div>
-        <div class="col-8" class="middle">
-<!-- <div *ngIf="this.isok==1">
+<div class="row" class="rowTop">.</div>
+<div class="row" *ngIf="test">
+  <div class="col" class="side1">
+    <img class="img1" src="../../../assets/type.png" width="12vw;">
+    <img class="img3" src="../../../assets/mouse.png" width="12vw;">
+  </div>
+  <div class="col-8" class="middle">
+    <!-- <div *ngIf="this.isok==1">
   <div class="alert alert-info alert-dismissible fade show" role="alert">
   <strong>המבחן נשמר בהצלחה</strong>
   <a routerLink="/TestList"><button type="button" class="close" data-dismiss="alert" aria-label="Close" >
@@ -22,106 +21,109 @@
   </button></a>
 </div>
 </div> -->
-<!-- <img src="../../assets/test11.png" id="image1"> -->
-<!-- <div id="imgback"> -->
-<!-- <div id="imgback2"> -->
-<div *ngIf="selectedCategory" class="pos">
-  <p *ngIf="title !=null" style="  
+    <!-- <img src="../../assets/test11.png" id="image1"> -->
+    <!-- <div id="imgback"> -->
+    <!-- <div id="imgback2"> -->
+    <div *ngIf="selectedCategory" class="pos">
+      <p *ngIf="title !=null" style="  
      margin-top: -6vh;
     margin-right: 1vw;
     font-size: 1.5rem;
     color: blue;
     float: right;
 ">{{title}}</p>
-  
-<input type="text" placeholder="הכנס כותרת למבחן" id="input" [(ngModel)]="testName">
-</div>
 
-<!-- <img src="../../assets/test11.png" id="image1"> -->
-<!-- <div *ngIf="selectedCategory" class="pos">
+      <input type="text" placeholder="הכנס כותרת למבחן" id="input" [(ngModel)]="testName">
+    </div>
+
+    <!-- <img src="../../assets/test11.png" id="image1"> -->
+    <!-- <div *ngIf="selectedCategory" class="pos">
   <h2 *ngIf="title !=null">{{title}}</h2>
 <input type="text" placeholder="הכנס כותרת למבחן" id="input" [(ngModel)]="testName">
 </div> -->
 
 
-<!-- https://www.npmjs.com/package/ngx-modal -->
-<!-- Modal -->
-<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
-  aria-hidden="true" style="position: absolute;top:20vh">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content" style="direction: rtl;">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLongTitle">+הוספת שאלה</h5>
-       
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-     <!-- aaa -->
-     <ul id="myUL" >
+    <!-- https://www.npmjs.com/package/ngx-modal -->
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
+      aria-labelledby="exampleModalCenterTitle" aria-hidden="true" style="position: absolute;top:20vh">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content" style="direction: rtl;">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLongTitle">+הוספת שאלה</h5>
 
-  <li *ngFor="let que of questions"><button type="button" (click)="PushQuestion(que)" class="btn btn-primary">הוספה</button>
-    <span (click)="showAnswers($event)" class="caret">{{que.questionDescription}}</span>
-    <ul class="nested">
-      <li *ngFor="let ans of que.Answers">*  {{ans.answerDescription}}</li>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <!-- aaa -->
+            <ul id="myUL">
 
-    </ul>
-  </li>
-</ul>
-<h4 *ngIf="questions==null">
-אין שאלות במאגר בנושא זה,
-הוסף שאלות, לחץ על הצעת שאלה
-והשאלה שלך תהיה הראשונה במאגר בנושא זה !
- </h4>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">סגור</button>
-        <!-- <button type="button" (click)="PushQuestion()" class="btn btn-primary">הוספה</button> -->
-      </div>
-    </div>
-  </div>
-</div>
+              <li *ngFor="let que of questions"><button type="button" (click)="PushQuestion(que)"
+                  class="btn btn-primary">הוספה</button>
+                <span (click)="showAnswers($event)" class="caret">{{que.questionDescription}}</span>
+                <ul class="nested">
+                  <li *ngFor="let ans of que.Answers">* {{ans.answerDescription}}</li>
 
-<!-- Vוספת שאלה אישית -->
-<div class="modal fade" id="exampleModalCenter2" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
-  aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content" style="direction: rtl; text-align: right;">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLongTitle">+הוספת שאלה</h5>
-        <button type="button"  class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      
-      <div class="modal-body">
-        <app-create-data-question [(question)]="currentQuestion"></app-create-data-question>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" class="btn btn-outline-info" data-dismiss="modal">סגור</button>
-        <button type="button" class="btn btn-secondary" class="btn btn-outline-danger" [disabled]="isQuestionNotValid()" (click)="PushNewQuestion()" data-dismiss="modal">הוסף</button>
-        <!-- <button type="button" class="btn btn-primary">הוספה</button> -->
+                </ul>
+              </li>
+            </ul>
+            <h4 *ngIf="questions==null">
+              אין שאלות במאגר בנושא זה,
+              הוסף שאלות, לחץ על הצעת שאלה
+              והשאלה שלך תהיה הראשונה במאגר בנושא זה !
+            </h4>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">סגור</button>
+            <!-- <button type="button" (click)="PushQuestion()" class="btn btn-primary">הוספה</button> -->
+          </div>
+        </div>
       </div>
     </div>
-  </div>
-</div>
+
+    <!-- Vוספת שאלה אישית -->
+    <div class="modal fade" id="exampleModalCenter2" tabindex="-1" role="dialog"
+      aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content" style="direction: rtl; text-align: right;">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLongTitle">+הוספת שאלה</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+
+          <div class="modal-body">
+            <app-create-data-question *ngIf="currentQuestion" [(question)]="currentQuestion"></app-create-data-question>
+          </div>
+          <div class="modal-footer">
+            <button type="button" id="closeModal" class="btn btn-secondary" class="btn btn-outline-info"
+              data-dismiss="modal">סגור</button>
+            <button type="button" class="btn btn-secondary" class="btn btn-outline-danger"
+              [disabled]="isQuestionNotValid()" (click)="PushNewQuestion()" data-dismiss="modal">הוסף</button>
+            <!-- <button type="button" class="btn btn-primary">הוספה</button> -->
+          </div>
+        </div>
+      </div>
+    </div>
 
 
 
-<br>
-<br>
-<div class="dropdown" style="margin-top: 13vh;
+    <br>
+    <br>
+    <div class="dropdown" style="margin-top: 13vh;
     margin-right: 17vw;
 text-align: right;
 direction: rtl;
 margin-right: 18vw;
 ">
-  <!-- <button style="width: 62.6vw;
+      <!-- <button style="width: 62.6vw;
   margin-right: 0.7vw;" class="btn btn-warning btn-lg btn-block dropdown-toggle" id="exampleModalLongTitle"  type="button"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
   + הוספת שאלה 
   </button> -->
-<!-- 
+      <!-- 
   <div class="btn-group dropleft">
     <button style="width: 62.6vw;
     margin-right: 0.7vw;"  type="button" class="btn btn-warning btn-lg btn-block dropdown-toggle"  id="exampleModalLongTitle"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -129,50 +131,55 @@ margin-right: 18vw;
     </button>
     <div class="dropdown-menu"> -->
       <!-- Dropdown menu links -->
-    <!-- </div>
+      <!-- </div>
   </div> -->
 
-  <div class="dropdown-menu" id="drop" aria-labelledby="dropdownMenuButton">
-    
-    <button type="button" (click)="getQuestion()" class="dropdown-item" class="btn btn-secondary wi"  data-toggle="modal" data-target="#exampleModalCenter">
-     TestIt שאלה ממאגר 
-    </button><br>
-    <button type="button" id="openModalBtn" (click)="createNewQuestion()" class="dropdown-item" class="btn btn-dark wi" data-toggle="modal" data-target="#exampleModalCenter2">
-     שאלה אישית
-    </button>
-    <button type="button" hidden id="openModalBtnHidden" (click)="showModal = true" class="dropdown-item" class="btn btn-dark wi" data-toggle="modal" data-target="#exampleModalCenter2">
-        שאלה אישית
-       </button>
-  </div>
-  <!-- Button trigger modal -->
+      <div class="dropdown-menu" id="drop" aria-labelledby="dropdownMenuButton">
+
+        <button type="button" (click)="getQuestion()" class="dropdown-item" class="btn btn-secondary wi"
+          data-toggle="modal" data-target="#exampleModalCenter">
+          TestIt שאלה ממאגר
+        </button><br>
+        <button type="button" id="openModalBtn" (click)="createNewQuestion()" class="dropdown-item"
+          class="btn btn-dark wi" data-toggle="modal" data-target="#exampleModalCenter2">
+          שאלה אישית
+        </button>
+        <button type="button" hidden id="openModalBtnHidden" (click)="showModal = true" class="dropdown-item"
+          class="btn btn-dark wi" data-toggle="modal" data-target="#exampleModalCenter2">
+          שאלה אישית
+        </button>
+      </div>
+      <!-- Button trigger modal -->
 
 
 
-<div  class="card-deck" style="direction: rtl;text-align: right; margin-left: -20vw">
-    <app-display-question *ngFor="let ques of test.questionArr" [questions]="ques" (q)="RemoveQuestion($event)"  (editQuestionEvent)="editQuestion($event)"  ></app-display-question>
-  
-  </div>
-  <!-- Modal -->
-  <div class="modal fade" id="exampleModalCenterr" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLongTitle">שמות התלמידים למבחן זה </h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <app-upload></app-upload>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">סיימתי</button>
-          <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
+      <div class="card-deck" style="direction: rtl;text-align: right; margin-left: -20vw">
+        <app-display-question *ngFor="let ques of test.questionArr" [questions]="ques" (q)="RemoveQuestion($event)"
+          (editQuestionEvent)="editQuestion($event)"></app-display-question>
+
+      </div>
+      <!-- Modal -->
+      <div class="modal fade" id="exampleModalCenterr" tabindex="-1" role="dialog"
+        aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLongTitle">שמות התלמידים למבחן זה </h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <app-upload></app-upload>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">סיימתי</button>
+              <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
+            </div>
+          </div>
         </div>
       </div>
-    </div>
-  </div>
-  <!-- <button type="button" class="btn btn-info" style=" 
+      <!-- <button type="button" class="btn btn-info" style=" 
 /* position: absolute !important; */
 top: -63vh;
 right: 26vw;
@@ -180,38 +187,38 @@ z-index: 100;
 height: 6vh;margin-left: 1vw;" data-toggle="modal" data-target="#exampleModalCenterr">
     הכנס רשימת תלמידים
    </button> -->
-   <button style="
+      <button style="
    width: 61vw;
     margin-top: 3vh;
     margin-right: -14vw
-   " class="btn btn-warning btn-lg btn-block dropdown-toggle" id="exampleModalLongTitle"  type="button"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-   + הוספת שאלה 
-   </button>
-  <button
-   class="btn btn-primary btn-lg btn-block" (click)="saveTest()"style="width: 61vw;
+   " class="btn btn-warning btn-lg btn-block dropdown-toggle" id="exampleModalLongTitle" type="button"
+        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        + הוספת שאלה
+      </button>
+      <button class="btn btn-primary btn-lg btn-block" (click)="saveTest()" style="width: 61vw;
    margin-right:-14vw;
    margin-top: 3vh;"> שמור מבחן</button>
-</div>
-<!-- </div> -->
+    </div>
+    <!-- </div> -->
 
-<!-- alerts -->
-<div *ngIf="this.isok==1">
-    <div class="alert alert-info alert-dismissible fade show" role="alert">
-    <strong>המבחן נשמר בהצלחה</strong>
-    <a routerLink="/TestList"><button type="button" class="close" data-dismiss="alert" aria-label="Close" >
-      <span aria-hidden="true">&times;</span>
-    </button></a>
-  </div>
-  </div>
-  <div *ngIf="this.isok==-1">
-    <div class="alert alert-danger alert-dismissible fade show" role="alert">
-    <strong>שגיאה ! נסה לשמור מאוחר יותר</strong>
-    <a routerLink="/TestList"><button type="button" class="close" data-dismiss="alert" aria-label="Close">
-      <span aria-hidden="true">&times;</span>
-    </button></a>
-  </div>
-  </div>
-<!--   
+    <!-- alerts -->
+    <div *ngIf="this.isok==1">
+      <div class="alert alert-info alert-dismissible fade show" role="alert">
+        <strong>המבחן נשמר בהצלחה</strong>
+        <a routerLink="/TestList"><button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button></a>
+      </div>
+    </div>
+    <div *ngIf="this.isok==-1">
+      <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        <strong>שגיאה ! נסה לשמור מאוחר יותר</strong>
+        <a routerLink="/TestList"><button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button></a>
+      </div>
+    </div>
+    <!--   
 <div class="row"class="rowTop">.</div>
 <div class="row">
         <div class="col" class="side1">
@@ -219,11 +226,11 @@ height: 6vh;margin-left: 1vw;" data-toggle="modal" data-target="#exampleModalCen
           <img class="img3" src="../../../assets/mouse.png" width="12vw;">
         </div>
         <div class="col-8" class="middle"> -->
-     <!--  -->
-        </div>
-      
-        <div class="col"class="side2" >
-          <img class="img2" src="../../../assets/memo.png" width="13vw;">
-          <img class="img4" src="../../../assets/pens.png" width="15vw;">
-        </div>
-      </div>
+    <!--  -->
+  </div>
+
+  <div class="col" class="side2">
+    <img class="img2" src="../../../assets/memo.png" width="13vw;">
+    <img class="img4" src="../../../assets/pens.png" width="15vw;">
+  </div>
+</div>

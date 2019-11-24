@@ -21,6 +21,7 @@ import { Route, ActivatedRoute } from '@angular/router';
 export class CreateTestComponent implements OnInit {
 
   currentQuestion: Questions;
+  currentQuestionRef:Questions;
   categories: Category[];
   selectedCategory: Category = new Category();
   title: string = null;
@@ -65,35 +66,32 @@ export class CreateTestComponent implements OnInit {
     console.log(event);
     event.currentTarget.parentElement.querySelector(".nested").classList.toggle("active");
     event.currentTarget.classList.toggle("caret-down");
-
   }
+
   PushNewQuestion() {
-    console.log(this.currentQuestion);
     if (this.currentQuestion.isNew) {
       this.currentQuestion.isNew = false;
       this.test.questionArr.push(this.currentQuestion);
     }
+    else{
+      this.currentQuestionRef.Answers=this.currentQuestion.Answers;
+      this.currentQuestionRef.nikud=this.currentQuestion.nikud;
+      this.currentQuestionRef.questionDescription=this.currentQuestion.questionDescription;
+    }
     this.currentQuestion = new Questions();
     this.cdRef.detectChanges();
-    // this.currentQuestion.restart();
+    document.getElementById("closeModal").click();
   }
+
   PushQuestion(que) {
-    // var questionToPush=new Questions();
+        // var questionToPush=new Questions();
     // questionToPush.nikud=0;
     // questionToPush.
-    if (this.currentQuestion.Answers.filter(a => a.isCorrect == true) != null) {
-      this.test.questionArr.push(que);
-      this.currentQuestion = new Questions();
-      this.cdRef.detectChanges();
-    }
-    else {
-      alert("בחר תשובה נכונה");
-      console.log("kt banr");
-    }
-    console.log(que);
+    this.test.questionArr.push(que);
+    this.currentQuestion = new Questions();
+    this.cdRef.detectChanges();
 
-    // this.currentQuestion.restart();
-    console.log(this.test);
+  
   }
   RemoveQuestion(que: Questions) {
     this.test.questionArr.splice(this.test.questionArr.indexOf(que), 1);
@@ -141,7 +139,8 @@ export class CreateTestComponent implements OnInit {
     })
   }
   editQuestion(qu: Questions) {
-    this.currentQuestion = qu;
+    this.currentQuestion = JSON.parse(JSON.stringify(qu));
+    this.currentQuestionRef=qu;
     document.getElementById("openModalBtnHidden").click();
   }
   saveTest() {
