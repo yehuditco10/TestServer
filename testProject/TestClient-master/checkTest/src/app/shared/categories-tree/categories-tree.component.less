@@ -5,3 +5,13 @@
 .atest::after{
     background-color: darkgray;
 }
+
+:host::ng-deep{
+    .angular-tree-component{
+        direction: rtl;
+        .tree-children{
+            padding-left: unset !important;
+            padding-right: 20px;
+        }
+    }
+}
