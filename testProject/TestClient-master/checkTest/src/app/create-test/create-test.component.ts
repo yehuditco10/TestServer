@@ -159,8 +159,13 @@ export class CreateTestComponent implements OnInit {
     this.test.categoriId = this.selectedCategory.categoryId;
     this.test.teacherId = 25;
     // this.test.teacherId=this.globalServce.httpOptions.headers
-    this.TestService.saveTest(this.test).subscribe((res) => {
+    this.TestService.saveTest(this.test).subscribe((res:boolean) => {
+      if(res==true)
       this.isok = 1;
+      else
+      this.isok=-1;
+    },err=>{
+      this.isok=-1;
     })
   }
   isSaveNotValid() {

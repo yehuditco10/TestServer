@@ -28,7 +28,10 @@ namespace WebApplication.Controllers
         {
             var prinicpal = (ClaimsPrincipal)Thread.CurrentPrincipal;
             var userId = prinicpal.Claims.Where(c => c.Type == "UserId").Select(c => c.Value).SingleOrDefault().ToString();
+            if(test.testId==0)//מבחן חדש
             return TestModule.CreateTest(test,int.Parse(userId));
+            else //עריכת מבחן
+                return TestModule.EditTest(test, int.Parse(userId));
         }
        
        /// <summary>
