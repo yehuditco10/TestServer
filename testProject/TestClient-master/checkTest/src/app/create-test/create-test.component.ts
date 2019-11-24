@@ -12,6 +12,7 @@ import { CreateDataQuestionComponent } from '../create-data-question/create-data
 import { EventEmitter } from 'events';
 import { LoginService } from '../login/login.service';
 import { Route, ActivatedRoute } from '@angular/router';
+import { UploadComponent } from '../upload/upload.component';
 
 @Component({
   selector: 'app-create-test',
@@ -38,7 +39,11 @@ export class CreateTestComponent implements OnInit {
     private route: ActivatedRoute,
     private testService: TestService, ) { }
 
+    @ViewChild('upload',{static:false}) uploadCom:UploadComponent;
 
+    clearExcel(){
+      this.uploadCom.clearFile();
+    }
   ngOnInit() {
     var id = +this.route.snapshot.paramMap.get('id');
     if (id)//edit
@@ -143,9 +148,6 @@ export class CreateTestComponent implements OnInit {
     document.getElementById("openModalBtnHidden").click();
   }
   saveTest() {
-    debugger;
-
-    // alert(this.testName);
     this.test.categoriId = this.selectedCategory.categoryId;
     this.test.teacherId = 25;
     this.TestService.saveTest(this.test).subscribe((res) => {

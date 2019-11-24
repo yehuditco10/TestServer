@@ -4,6 +4,7 @@ import { TestService } from '../services/test.service';
 import { Mark } from '../shared/models/mark';
 import * as jspdf from 'jspdf';  
 import html2canvas from 'html2canvas';  
+import { UploadComponent } from '../upload/upload.component';
 // import {MatTooltipModule} from '@angular/material/tooltip';
 @Component({
   selector: 'app-grade-chart',
@@ -17,9 +18,14 @@ export class GradeChartComponent implements OnInit {
   id: string = null;
   link:string="";
    marks:Array<Mark>=new Array<Mark>();
+   @ViewChild('upload',{static:false}) uploadCom:UploadComponent;
   constructor(private route: ActivatedRoute,
     private testService: TestService) { }
     urls:string[];
+    
+    clearExcel(){
+      this.uploadCom.clearFile();
+    }
   ngOnInit() {
    this.urls= ["../../assets/מבחן חסר.png","../../assets/מבחן חסר.png","../../assets/html_image (20).png","../../assets/html_image (20).png"] ;
 

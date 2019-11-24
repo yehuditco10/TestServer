@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import * as XLSX from 'ts-xlsx';
 import { UpStudent } from '../shared/models/up-student';
 import { TestService } from '../services/test.service';
@@ -11,23 +11,26 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class UploadComponent implements OnInit {
 
-  constructor(private testService:TestService,private route:ActivatedRoute) { }
+  constructor(private testService: TestService, private route: ActivatedRoute) { }
   sheet: Array<UpStudent>;
-  students: Array<UpStudent>=new Array<UpStudent>();
+  students: Array<UpStudent> = new Array<UpStudent>();
   currentStudent: UpStudent = new UpStudent();
   arrayBuffer: any;
   file: File;
-  testId:number;
+  testId: number;
+  @ViewChild('myInput',{static:false}) myInput: ElementRef;
   incomingfile(event) {
-    
+
     this.file = event.target.files[0];
     this.Upload();
     console.log(this.testId);
   }
+  clearFile() {
+    debugger;
+    this.myInput.nativeElement.value = "";
+  }
 
   Upload() {
-    debugger;
-    console.log("upload");
     let fileReader = new FileReader();
     fileReader.onload = (e) => {
       this.arrayBuffer = fileReader.result;
@@ -38,30 +41,25 @@ export class UploadComponent implements OnInit {
       var workbook = XLSX.read(bstr, { type: "binary" });
       var first_sheet_name = workbook.SheetNames[0];
       var worksheet = workbook.Sheets[first_sheet_name];
-      // console.log("a");
       console.log(XLSX.utils.sheet_to_json(worksheet, { raw: true }));
       this.sheet = XLSX.utils.sheet_to_json(worksheet, { raw: true });
-      // console.log(this.sheet[0]["tz"]);
-      // console.log(this.sheet[0]["password"]);
       for (let index = 0; index < this.sheet.length; index++) {
         this.currentStudent = new UpStudent();
         this.currentStudent.tz = this.sheet[index]['tz'];
         this.currentStudent.name = this.sheet[index]['name'];
-        this.currentStudent.testid=this.testId;
-        this.currentStudent.password="11";
+        this.currentStudent.testid = this.testId;
+        this.currentStudent.password = "11";
         this.students.push(this.currentStudent);
-debugger;
       }
-      // this.file=null;
-      this.testService.studentForTest(this.students).subscribe((res)=>{
+      this.testService.studentForTest(this.students).subscribe((res) => {
         console.log("after studentForTest")
       })
     }
     fileReader.readAsArrayBuffer(this.file);
   }
   ngOnInit() {
-    this.testId=Number(this.route.snapshot.paramMap.get('id'));
-  
+    this.testId = Number(this.route.snapshot.paramMap.get('id'));
+
   }
 
 }

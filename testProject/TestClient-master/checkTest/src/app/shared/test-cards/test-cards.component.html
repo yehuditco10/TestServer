@@ -79,10 +79,10 @@
         </button>
       </div>
       <div class="modal-body">
-        <app-upload></app-upload>
+        <app-upload #upload></app-upload>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">סיימתי</button>
+        <button type="button" class="btn btn-secondary" (click)="clearExcel()" data-dismiss="modal">סיימתי</button>
         <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
       </div>
     </div>
