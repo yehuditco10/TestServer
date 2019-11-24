@@ -100,7 +100,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" class="btn btn-outline-info" data-dismiss="modal">סגור</button>
-        <button type="button" class="btn btn-secondary" class="btn btn-outline-danger" (click)="PushNewQuestion()" data-dismiss="modal">הוסף</button>
+        <button type="button" class="btn btn-secondary" class="btn btn-outline-danger" [disabled]="isQuestionNotValid()" (click)="PushNewQuestion()" data-dismiss="modal">הוסף</button>
         <!-- <button type="button" class="btn btn-primary">הוספה</button> -->
       </div>
     </div>
@@ -138,11 +138,11 @@ margin-right: 18vw;
      TestIt שאלה ממאגר 
     </button><br>
     <button type="button" id="openModalBtn" (click)="createNewQuestion()" class="dropdown-item" class="btn btn-dark wi" data-toggle="modal" data-target="#exampleModalCenter2">
- 
      שאלה אישית
     </button>
-  
-    
+    <button type="button" hidden id="openModalBtnHidden" (click)="showModal = true" class="dropdown-item" class="btn btn-dark wi" data-toggle="modal" data-target="#exampleModalCenter2">
+        שאלה אישית
+       </button>
   </div>
   <!-- Button trigger modal -->
 
@@ -187,15 +187,7 @@ height: 6vh;margin-left: 1vw;" data-toggle="modal" data-target="#exampleModalCen
    " class="btn btn-warning btn-lg btn-block dropdown-toggle" id="exampleModalLongTitle"  type="button"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
    + הוספת שאלה 
    </button>
-  <button style="
-   /* position: absolute !important; */
-  /* top: -63vh;
-  right: 36.5vw;
-  z-index: 100;
-  height: 6vh;
-  background-color: #fdcd20;
-  border-color: #fdcd20;margin-left: 1vw; */
-  "
+  <button
    class="btn btn-primary btn-lg btn-block" (click)="saveTest()"style="width: 61vw;
    margin-right:-14vw;
    margin-top: 3vh;"> שמור מבחן</button>

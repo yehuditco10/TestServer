@@ -29,7 +29,9 @@ namespace BLL.Module
                 });
 
                 GetAllCategortTree(categoriesList, null, categoryTreeList[0]);
-                return categoryTreeList;
+                if(categoryTreeList[0].children.Count>0)
+                return categoryTreeList[0].children;
+                return new List<CategoryTreeItem>();
             }
         }
 
