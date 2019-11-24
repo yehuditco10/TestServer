@@ -26,9 +26,9 @@ export class CreateTestComponent implements OnInit {
   title: string = null;
   questions: Questions[];
   test: Test;
-  testName:string;
+  testName: string;
   faCoffee = false;
-  isok:number=0;
+  isok: number = 0;
   constructor(private categoriesService: CategoriesService,
     private getQuestionService: GetQuestionService,
     private GetDataQuestionService: GetDataQuestionService,
@@ -43,10 +43,10 @@ export class CreateTestComponent implements OnInit {
     var id = +this.route.snapshot.paramMap.get('id');
     if (id)//edit
     {
-      
+
       this.testService.GetTestById(id).subscribe((res: Test) => {
         this.test = res;
-        console.log(this.test.questionArr) ;
+        console.log(this.test.questionArr);
         console.log(this.test);
       })
     }
@@ -60,7 +60,7 @@ export class CreateTestComponent implements OnInit {
     this.getCategories();
     this.cdRef.detectChanges();
   }
-  
+
   showAnswers(event) {
     console.log(event);
     event.currentTarget.parentElement.querySelector(".nested").classList.toggle("active");
@@ -76,21 +76,20 @@ export class CreateTestComponent implements OnInit {
     this.currentQuestion = new Questions();
     this.cdRef.detectChanges();
     // this.currentQuestion.restart();
-
   }
   PushQuestion(que) {
     // var questionToPush=new Questions();
     // questionToPush.nikud=0;
     // questionToPush.
-  if(this.currentQuestion.Answers.filter(a=>a.isCorrect==true)!=null){
-    this.test.questionArr.push(que);
-    this.currentQuestion = new Questions();
-    this.cdRef.detectChanges();
-  }
-  else{
-    alert("בחר תשובה נכונה");
-    console.log("kt banr");
-  }
+    if (this.currentQuestion.Answers.filter(a => a.isCorrect == true) != null) {
+      this.test.questionArr.push(que);
+      this.currentQuestion = new Questions();
+      this.cdRef.detectChanges();
+    }
+    else {
+      alert("בחר תשובה נכונה");
+      console.log("kt banr");
+    }
     console.log(que);
 
     // this.currentQuestion.restart();
@@ -103,7 +102,7 @@ export class CreateTestComponent implements OnInit {
   }
   getCategories() {
     this.categoriesService.getCategories().subscribe((res: Category[]) => {
-      this.categoriesService.categories=res;
+      this.categoriesService.categories = res;
       this.categories = res;
       this.selectedCategory = res.filter(i => i.categoryId == this.test.categoriId)[0];
       this.title = ' נושא : ' + this.selectedCategory.categoryName;
@@ -115,7 +114,15 @@ export class CreateTestComponent implements OnInit {
   }
   showModal: boolean = false;
   createNewQuestion() {
+    this.currentQuestion = new Questions();
     this.showModal = true;
+  }
+  isQuestionNotValid() {
+    if (this.currentQuestion.nikud == 0)
+      return true;
+    if (this.currentQuestion.Answers.filter(i => i.isCorrect == true).length == 0)
+      return true;
+    return false;
   }
 
 
@@ -135,17 +142,17 @@ export class CreateTestComponent implements OnInit {
   }
   editQuestion(qu: Questions) {
     this.currentQuestion = qu;
-    document.getElementById("openModalBtn").click();
+    document.getElementById("openModalBtnHidden").click();
   }
   saveTest() {
     debugger;
-    
+
     // alert(this.testName);
     this.test.categoriId = this.selectedCategory.categoryId;
     this.test.teacherId = 25;
-    this.test.name=this.testName;
+    this.test.name = this.testName;
     this.TestService.saveTest(this.test).subscribe((res) => {
-this.isok=1;
+      this.isok = 1;
     })
   }
 }
