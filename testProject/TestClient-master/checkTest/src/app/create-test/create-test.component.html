@@ -195,7 +195,7 @@ height: 6vh;margin-left: 1vw;" data-toggle="modal" data-target="#exampleModalCen
         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         + הוספת שאלה
       </button>
-      <button class="btn btn-primary btn-lg btn-block" (click)="saveTest()" style="width: 61vw;
+      <button class="btn btn-primary btn-lg btn-block save-test" [disabled]="isSaveNotValid()" (click)="saveTest()" style="width: 61vw;
    margin-right:-14vw;
    margin-top: 3vh;"> שמור מבחן</button>
     </div>

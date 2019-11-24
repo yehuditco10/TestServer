@@ -21,7 +21,7 @@ import { Route, ActivatedRoute } from '@angular/router';
 export class CreateTestComponent implements OnInit {
 
   currentQuestion: Questions;
-  currentQuestionRef:Questions;
+  currentQuestionRef: Questions;
   categories: Category[];
   selectedCategory: Category = new Category();
   title: string = null;
@@ -73,10 +73,10 @@ export class CreateTestComponent implements OnInit {
       this.currentQuestion.isNew = false;
       this.test.questionArr.push(this.currentQuestion);
     }
-    else{
-      this.currentQuestionRef.Answers=this.currentQuestion.Answers;
-      this.currentQuestionRef.nikud=this.currentQuestion.nikud;
-      this.currentQuestionRef.questionDescription=this.currentQuestion.questionDescription;
+    else {
+      this.currentQuestionRef.Answers = this.currentQuestion.Answers;
+      this.currentQuestionRef.nikud = this.currentQuestion.nikud;
+      this.currentQuestionRef.questionDescription = this.currentQuestion.questionDescription;
     }
     this.currentQuestion = new Questions();
     this.cdRef.detectChanges();
@@ -84,14 +84,14 @@ export class CreateTestComponent implements OnInit {
   }
 
   PushQuestion(que) {
-        // var questionToPush=new Questions();
+    // var questionToPush=new Questions();
     // questionToPush.nikud=0;
     // questionToPush.
     this.test.questionArr.push(que);
     this.currentQuestion = new Questions();
     this.cdRef.detectChanges();
 
-  
+
   }
   RemoveQuestion(que: Questions) {
     this.test.questionArr.splice(this.test.questionArr.indexOf(que), 1);
@@ -140,7 +140,7 @@ export class CreateTestComponent implements OnInit {
   }
   editQuestion(qu: Questions) {
     this.currentQuestion = JSON.parse(JSON.stringify(qu));
-    this.currentQuestionRef=qu;
+    this.currentQuestionRef = qu;
     document.getElementById("openModalBtnHidden").click();
   }
   saveTest() {
@@ -153,5 +153,12 @@ export class CreateTestComponent implements OnInit {
     this.TestService.saveTest(this.test).subscribe((res) => {
       this.isok = 1;
     })
+  }
+  isSaveNotValid() {
+    if (this.test.name == "")
+      return true;
+    if (this.test.questionArr.length == 0)
+      return true;
+    return false;
   }
 }
