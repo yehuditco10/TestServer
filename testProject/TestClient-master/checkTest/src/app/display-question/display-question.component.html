@@ -8,40 +8,56 @@
     ">
   <div class="card-body card-body text-danger co-md-4" style="height: 100%;">
     <div class="row">
-        <div class="col-10">
+      <div class="col-10">
 
 
-            <h3 class="card-title">{{questions.questionDescription}}</h3>
-            
-            <p *ngFor="let ans of questions.Answers">
+        <h3 class="card-title">{{questions.questionDescription}}</h3>
 
-            <span *ngIf="ans.isCorrect==true" >
+        <p *ngFor="let ans of questions.Answers">
 
-                <i class="material-icons"style="color: green">
-                    check
-                    </i>
-              {{  ans.answerDescription}}</span>  
-            <span *ngIf="ans.isCorrect==false&&ans" >
-                <i class="material-icons"style="color:red;">
-                    close
-                    </i>
-              {{  ans.answerDescription}}</span>  
-           
-          </p>
-          </div>
+          <span *ngIf="ans.isCorrect==true">
+
+            <i class="material-icons" style="color: green">
+              check
+            </i>
+            {{  ans.answerDescription}}</span>
+          <span *ngIf="ans.isCorrect==false&&ans">
+            <i class="material-icons" style="color:red;">
+              close
+            </i>
+            {{  ans.answerDescription}}</span>
+
+        </p>
+      </div>
       <div class="col-1">
-        <button class="btn btn-warning" (click)="EditQuestion()"style="margin-bottom: 2vh;margin-top: 2vh;">
+        <!-- <button type="button" target="_blank" draggable="false" class="btn btn-info" data-toggle="modal"
+          data-target="#exampleModalCenterr" style="margin-left: 21vw;">
+          <abbr data-title="הוספת תלמיד\ים">
+            <i class="material-icons">
+              group_add
+            </i>
+          </abbr>
+        </button> -->
+
+        <button class="btn btn-warning"target="_blank" draggable="false" (click)="EditQuestion()" style="margin-bottom: 2vh;margin-top: 2vh;">
+            <abbr data-title="עריכה">
           <mat-icon aria-hidden="false" aria-label="border_color">border_color</mat-icon>
+       </abbr>
         </button>
 
-        <button class="btn btn-primary" (click)="RemoveQuestion()" style="margin-bottom: 2vh;">
-          <mat-icon aria-hidden="false" aria-label="delete_forever">delete_forever</mat-icon>
+        <button class="btn btn-primary" target="_blank" draggable="false" (click)="RemoveQuestion()" style="margin-bottom: 2vh;">
+          <abbr data-title="מחיקה">
+            <mat-icon aria-hidden="false" aria-label="delete_forever">delete_forever</mat-icon>
+          </abbr>
         </button>
 
-        <button class="btn btn-secondary" (click)="suggestQuestion()"style="margin-bottom: 2vh;">
+        <button class="btn btn-secondary" target="_blank" draggable="false"(click)="suggestQuestion()" style="margin-bottom: 2vh;">
+            <abbr data-title="הצעת שאלה למאגר">
           <mat-icon aria-hidden="false" aria-label="mail_outline">mail_outline</mat-icon>
-        </button>
-       <p>בחר ניקוד</p> 
+       </abbr>
+       </button>
+
+        <p>בחר ניקוד</p>
         <input type="number" class="num" value="0" [(ngModel)]="questions.nikud">
 
       </div>

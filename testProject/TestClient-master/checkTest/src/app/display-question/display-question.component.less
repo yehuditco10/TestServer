@@ -10,3 +10,28 @@ h3,p{
 text{
     color:   #535556;
 }
+
+
+// tooltip
+/* Tooltip container */
+abbr[data-title] {
+  position: relative;
+  text-decoration: underline dotted; 
+}
+abbr[data-title]:hover::after,
+abbr[data-title]:focus::after {
+  content: attr(data-title);
+  position: absolute;
+  left: 250%;
+  // top: -30px;
+  float: left;
+  transform: translateX(-50%);
+  width: auto;
+  white-space: nowrap;
+  background: rgb(78, 75, 75);
+  color: white;
+  border-radius: 2px;
+  box-shadow: 1px 1px 5px 0 rgba(0,0,0,0.4);
+  font-size: 14px;
+  padding: 3px 5px;
+}
