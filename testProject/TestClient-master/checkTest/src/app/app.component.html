@@ -1,6 +1,6 @@
   <div class="w100 h100">
     <div></div>
-    <app-header class="fl w100"></app-header>
+    <app-header class="fl w100" *ngIf="displayHeader"></app-header>
     <router-outlet></router-outlet>
     <!-- <app-pfd></app-pfd> -->
   </div>
