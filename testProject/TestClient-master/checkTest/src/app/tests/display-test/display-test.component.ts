@@ -29,6 +29,7 @@ export class DisplayTestComponent implements OnInit {
   isFinishTest: boolean = false;
   // isok:number=0;
   ngOnInit() {
+    console.log(this.route);
     this.testId = +this.route.snapshot.paramMap.get('id');
     if (!this.testId) {
       //error

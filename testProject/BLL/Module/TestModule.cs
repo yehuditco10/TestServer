@@ -46,6 +46,48 @@ namespace BLL.Module
             }
         }
 
+        public static bool EditTest(TestVM testvm, int userId)
+        {
+            using (testitprojectEntities ctx = new testitprojectEntities())
+            {
+                //אם אין תלמידים שכבר ביצעו מבחן זה
+                if (ctx.TestForStudents.FirstOrDefault(t => testvm.testId == t.testId) == null)
+                {
+                    Test test = ctx.Tests.FirstOrDefault(t => t.testId == testvm.testId);
+                    if (testvm.name != null)
+                        test.name = testvm.name;//עדכון שם
+                    List<QuestionforTest> queToRemove = ctx.QuestionforTests.Where(q => q.testid == testvm.testId).ToList();
+                    ctx.QuestionforTests.RemoveRange(queToRemove);
+                    ctx.SaveChanges();
+                    test.QuestionforTests = null;
+                    foreach (var quest in testvm.questionArr)
+                    {
+                        quest.categoryId = testvm.categoriId;
+                        var question = QuestionCRUD.CreateQuestion(ctx, quest, userId);
+                        foreach (var ans in quest.Answers)
+                        {
+                            if (ans.answerDescription != null)
+                                AnswerCRUD.CreateAnswer(ctx, question, ans);
+                        }
+                        QuestionForTestCRUD.CreateQuestionForTest(ctx, question, test, quest.nikud);
+                    }
+                    List<StudentForCourse> st = new List<StudentForCourse>();
+                    st = ctx.StudentForCourses.Where(t => t.courseId == -1).ToList();
+                    if (st != null)
+                    {
+                        for (int i = 0; i < st.Count(); i++)
+                        {
+                            st[i].courseId = test.testId;
+                        }
+                    }
+                    ctx.SaveChanges();
+                    return true;
+                }
+              
+            }
+            return false;
+        }
+
         /// <summary>
         ///ID שליפת מבחן לפי
         /// </summary>

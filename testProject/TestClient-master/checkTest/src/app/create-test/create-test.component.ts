@@ -13,6 +13,9 @@ import { EventEmitter } from 'events';
 import { LoginService } from '../login/login.service';
 import { Route, ActivatedRoute } from '@angular/router';
 import { UploadComponent } from '../upload/upload.component';
+import { GlobalService } from '../global/global.service';
+import { SharedService } from '../services/shared.service';
+import { GlobalVariables } from '../global/global-variable';
 
 @Component({
   selector: 'app-create-test',
@@ -37,7 +40,9 @@ export class CreateTestComponent implements OnInit {
     private TestService: TestService,
     private loginServ: LoginService,
     private route: ActivatedRoute,
-    private testService: TestService, ) { }
+    private testService: TestService,
+    private globalServce:GlobalService,
+    ) { }
 
     @ViewChild('upload',{static:false}) uploadCom:UploadComponent;
 
@@ -148,10 +153,19 @@ export class CreateTestComponent implements OnInit {
     document.getElementById("openModalBtnHidden").click();
   }
   saveTest() {
+    //
+   
+    //
     this.test.categoriId = this.selectedCategory.categoryId;
     this.test.teacherId = 25;
-    this.TestService.saveTest(this.test).subscribe((res) => {
+    // this.test.teacherId=this.globalServce.httpOptions.headers
+    this.TestService.saveTest(this.test).subscribe((res:boolean) => {
+      if(res==true)
       this.isok = 1;
+      else
+      this.isok=-1;
+    },err=>{
+      this.isok=-1;
     })
   }
   isSaveNotValid() {
