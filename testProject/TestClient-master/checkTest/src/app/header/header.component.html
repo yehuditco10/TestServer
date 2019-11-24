@@ -20,6 +20,11 @@
               סטטיסטיקות מנהל
             </a>
           </li>
+          <li class="fl" *ngIf="this.currentUser">
+            <a href="#about" style="text-decoration:none" routerLink="/TestList"class="link2">
+             המבחנים שלי
+            </a>
+          </li>
       <li class="fl" >
         <a href="#about" style="text-decoration:none"   routerLink="/search">
           <i class="material-icons">search</i></a>

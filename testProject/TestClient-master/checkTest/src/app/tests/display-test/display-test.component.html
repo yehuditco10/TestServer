@@ -1,4 +1,4 @@
-<div  *ngIf="isOk==-1">
+<!-- <div  *ngIf="isOk==-1">
     <div class="alert alert-danger alert-dismissible fade show" role="alert">
     <strong>שגיאה ! נסה להוסיף מאוחר יותר</strong>
     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -6,32 +6,66 @@
     </button>
   </div>
 </div>
-<label>id</label>
-<input type="text" [(ngModel)]="studentTz">
-
-<button (click)="sendStudentId()" class="btn btn-warning">התחל מבחן</button>
-
-<div *ngIf="isOk==1">
-    <div class="quiz" id="contentToConvertto">
-        <div *ngFor="let question of test.questionArr">
-            <h2 class="quiz-question">{{question.questionDescription}}</h2>
-            <ul data-quiz-question="2">
-           <mat-radio-group [(ngModel)]="question.selectedAnswer" >
-                <div *ngFor="let answer of question.Answers" >
-                    <li class="quiz-answer" data-quiz-answer="a" [ngClass]="{'correct-answer':isFinishTest&&answer.isCorrect}">
-                        <mat-radio-button [value]="answer" [name]="question.questionDescription">
-                        </mat-radio-button>
-                        {{answer.answerDescription}}
-                    </li>
-                </div>
-            </mat-radio-group>
-            </ul>
+ -->
+<div class="row"class="rowTop">.</div>
+<div class="row">
+        <div class="col" class="side1">
+          <img class="img1" src="../../../assets/type.png" width="12vw;">
+          <img class="img3" src="../../../assets/mouse.png" width="12vw;">
         </div>
-    </div>
-  
-    <button (click)="sendTest()" class="btn btn-success">
-            <mat-icon aria-hidden="false" aria-label="done_outline">done_outline</mat-icon>סיום מבחן
-        </button>
-        <input type="button"  class="btn btn-primary"(click)="downloadPng()" value="הורד מבחן"> 
-</div>
-<div class="quiz-result"></div>
+        <div class="col-8" class="middle">
+            <div  *ngIf="isOk==-1">
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                <strong>שגיאה ! נסה להוסיף מאוחר יותר</strong>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+            </div>
+            <!-- <label>id</label> -->
+            <!-- <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                  <button class="btn btn-outline-secondary" type="button">התחל מבחן</button>
+                </div>
+                <input type="text" class="form-control" placeholder="הכנס תעודת זהות" aria-label="" aria-describedby="basic-addon1">
+              </div> -->
+              <br>
+            <h5 style="margin-left: 22vw;direction: rtl">   הכנס תעודת זהות  <input type="text" placeholder="תעודת זהות" [(ngModel)]="studentTz"></h5>
+            
+            <br>
+            <button (click)="sendStudentId()" class="btn btn-warning btn-lg btn-block" style="width: 24vw;
+            margin-left: 24vw;">התחל מבחן</button>
+            
+            <div *ngIf="isOk==1">
+                <div class="quiz" id="contentToConvertto">
+                    <div *ngFor="let question of test.questionArr">
+                        <h2 class="quiz-question">{{question.questionDescription}}</h2>
+                        <ul data-quiz-question="2">
+                       <mat-radio-group [(ngModel)]="question.selectedAnswer" >
+                            <div *ngFor="let answer of question.Answers" >
+                                <li class="quiz-answer" data-quiz-answer="a" [ngClass]="{'correct-answer':isFinishTest&&answer.isCorrect}">
+                                    <mat-radio-button [value]="answer" [name]="question.questionDescription">
+                                    </mat-radio-button>
+                                    {{answer.answerDescription}}
+                                </li>
+                            </div>
+                        </mat-radio-group>
+                        </ul>
+                    </div>
+                </div>
+              
+                <button (click)="sendTest()" class="btn btn-success">
+                        <mat-icon aria-hidden="false" aria-label="done_outline">done_outline</mat-icon>סיום מבחן
+                    </button>
+                    <input type="button"  class="btn btn-primary"(click)="downloadPng()" value="הורד מבחן"> 
+            </div>
+            <div class="quiz-result"></div>
+            
+            
+        </div>
+      
+        <div class="col"class="side2" >
+          <img class="img2" src="../../../assets/memo.png" width="13vw;">
+          <img class="img4" src="../../../assets/pens.png" width="15vw;">
+        </div>
+      </div>

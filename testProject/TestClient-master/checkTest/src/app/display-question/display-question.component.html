@@ -1,9 +1,11 @@
-<div class="card row" style="    width: 62.5vw;
-border-color: #0278f7;
-margin-right: 2vw;
-height: 50vh;
-
-    margin-top: 3vh;">
+<div class="card row" style="  
+    width: 61.5vw;
+    border-radius: 1vh;
+    border-color: #0278f7;
+    margin-right: -13vw;
+    height: 50vh;
+    margin-bottom: 2vh;
+    ">
   <div class="card-body card-body text-danger co-md-4" style="height: 100%;">
     <div class="row">
         <div class="col-10">
@@ -12,7 +14,20 @@ height: 50vh;
             <h3 class="card-title">{{questions.questionDescription}}</h3>
             
             <p *ngFor="let ans of questions.Answers">
-              {{  ans.answerDescription}} </p>
+
+            <span *ngIf="ans.isCorrect==true" >
+
+                <i class="material-icons"style="color: green">
+                    check
+                    </i>
+              {{  ans.answerDescription}}</span>  
+            <span *ngIf="ans.isCorrect==false&&ans" >
+                <i class="material-icons"style="color:red;">
+                    close
+                    </i>
+              {{  ans.answerDescription}}</span>  
+           
+          </p>
           </div>
       <div class="col-1">
         <button class="btn btn-warning" (click)="EditQuestion()"style="margin-bottom: 2vh;margin-top: 2vh;">

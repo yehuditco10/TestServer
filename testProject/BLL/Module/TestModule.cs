@@ -278,7 +278,7 @@ namespace BLL.Module
             {
                 TestForStudentVM test = new TestForStudentVM();
                 Test t = TestCRUD.ReadTestById(ctx, testId);
-                student s = ctx.students.Where(i => i.email == studentId).FirstOrDefault();
+                student s = ctx.students.Where(i => i.password == studentId).FirstOrDefault();
                 test.title = t.name;
                 test.testId = t.testId;
                 test.studentId = s.studentId;

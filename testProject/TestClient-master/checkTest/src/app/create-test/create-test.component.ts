@@ -28,6 +28,7 @@ export class CreateTestComponent implements OnInit {
   test: Test;
   testName:string;
   faCoffee = false;
+  isok:number=0;
   constructor(private categoriesService: CategoriesService,
     private getQuestionService: GetQuestionService,
     private GetDataQuestionService: GetDataQuestionService,
@@ -84,9 +85,15 @@ export class CreateTestComponent implements OnInit {
     // var questionToPush=new Questions();
     // questionToPush.nikud=0;
     // questionToPush.
+  if(this.currentQuestion.Answers.filter(a=>a.isCorrect==true)!=null){
     this.test.questionArr.push(que);
     this.currentQuestion = new Questions();
     this.cdRef.detectChanges();
+  }
+  else{
+    alert("בחר תשובה נכונה");
+    console.log("kt banr");
+  }
     console.log(que);
 
     // this.currentQuestion.restart();
@@ -102,7 +109,7 @@ export class CreateTestComponent implements OnInit {
       this.categoriesService.categories=res;
       this.categories = res;
       this.selectedCategory = res.filter(i => i.categoryId == this.test.categoriId)[0];
-      this.title = ' המבחן ב' + this.selectedCategory.categoryName;
+      this.title = ' נושא : ' + this.selectedCategory.categoryName;
       //   this.TestService.categoryId=this.selectedCategory.categoryId;
     })
   }
@@ -137,12 +144,12 @@ export class CreateTestComponent implements OnInit {
   saveTest() {
     debugger;
     
-    alert(this.testName);
+    // alert(this.testName);
     this.test.categoriId = this.selectedCategory.categoryId;
     this.test.teacherId = 25;
     this.test.name=this.testName;
     this.TestService.saveTest(this.test).subscribe((res) => {
-
+this.isok=1;
     })
   }
 }
