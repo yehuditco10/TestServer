@@ -14,14 +14,22 @@
           <img class="img3" src="../../../assets/mouse.png" width="12vw;">
         </div>
         <div class="col-8" class="middle">
-            <div  *ngIf="isOk==-1">
+            <!-- <div  *ngIf="isOk==-1">
                 <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                <strong>שגיאה ! נסה להוסיף מאוחר יותר</strong>
+                <strong>שגיאה ! ?
+                </strong>
+                <strong> 
+                  תעודת הזהות שלך שגויה :(
+                  </strong>
+                  <br>
+                  <strong>
+                  או שאיו לך הרשאה לענות על מבחן זה 
+                    </strong>
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                   <span aria-hidden="true">&times;</span>
                 </button>
               </div>
-            </div>
+            </div> -->
             <!-- <label>id</label> -->
             <!-- <div class="input-group mb-3">
                 <div class="input-group-prepend">
@@ -61,7 +69,23 @@
             </div>
             <div class="quiz-result"></div>
             
-            
+           <div *ngIf="this.isOk==-1">
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    <strong>שגיאה ! ?
+                      </strong>
+                      <br>
+                      <strong> 
+                        תעודת הזהות שלך שגויה :(
+                        </strong>
+                        <br>
+                        <strong>
+                        או שאין לך הרשאה לענות על מבחן זה 
+                          </strong>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              </div> 
         </div>
       
         <div class="col"class="side2" >

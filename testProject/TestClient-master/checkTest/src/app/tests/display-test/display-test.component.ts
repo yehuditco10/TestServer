@@ -27,6 +27,7 @@ export class DisplayTestComponent implements OnInit {
   mark: number = 0;
   MaxMark: number = 0;
   isFinishTest: boolean = false;
+  // isok:number=0;
   ngOnInit() {
     this.testId = +this.route.snapshot.paramMap.get('id');
     if (!this.testId) {
@@ -53,6 +54,8 @@ export class DisplayTestComponent implements OnInit {
           this.isOk = -1;
         });
       }
+      else
+      this.isOk=-1;
     })
     //פניה לסרבר ועדכון על תחילת מבחן
     // this.TestService.GetByTestIdForStudent(this.testId).subscribe((res: TestForStudentVM) => {
