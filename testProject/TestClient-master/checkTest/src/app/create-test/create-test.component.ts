@@ -55,10 +55,8 @@ export class CreateTestComponent implements OnInit {
       var categoryid = +this.route.snapshot.paramMap.get('categoryId');
       this.test = new Test();
       this.test.categoriId = categoryid;
- 
-      this.currentQuestion = new Questions();
-
     }
+    this.currentQuestion = new Questions();
     this.getCategories();
     this.cdRef.detectChanges();
   }
@@ -81,7 +79,6 @@ export class CreateTestComponent implements OnInit {
 
   }
   PushQuestion(que) {
-
     // var questionToPush=new Questions();
     // questionToPush.nikud=0;
     // questionToPush.
@@ -118,7 +115,6 @@ export class CreateTestComponent implements OnInit {
   }
   showModal: boolean = false;
   createNewQuestion() {
-    this.currentQuestion=new Questions();
     this.showModal = true;
   }
 
