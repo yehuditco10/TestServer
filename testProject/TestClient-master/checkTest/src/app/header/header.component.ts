@@ -46,10 +46,8 @@ export class HeaderComponent implements OnInit {
     this.globalVariable.userChange.next(null);
     localStorage.removeItem("currentUser");
     localStorage.removeItem("token");
+    this.SharedService.currentUser=null;
     this.SharedService.isManager = false;
-    // this.name="";
     this.currentUser = null;
-    this.router.navigate['/homepage'];
-
   }
 }
