@@ -192,9 +192,11 @@ namespace BLL.Module
                     }
                 }
 
-                var studentForTestList = ctx.StudentForCourses.Where(j => j.courseId == id && !tests.Select(i => i.studentId).Contains(j.studentId)).ToList();
+                var studentForTestList = ctx.StudentForCourses.Where(j => j.courseId == id).ToList();
                 foreach (var stud in studentForTestList)
                 {
+                    if(!tests.Select(i => i.studentId).Contains(stud.id))
+                    {
                     var studentObj = ctx.students.FirstOrDefault(i => i.studentId == stud.studentId);
                     marks.Add(new MarkVM()
                     {
@@ -203,6 +205,7 @@ namespace BLL.Module
                         studentTZ = stud.tz,
                         url = null
                     });
+                    }
                 }
                 return marks;
             }
