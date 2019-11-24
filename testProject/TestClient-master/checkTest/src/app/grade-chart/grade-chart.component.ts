@@ -25,6 +25,9 @@ export class GradeChartComponent implements OnInit {
     
     clearExcel(){
       this.uploadCom.clearFile();
+      this.testService.GetGradeChart(Number(this.id)).subscribe((res: Mark[]) => {
+        this.marks = res;
+      });
     }
   ngOnInit() {
    this.urls= ["../../assets/מבחן חסר.png","../../assets/מבחן חסר.png","../../assets/html_image (20).png","../../assets/html_image (20).png"] ;
