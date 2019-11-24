@@ -16,15 +16,15 @@ namespace BLL.Module
         /// </summary>
         /// <param name="testvm"></param>
         /// <returns></returns>
-        public static bool CreateTest(TestVM testvm)
+        public static bool CreateTest(TestVM testvm, int userId)
         {
             using (testitprojectEntities ctx = new testitprojectEntities())
             {
-                Test test = TestCRUD.CreateTest(ctx, testvm);
+                Test test = TestCRUD.CreateTest(ctx, testvm, userId);
                 foreach (var quest in testvm.questionArr)
                 {
                     quest.categoryId = testvm.categoriId;
-                    var question = QuestionCRUD.CreateQuestion(ctx, quest);
+                    var question = QuestionCRUD.CreateQuestion(ctx, quest, userId);
                     foreach (var ans in quest.Answers)
                     {
                         if (ans.answerDescription != null)
@@ -64,7 +64,7 @@ namespace BLL.Module
                 test.questionArr = new List<QuestionVM>();
                 foreach (var quenstion in t.QuestionforTests)
                 {
-                    List<Answer> answers = Entity.db.Answers.Where(ans => ans.questionId == quenstion.questionId).ToList();
+                    List<Answer> answers = ctx.Answers.Where(ans => ans.questionId == quenstion.questionId).ToList();
                     List<AnswerVM> answersvm = new List<AnswerVM>();
                     foreach (var item in answers)
                     {
@@ -161,8 +161,8 @@ namespace BLL.Module
             {
                 Entity.db.students.Add(new student()
                 {
-                  //  password = "1",
-                  password = student.tz,
+                    //  password = "1",
+                    password = student.tz,
                     email = "coursekamatech@gmail.com",
                     classId = 1,
                     studentName = student.name
@@ -228,12 +228,13 @@ namespace BLL.Module
         /// </summary>
         /// <param name="catId"></param>
         /// <returns></returns>
-        public static List<TestVM> FilterByCategory(int catId)
+        public static List<TestVM> FilterByCategory(int catId, int userId)
         {
             using (testitprojectEntities ctx = new testitprojectEntities())
             {
                 List<TestVM> testsList = new List<TestVM>();
-                foreach (var test in TestCRUD.ReadTestByCat(ctx, catId))
+                var tests = ctx.Tests.Where(t => t.categoriId == catId && t.teacherId == userId).ToList();
+                foreach (var test in tests)
                 {
                     testsList.Add(new TestVM()
                     {
@@ -241,23 +242,30 @@ namespace BLL.Module
                         testId = test.testId
                     });
                 }
-                if ((ctx.Categories.FirstOrDefault(c => c.parentCategoryId == catId)) != null)// אם יש לו ילדים
-                {
-                    List<Category> parents = ctx.Categories.Where(c => c.parentCategoryId == catId).ToList();
-                    foreach (var cat in parents)
-                    {
-                        foreach (var test in TestCRUD.ReadTestByCat(ctx, cat.categoryId))
-                        {
-                            testsList.Add(new TestVM()
-                            {
-                                name = test.name,
-                                testId = test.testId
-                            });
-                        }
-                    }
-                }
+                GetTestOfChildren(catId, ctx, testsList,userId);
                 return testsList;
 
+            }
+        }
+
+        private static void GetTestOfChildren(int catId, testitprojectEntities ctx, List<TestVM> testsList,int userId)
+        {
+            var childerCategories = ctx.Categories.Where(c => c.parentCategoryId == catId).ToList();
+            if (childerCategories.Count()>0)
+            {
+                foreach (var cat in childerCategories)
+                {
+                    var tests = ctx.Tests.Where(t => t.categoriId == cat.categoryId && t.teacherId == userId).ToList();
+                    foreach (var test in tests)
+                    {
+                        testsList.Add(new TestVM()
+                        {
+                            name = test.name,
+                            testId = test.testId
+                        });
+                    }
+                    GetTestOfChildren(cat.categoryId, ctx, testsList, userId);
+                }
             }
         }
 

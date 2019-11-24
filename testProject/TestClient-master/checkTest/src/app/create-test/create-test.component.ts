@@ -27,7 +27,6 @@ export class CreateTestComponent implements OnInit {
   title: string = null;
   questions: Questions[];
   test: Test;
-  testName: string;
   faCoffee = false;
   isok: number = 0;
   constructor(private categoriesService: CategoriesService,
@@ -149,7 +148,6 @@ export class CreateTestComponent implements OnInit {
     // alert(this.testName);
     this.test.categoriId = this.selectedCategory.categoryId;
     this.test.teacherId = 25;
-    this.test.name = this.testName;
     this.TestService.saveTest(this.test).subscribe((res) => {
       this.isok = 1;
     })

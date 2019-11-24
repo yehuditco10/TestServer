@@ -4,6 +4,7 @@ import { Test } from '../shared/models/test';
 import { environment } from 'src/environments/environment';
 import { UpStudent } from '../shared/models/up-student';
 import { TestForStudentVM } from '../shared/models/test-for-student-vm';
+import { GlobalVariables } from '../global/global-variable';
 
 @Injectable({
   providedIn: 'root'
@@ -11,12 +12,12 @@ import { TestForStudentVM } from '../shared/models/test-for-student-vm';
 export class TestService {
 categoryId:number;
 test:TestForStudentVM;
-  constructor(private http:HttpClient) { }
+  constructor(private http:HttpClient,private globalVariable:GlobalVariables) { }
   saveTest(test:Test){
     debugger;
     alert("service");
     console.log(test);
-    return this.http.post(environment.baseRoute+'SaveTest',test);
+    return this.http.post(environment.baseRoute+'SaveTest',test,this.globalVariable.httpOptions);
   }
   GetTestById(id){
     return this.http.post(environment.baseRoute+ "GetTestById?testId="+id,null);
@@ -30,12 +31,12 @@ test:TestForStudentVM;
   }
   studentForTest(students:UpStudent[]){
     debugger;
-    return this.http.post(environment.baseRoute+ "studentForTest",students);
+    return this.http.post(environment.baseRoute+ "studentForTest",students,this.globalVariable.httpOptions);
   }
   GetGradeChart(id:number){
-    return this.http.get(environment.baseRoute+"GetGradeChart/"+id);
+    return this.http.get(environment.baseRoute+"GetGradeChart/"+id,this.globalVariable.httpOptions);
   }
   getLink(id:number){
-    return this.http.get(environment.baseRoute+"getLink/"+id);
+    return this.http.get(environment.baseRoute+"getLink/"+id,this.globalVariable.httpOptions);
   }
 }
