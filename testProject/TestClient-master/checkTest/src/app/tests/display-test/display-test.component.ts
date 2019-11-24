@@ -36,12 +36,12 @@ export class DisplayTestComponent implements OnInit {
     }
     this.test = new TestForStudentVM();
   }
-  isOk: number = 0;
+  isOk: number = 2;
   sendStudentId() {
     //send test id+ student id
-    this.TestService.openTest(this.testId, this.studentTz).subscribe((res: Boolean) => {
+    this.TestService.openTest(this.testId, this.studentTz).subscribe((res: number) => {
       //פניה לסרבר ועדכון על תחילת מבחן
-      if (res == true) {
+      if (res == 1) {
         this.TestService.GetByTestIdForStudent(this.testId,this.studentTz).subscribe((res: TestForStudentVM) => {
           if (res != null) {
             this.test = res;
@@ -55,8 +55,9 @@ export class DisplayTestComponent implements OnInit {
           this.isOk = -1;
         });
       }
-      else
+      else if(res==-1)
       this.isOk=-1;
+      else this.isOk=0;
     })
     //פניה לסרבר ועדכון על תחילת מבחן
     // this.TestService.GetByTestIdForStudent(this.testId).subscribe((res: TestForStudentVM) => {

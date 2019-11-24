@@ -91,7 +91,7 @@ namespace WebApplication.Controllers
         /// <returns></returns>
         [Route("openTest")]
         [HttpGet]
-        public bool openTest(int testId,string studentTZ)
+        public int openTest(int testId,string studentTZ)
         {
             return TestModule.openTest(testId,studentTZ);
         }

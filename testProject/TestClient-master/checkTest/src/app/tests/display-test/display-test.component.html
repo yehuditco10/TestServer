@@ -62,10 +62,11 @@
                     </div>
                 </div>
               
-                <button (click)="sendTest()" class="btn btn-success">
+                <button (click)="sendTest()" class="btn btn-success btn-lg btn-block" style="width: 24vw;
+                margin-left: 24vw;">
                         <mat-icon aria-hidden="false" aria-label="done_outline">done_outline</mat-icon>סיום מבחן
                     </button>
-                    <input type="button"  class="btn btn-primary"(click)="downloadPng()" value="הורד מבחן"> 
+                    <!-- <input type="button"  class="btn btn-primary"(click)="downloadPng()" value="הורד מבחן">  -->
             </div>
             <div class="quiz-result"></div>
             
@@ -86,6 +87,22 @@
                 </button>
               </div>
               </div> 
+                   
+           <div *ngIf="this.isOk==0">
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                <strong>שגיאה ! ?
+                  </strong>
+                  <br>
+                  <strong> 
+                   אין אפשרות לענות יותר מפעם אחת על אותו מבחן
+                    </strong>
+                    <br>
+                   
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          </div> 
         </div>
       
         <div class="col"class="side2" >

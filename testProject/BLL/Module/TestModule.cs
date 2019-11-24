@@ -83,7 +83,7 @@ namespace BLL.Module
                     ctx.SaveChanges();
                     return true;
                 }
-              
+
             }
             return false;
         }
@@ -195,16 +195,16 @@ namespace BLL.Module
                 var studentForTestList = ctx.StudentForCourses.Where(j => j.courseId == id).ToList();
                 foreach (var stud in studentForTestList)
                 {
-                    if(!tests.Select(i => i.studentId).Contains(stud.id))
+                    if (!tests.Select(i => i.studentId).Contains(stud.id))
                     {
-                    var studentObj = ctx.students.FirstOrDefault(i => i.studentId == stud.studentId);
-                    marks.Add(new MarkVM()
-                    {
-                        mark = null,
-                        studentName = studentObj.studentName,
-                        studentTZ = stud.tz,
-                        url = null
-                    });
+                        var studentObj = ctx.students.FirstOrDefault(i => i.studentId == stud.studentId);
+                        marks.Add(new MarkVM()
+                        {
+                            mark = null,
+                            studentName = studentObj.studentName,
+                            studentTZ = stud.tz,
+                            url = null
+                        });
                     }
                 }
                 return marks;
@@ -273,16 +273,22 @@ namespace BLL.Module
         /// <param name="testId"></param>
         /// <param name="studentTZ"></param>
         /// <returns></returns>
-        public static bool openTest(int testId, string studentTZ)
+        public static int openTest(int testId, string studentTZ)
         {
             //------------!!!!!!!!!!!!להחזיר את זה
             //  var x = Entity.db.StudentForCourses.FirstOrDefault(s => s.courseId == testId);
             // var x = 1;
             //password is the TZ
-            StudentForCourse x = Entity.db.StudentForCourses.FirstOrDefault(s => s.tz == studentTZ && s.courseId == testId);
-            if (x != null)
-                return true;
-            return false;
+StudentForCourse student = Entity.db.StudentForCourses.FirstOrDefault(s => s.tz == studentTZ && s.courseId == testId);
+            if (student != null)
+            {
+                if (Entity.db.TestForStudents.FirstOrDefault(t => t.testId == testId && t.studentId == student.studentId) == null)
+                    return 1;
+                return 
+                    0;
+            }
+
+            return -1;
 
         }
         //TestSaved
