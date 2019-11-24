@@ -5,6 +5,9 @@ using BLL.Module;
 using BLL.ViewModels;
 using DAL;
 using System.Collections.Generic;
+using System.Linq;
+using System.Security.Claims;
+using System.Threading;
 using System.Web.Http;
 using System.Web.Http.Cors;
 using WebApplication.Models;
@@ -23,7 +26,9 @@ namespace WebApplication.Controllers
         [HttpPost]
         public bool saveTest(TestVM test)
         {
-            return TestModule.CreateTest(test);
+            var prinicpal = (ClaimsPrincipal)Thread.CurrentPrincipal;
+            var userId = prinicpal.Claims.Where(c => c.Type == "UserId").Select(c => c.Value).SingleOrDefault().ToString();
+            return TestModule.CreateTest(test,int.Parse(userId));
         }
        
        /// <summary>
@@ -35,7 +40,9 @@ namespace WebApplication.Controllers
         [HttpPost]
         public List<TestVM> GetTests(int categoryId)
         {
-            return TestModule.FilterByCategory(categoryId);
+            var prinicpal = (ClaimsPrincipal)Thread.CurrentPrincipal;
+            var userId = prinicpal.Claims.Where(c => c.Type == "UserId").Select(c => c.Value).SingleOrDefault().ToString();
+            return TestModule.FilterByCategory(categoryId,int.Parse(userId));
         }
 
         /// <summary>

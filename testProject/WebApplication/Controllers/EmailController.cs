@@ -21,11 +21,11 @@ namespace WebApplication.Controllers
         /// <returns></returns>
         [HttpPost]
         [Route("email/suggestQuestion")]
-        public bool suggestQuestion(QuestionVM newQuestion)
+        public bool suggestQuestion(QuestionVM newQuestion,int userId)
         {
             newQuestion.categoryId = 1;//TODO  
             //newQuestion.questionDescription = "תעבוד?";
-            QuestionCRUD.CreateQuestion(Entity.db, newQuestion);//הוספת השאלה למאגר
+            QuestionCRUD.CreateQuestion(Entity.db, newQuestion,userId);//הוספת השאלה למאגר
             Question newq = Entity.db.Questions.FirstOrDefault(q => q.questionDescription == newQuestion.questionDescription);
             //newq.Answers = null;
             foreach (var ans in newQuestion.Answers)

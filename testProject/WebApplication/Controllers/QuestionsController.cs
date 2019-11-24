@@ -8,6 +8,8 @@ using System.Web.Http.Cors;
 using DAL;
 using BLL.ViewModels;
 using BLL.Module;
+using System.Security.Claims;
+using System.Threading;
 
 namespace WebApplication.Controllers
 {
@@ -95,8 +97,9 @@ namespace WebApplication.Controllers
         [HttpPost]
         public IHttpActionResult addNewQuestion(QuestionVM question)
         {
-            
-            return Ok(QuestionModule.CreateQuestion(question));
+            var prinicpal = (ClaimsPrincipal)Thread.CurrentPrincipal;
+            var userId = int.Parse(prinicpal.Claims.Where(c => c.Type == "UserId").Select(c => c.Value).SingleOrDefault().ToString());
+            return Ok(QuestionModule.CreateQuestion(question,userId));
         }
 
         /// <summary>

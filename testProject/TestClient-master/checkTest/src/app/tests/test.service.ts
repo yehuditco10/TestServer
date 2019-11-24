@@ -3,39 +3,35 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { TestForStudentVM } from '../shared/models/test-for-student-vm';
 import { TestSaved } from '../shared/models/test-saved';
+import { GlobalVariables } from '../global/global-variable';
 
 @Injectable({
   providedIn: 'root'
 })
 export class TestService {
-currentTest:TestForStudentVM=new TestForStudentVM();
-  constructor(private http:HttpClient) { }
-  getAllTestByCategoryId(id:number){
-return this.http.post(environment.baseRoute+ "FilterByCategory?categoryId="+id,null);
+  currentTest: TestForStudentVM = new TestForStudentVM();
+  constructor(private http: HttpClient, private globalVariable: GlobalVariables) { }
+  getAllTestByCategoryId(id: number) {
+    return this.http.post(environment.baseRoute + "FilterByCategory?categoryId=" + id, null, this.globalVariable.httpOptions);
   }
-  GetByTestIdForStudent(testId,studentId){
-    // alert("in service"+id);
-    var model={
-      testId:testId,
-      studentId:studentId
+  GetByTestIdForStudent(testId, studentId) {
+    var model = {
+      testId: testId,
+      studentId: studentId
     }
-    return this.http.post(environment.baseRoute+ "GetByTestIdForStudent",model);
+    return this.http.post(environment.baseRoute + "GetByTestIdForStudent", model);
   }
-  GetByQuestionForManager(questionId:number){
+  GetByQuestionForManager(questionId: number) {
     // alert("in service"+id);
-    return this.http.get(environment.baseRoute+ "GetByQuestionForManager/"+questionId);
+    return this.http.get(environment.baseRoute + "GetByQuestionForManager/" + questionId,this.globalVariable.httpOptions);
   }
-  GetTestByCategoryId(id){
-    return this.http.post(environment.baseRoute+ "GetTestById?categoryId="+id,null);
+  GetTestByCategoryId(id) {
+    return this.http.post(environment.baseRoute + "GetTestById?categoryId=" + id, null,this.globalVariable.httpOptions);
   }
-  openTest(testid:number,studentTZ:string){
-    return this.http.get(environment.baseRoute+ "openTest?testid="+testid+'&studentTZ='+studentTZ);
-    // let data=new URLSearchParams();
-    // data.append('testid',testid);
-    // var body='testid=testid+&studentTZ=studentTZ';
-    // return this.http.post(environment.baseRoute+'openTest',body);
+  openTest(testid: number, studentTZ: string) {
+    return this.http.get(environment.baseRoute + "openTest?testid=" + testid + '&studentTZ=' + studentTZ);
   }
-  checktest(tested:TestSaved){
-    return this.http.post(environment.baseRoute+"TestSaved",tested);
+  checktest(tested: TestSaved) {
+    return this.http.post(environment.baseRoute + "TestSaved", tested);
   }
 }

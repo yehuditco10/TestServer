@@ -16,11 +16,11 @@ namespace BLL.Module
         /// </summary>
         /// <param name="question"></param>
         /// <returns></returns>
-        public static bool CreateQuestion(QuestionVM question)
+        public static bool CreateQuestion(QuestionVM question,int userId)
         {
             using (var ctx = new testitprojectEntities())
             {
-                var q = QuestionCRUD.CreateQuestion(ctx, question);
+                var q = QuestionCRUD.CreateQuestion(ctx, question,userId);
                 foreach (var ans in question.Answers)
                 {
                     AnswerCRUD.CreateAnswer(ctx, q, ans);

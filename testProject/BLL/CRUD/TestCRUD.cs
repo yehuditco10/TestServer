@@ -9,13 +9,13 @@ namespace BLL.CRUD
 {
     public static class TestCRUD
     {
-        public static Test CreateTest(testitprojectEntities ctx, TestVM test_vm)
+        public static Test CreateTest(testitprojectEntities ctx, TestVM test_vm, int userId)
         {
             Test test = new Test()
             {
                 categoriId = test_vm.categoriId,
                 link = @"http://localhost:4200/test/",
-                teacherId = 25,
+                teacherId = userId,
                 name = test_vm.name
             };//active route
             ctx.Tests.Add(test);
