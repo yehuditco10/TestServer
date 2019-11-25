@@ -20,4 +20,7 @@ sumStudents:number;
   getStaticMark(id:number){
     return this.http.get(environment.baseRoute+"report/getStaticMark/"+id,this.globalVariable.httpOptions);
   }
+  getStatisticA(){
+    return this.http.get(environment.baseRoute+"report/getStatisticA");
+  }
 }

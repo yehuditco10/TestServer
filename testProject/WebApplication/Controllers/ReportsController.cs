@@ -61,5 +61,11 @@ namespace WebApplication.Controllers
         {
             return Request.CreateResponse(HttpStatusCode.OK, StatisticModule.getStaticMark(id));
         }
+        [System.Web.Http.Route("StatisticA")]
+        [System.Web.Http.HttpGet]
+        public HttpResponseMessage StatisticA()
+        {
+            return Request.CreateResponse(HttpStatusCode.OK, StatisticModule.StatisticA());
+        }
     }
 }

@@ -195,7 +195,7 @@ namespace BLL.Module
                 var studentForTestList = ctx.StudentForCourses.Where(j => j.courseId == id).ToList();
                 foreach (var stud in studentForTestList)
                 {
-                    if (!tests.Select(i => i.studentId).Contains(stud.id))
+                    if (!tests.Select(i => i.studentId).Contains(stud.studentId))
                     {
                         var studentObj = ctx.students.FirstOrDefault(i => i.studentId == stud.studentId);
                         marks.Add(new MarkVM()

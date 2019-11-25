@@ -21,7 +21,7 @@
               check
             </i>
             {{  ans.answerDescription}}</span>
-          <span *ngIf="ans.isCorrect==false&&ans">
+          <span *ngIf="ans.isCorrect==false&&ans.answerDescription!=null">
             <i class="material-icons" style="color:red;">
               close
             </i>

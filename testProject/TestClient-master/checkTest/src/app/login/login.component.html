@@ -7,6 +7,17 @@
             value="הרשמה"><span>הרשמה</span></button>
     </div>
     <div *ngIf="status=='login'" class="login-reg-content">
+        <!--  -->
+            <!-- <div class="form-group">
+                    <label for ="email">Email</label>
+                      <input type="text" class="form-control" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" id="email"name="email" ngModel #emailref="ngModel">
+                      <div *ngIf="emailref.errors &&(emailref.touched || emailref.dirty)" class ="aler alert-danger">
+                       <div [hidden]="!emailref.errors?.pattern">
+                         Invalid pattern
+                       </div> 
+                      </div> 
+                </div> -->
+                <!--  -->
         <div class="input-group mb-3">
             <div class="input-group-prepend">
                 <span class="input-group-text" id="basic-addon1"><i class="material-icons">
@@ -70,7 +81,28 @@
             <input type="text" [(ngModel)]="t.teacherName" class="form-control" placeholder="שם משתמש"
                 aria-label="Username" aria-describedby="basic-addon1">
         </div>
+        <!--  -->
         <div class="input-group mb-3">
+        <div class="form-group">
+                <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-addon1"><i class="material-icons">
+                                email
+                            </i></span>
+                    </div>
+                <!-- <label for ="email">Email</label> -->
+                  <input type="text" [(ngModel)]="t.email" class="form-control" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" id="email"name="email"  #emailref="ngModel"class="form-control" placeholder="כתובת מייל"
+                  aria-label="Username" aria-describedby="basic-addon1" style="    margin-left: 3vw;
+                  margin-top: -5.7vh;
+                  width: 17vw;">
+                  <div *ngIf="emailref.errors &&(emailref.touched || emailref.dirty)" class ="aler alert-danger">
+                   <div [hidden]="!emailref.errors?.pattern">
+                     Invalid pattern
+                   </div> 
+                  </div> 
+            </div>
+        </div>
+        <!--  -->
+        <!-- <div class="input-group mb-3">
             <div class="input-group-prepend">
                 <span class="input-group-text" id="basic-addon1"><i class="material-icons">
                         email
@@ -78,7 +110,7 @@
             </div>
             <input type="email" name="email" email [(ngModel)]="t.email" class="form-control" placeholder="כתובת מייל"
                 aria-label="Username" aria-describedby="basic-addon1">
-        </div>
+        </div> -->
         <div class="input-group mb-3">
             <div class="input-group-prepend">
                 <span class="input-group-text" id="basic-addon1"><i class="material-icons">

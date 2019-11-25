@@ -66,6 +66,9 @@
                 margin-left: 24vw;">
                         <mat-icon aria-hidden="false" aria-label="done_outline">done_outline</mat-icon>סיום מבחן
                     </button>
+                    <div *ngIf="this.currentMark!=''" class="alert alert-warning" role="alert">
+                 {{this.currentMark}} : ציונך הוא  
+                    </div>
                     <!-- <input type="button"  class="btn btn-primary"(click)="downloadPng()" value="הורד מבחן">  -->
             </div>
             <div class="quiz-result"></div>

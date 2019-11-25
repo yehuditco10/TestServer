@@ -34,8 +34,8 @@ export class AddQuestionComponent implements OnInit {
   addNewQuestion(){
     console.log(this.question);
     console.log(this.question);
-this.QuestionService.addNewQuestion(this.question).subscribe(res=>{
+// this.QuestionService.addNewQuestion(this.question).subscribe(res=>{
 
-})
+// });
   }
 }

@@ -69,7 +69,7 @@ namespace BLL
 
         public static object GetAllQuestion()
         {
-            return Entity.db.Questions.ToList();
+            return Entity.db.Questions.Where(q => q.isPrivate == true).OrderBy(qu => qu.questionDescription).ToList();
         }
 
         public static bool Register(Teacher t)
@@ -119,11 +119,11 @@ namespace BLL
             if (lc.Count!= 0)
                 foreach (var item in lc)
                 {
-                    var questions = Entity.db.Questions.Where(q => q.categoriId == item.categoryId).ToList();
+                    var questions = Entity.db.Questions.Where(q => q.categoriId == item.categoryId&& q.isPrivate==true).ToList();
                     lq.AddRange(questions);
                 }
             //var parentId = Entity.db.Categories.FirstOrDefault(c =>c.parentCategoryId!=null && c.parentCategoryId != categoryId)();
-            l = Entity.db.Questions.Where(q => q.categoriId == categoryId /*||q.parentCategoryId==categoryId*/ ).ToList();
+            l = Entity.db.Questions.Where(q => q.categoriId == categoryId &&q.isPrivate==true/*||q.parentCategoryId==categoryId*/ ).ToList();
             if (lc.Count > 0)//יש תתי שאלות
             {
                //יש שאלות אב

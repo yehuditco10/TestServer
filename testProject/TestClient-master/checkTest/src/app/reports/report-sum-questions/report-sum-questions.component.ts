@@ -3,6 +3,7 @@ import { CategoriesService } from 'src/app/services/categories.service';
 import { Category } from 'src/app/shared/models/category';
 import { QuestionForCategory } from 'src/app/shared/models/question-for-category';
 import { GetQuestionService } from 'src/app/services/get-question.service';
+import { ReportsService } from 'src/app/services/reports.service';
 
 @Component({
   selector: 'app-report-sum-questions',
@@ -11,7 +12,7 @@ import { GetQuestionService } from 'src/app/services/get-question.service';
 })
 export class ReportSumQuestionsComponent implements OnInit {
 
-  constructor(private categoryService: CategoriesService, private questionSErvice: GetQuestionService) { }
+  constructor(private categoryService: CategoriesService,private reportService:ReportsService, private questionSErvice: GetQuestionService) { }
   categories: QuestionForCategory[];
   cat: QuestionForCategory;
   ngOnInit() {
@@ -29,70 +30,57 @@ export class ReportSumQuestionsComponent implements OnInit {
 
     })
     var Highcharts = require('highcharts');
-    Highcharts.chart('container', {
-      chart: {
-        type: 'column'
-      },
-      title: {
-        text: 'דוח שאלות לפי ע"פ קטגוריות'
-      },
-      subtitle: {
-        // text: 'Click the columns to view versions. Source: <a href="http://statcounter.com" target="_blank">statcounter.com</a>'
-      },
-      xAxis: {
-        type: 'category',
-        text: 'קטגוריות'
-
-      },
-      yAxis: {
+    this.reportService.getStatisticA().subscribe((res)=>{
+      Highcharts.chart('container', {
+        chart: {
+          type: 'column'
+        },
         title: {
-          text: 'כמות שאלות במאגר לקטגוריה זו'
-        }
-
-      },
-      legend: {
-        enabled: false
-      },
-      plotOptions: {
-        series: {
-          borderWidth: 0,
-          dataLabels: {
-            enabled: true,
-            format: '{point.y:.1f}%'
+          text: 'דוח שאלות לפי ע"פ קטגוריות'
+        },
+        subtitle: {
+          // text: 'Click the columns to view versions. Source: <a href="http://statcounter.com" target="_blank">statcounter.com</a>'
+        },
+        xAxis: {
+          type: 'category',
+          text: 'קטגוריות'
+  
+        },
+        yAxis: {
+          title: {
+            text: 'כמות שאלות במאגר לקטגוריה זו'
           }
-        }
-      },
-
-      tooltip: {
-        headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
-        pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y:.2f}%</b> of total<br/>'
-      },
-
-      series: [
-        {
-          name: "Browsers",
-          colorByPoint: true,
-          data: [
-
-            {
-              name: "Edge",
-              y: 4.02,
-              drilldown: "Edge"
-            },
-            {
-              name: "Opera",
-              y: 1.92,
-              drilldown: "Opera"
-            },
-            {
-              name: "Other",
-              y: 7.62,
-              drilldown: null
+  
+        },
+        legend: {
+          enabled: false
+        },
+        plotOptions: {
+          series: {
+            borderWidth: 0,
+            dataLabels: {
+              enabled: true,
+              format: '{point.y}'
             }
-          ]
-        }
-      ],
+          }
+        },
+  
+        tooltip: {
+          headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
+          pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y:.2f}%</b> of total<br/>'
+        },
+  
+        series: [
+          {
+            name: "Browsers",
+            colorByPoint: true,
+            data:res
+          
+          }
+        ],
+      });
     });
+ 
 
   }
 

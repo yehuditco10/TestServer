@@ -30,5 +30,37 @@ namespace BLL.Module
             }
             return ls;
         }
+ 
+
+        
+
+            public static List<ModelStatisticA> StatisticA()
+            {
+                using (var ctx = new testitprojectEntities())
+                {
+                    var ls = new List<ModelStatisticA>();
+                    var categoriesList = ctx.Categories.ToList();
+                    foreach (var category in categoriesList)
+                    {
+                        var questionsNumber = ctx.Questions.Where(i => i.categoriId == category.categoryId).Count();
+                        ls.Add(new ModelStatisticA()
+                        {
+                            name = category.categoryName,
+                            y = questionsNumber
+                        });
+                    }
+                    return ls;
+                }
+
+            }
+        }
+
+        public class ModelStatisticA
+        {
+            public string name { get; set; }
+            public int y { get; set; }
+        }
     }
-}
+
+
+

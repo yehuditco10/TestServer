@@ -25,6 +25,7 @@ export class DisplayTestComponent implements OnInit {
   testId: number = 0;
   studentTz: string;
   mark: number = 0;
+  currentMark:string="";
   MaxMark: number = 0;
   isFinishTest: boolean = false;
   // isok:number=0;
@@ -101,7 +102,7 @@ export class DisplayTestComponent implements OnInit {
         if (element.selectedAnswer.isCorrect == true)
           this.mark += element.nikud;
       });
-      alert(this.mark + "/" + this.MaxMark);
+this.currentMark=this.mark + "/" + this.MaxMark;
       this.tested = new TestSaved(this.testId,testImg, this.test.studentId, this.test.dateStart, this.mark);
       this.TestService.checktest(this.tested).subscribe((res: any) => {
 
