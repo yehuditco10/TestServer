@@ -31,7 +31,7 @@
     "hammerjs": "^2.0.8",
     "highcharts": "^7.2.0",
     "html2canvas": "^1.0.0-rc.5",
-    "jquery": "^3.4.1",
+    "jquery": "^3.5.0",
     "jspdf": "^1.5.3",
     "rxjs": "~6.3.3",
     "ts-xlsx": "0.0.11",
